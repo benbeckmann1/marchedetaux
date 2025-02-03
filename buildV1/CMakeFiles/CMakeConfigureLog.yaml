@@ -1,0 +1,2248 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:20 (project)"
+    message: |
+      The system is: Linux - 5.15.153.1-microsoft-standard-WSL2 - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:20 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/3.30.3/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:20 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/3.30.3/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:20 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-AXB140"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-AXB140"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-AXB140'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b395f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b395f.dir/build.make CMakeFiles/cmTC_b395f.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-AXB140'
+        Building C object CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o -c /snap/cmake/1413/share/cmake-3.30/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b395f.dir/'
+         /usr/lib/gcc/x86_64-linux-gnu/11/cc1 -quiet -v -imultiarch x86_64-linux-gnu /snap/cmake/1413/share/cmake-3.30/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_b395f.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccRmYiG0.s
+        GNU C17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-linux-gnu/11/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        GNU C17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 50eaa2331df977b8016186198deb2d18
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b395f.dir/'
+         as -v --64 -o CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o /tmp/ccRmYiG0.s
+        GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38
+        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_b395f
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b395f.dir/link.txt --verbose=1
+        /usr/bin/cc  -v -Wl,-v CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o -o cmTC_b395f
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
+        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b395f' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_b395f.'
+         /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLavtpE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_b395f /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
+        collect2 version 11.4.0
+        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLavtpE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_b395f /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
+        GNU ld (GNU Binutils for Ubuntu) 2.38
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b395f' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_b395f.'
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-AXB140'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:182 (message)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:20 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-linux-gnu/11/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/11/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/11/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/lib/gcc/x86_64-linux-gnu/11/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:20 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-AXB140']
+        ignore line: []
+        ignore line: [Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b395f/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_b395f.dir/build.make CMakeFiles/cmTC_b395f.dir/build]
+        ignore line: [gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-AXB140']
+        ignore line: [Building C object CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o -c /snap/cmake/1413/share/cmake-3.30/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b395f.dir/']
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/cc1 -quiet -v -imultiarch x86_64-linux-gnu /snap/cmake/1413/share/cmake-3.30/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_b395f.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccRmYiG0.s]
+        ignore line: [GNU C17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: 50eaa2331df977b8016186198deb2d18]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b395f.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o /tmp/ccRmYiG0.s]
+        ignore line: [GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_b395f]
+        ignore line: [/snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b395f.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/cc  -v -Wl -v CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o -o cmTC_b395f]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b395f' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_b395f.']
+        link line: [ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLavtpE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_b395f /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccLavtpE.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_b395f] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/11] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..]
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [collect2 version 11.4.0]
+        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLavtpE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_b395f /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_b395f.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+        linker tool for 'C': /usr/bin/ld
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11] ==> [/usr/lib/gcc/x86_64-linux-gnu/11]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> [/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/11;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:20 (project)"
+    message: |
+      Running the C compiler's linker: "/usr/bin/ld" "-v"
+      GNU ld (GNU Binutils for Ubuntu) 2.38
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:20 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-BuycX1"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-BuycX1"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-BuycX1'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2ce83/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_2ce83.dir/build.make CMakeFiles/cmTC_2ce83.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-BuycX1'
+        Building CXX object CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o -c /snap/cmake/1413/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2ce83.dir/'
+         /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /snap/cmake/1413/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_2ce83.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccVTTRbp.s
+        GNU C++17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/11"
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/include/c++/11
+         /usr/include/x86_64-linux-gnu/c++/11
+         /usr/include/c++/11/backward
+         /usr/lib/gcc/x86_64-linux-gnu/11/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        GNU C++17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: d591828bb4d392ae8b7b160e5bb0b95f
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2ce83.dir/'
+         as -v --64 -o CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccVTTRbp.s
+        GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38
+        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_2ce83
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2ce83.dir/link.txt --verbose=1
+        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_2ce83
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
+        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2ce83' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_2ce83.'
+         /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccIK6tN9.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_2ce83 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
+        collect2 version 11.4.0
+        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccIK6tN9.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_2ce83 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
+        GNU ld (GNU Binutils for Ubuntu) 2.38
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2ce83' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_2ce83.'
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-BuycX1'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:182 (message)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:20 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/include/c++/11]
+          add: [/usr/include/x86_64-linux-gnu/c++/11]
+          add: [/usr/include/c++/11/backward]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/11/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/include/c++/11] ==> [/usr/include/c++/11]
+        collapse include dir [/usr/include/x86_64-linux-gnu/c++/11] ==> [/usr/include/x86_64-linux-gnu/c++/11]
+        collapse include dir [/usr/include/c++/11/backward] ==> [/usr/include/c++/11/backward]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/11/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/11/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/include/c++/11;/usr/include/x86_64-linux-gnu/c++/11;/usr/include/c++/11/backward;/usr/lib/gcc/x86_64-linux-gnu/11/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:20 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-BuycX1']
+        ignore line: []
+        ignore line: [Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2ce83/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_2ce83.dir/build.make CMakeFiles/cmTC_2ce83.dir/build]
+        ignore line: [gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-BuycX1']
+        ignore line: [Building CXX object CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o -c /snap/cmake/1413/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2ce83.dir/']
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /snap/cmake/1413/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_2ce83.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccVTTRbp.s]
+        ignore line: [GNU C++17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/11"]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/include/c++/11]
+        ignore line: [ /usr/include/x86_64-linux-gnu/c++/11]
+        ignore line: [ /usr/include/c++/11/backward]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C++17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: d591828bb4d392ae8b7b160e5bb0b95f]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2ce83.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccVTTRbp.s]
+        ignore line: [GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_2ce83]
+        ignore line: [/snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2ce83.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/c++  -v -Wl -v CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_2ce83]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-11-XeT9lY/gcc-11-11.4.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2ce83' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_2ce83.']
+        link line: [ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccIK6tN9.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_2ce83 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccIK6tN9.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_2ce83] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/11] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..]
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [collect2 version 11.4.0]
+        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccIK6tN9.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_2ce83 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -v CMakeFiles/cmTC_2ce83.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+        linker tool for 'CXX': /usr/bin/ld
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11] ==> [/usr/lib/gcc/x86_64-linux-gnu/11]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> [/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/11;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:20 (project)"
+    message: |
+      Running the CXX compiler's linker: "/usr/bin/ld" "-v"
+      GNU ld (GNU Binutils for Ubuntu) 2.38
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:19 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:79 (check_extern_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_EXTERN_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8a2ea/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_8a2ea.dir/build.make CMakeFiles/cmTC_8a2ea.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_8a2ea.dir/test_extern_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_8a2ea.dir/test_extern_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:3:13: error: redefinition of ‘foo’
+            3 |         int foo (int x) { return x+1;}
+              |             ^~~
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:2:27: note: previous definition of ‘foo’ with type ‘int(int)’
+            2 |         extern inline int foo (int x) { return x+1;}
+              |                           ^~~
+        gmake[1]: *** [CMakeFiles/cmTC_8a2ea.dir/build.make:78: CMakeFiles/cmTC_8a2ea.dir/test_extern_inline.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:127: cmTC_8a2ea/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:51 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:81 (check_c99_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_C99_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ae50e/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ae50e.dir/build.make CMakeFiles/cmTC_ae50e.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_ae50e.dir/test_c99_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_ae50e.dir/test_c99_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_c99_inline.c
+        Linking C executable cmTC_ae50e
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ae50e.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_ae50e.dir/test_c99_inline.c.o -o cmTC_ae50e
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindBLAS.cmake:377 (check_function_exists)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindBLAS.cmake:421 (check_blas_libraries)"
+      - "CMakeLists.txt:86 (find_package)"
+    checks:
+      - "Looking for sgemm_"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-JoxTF0"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-JoxTF0"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "BLAS_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-JoxTF0'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_947ac/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_947ac.dir/build.make CMakeFiles/cmTC_947ac.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-JoxTF0'
+        Building C object CMakeFiles/cmTC_947ac.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -Wall -DCHECK_FUNCTION_EXISTS=sgemm_ -o CMakeFiles/cmTC_947ac.dir/CheckFunctionExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-JoxTF0/CheckFunctionExists.c
+        Linking C executable cmTC_947ac
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_947ac.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall -DCHECK_FUNCTION_EXISTS=sgemm_ CMakeFiles/cmTC_947ac.dir/CheckFunctionExists.c.o -o cmTC_947ac
+        /usr/bin/ld: CMakeFiles/cmTC_947ac.dir/CheckFunctionExists.c.o: in function `main':
+        CheckFunctionExists.c:(.text+0x14): undefined reference to `sgemm_'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_947ac.dir/build.make:99: cmTC_947ac] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-JoxTF0'
+        gmake: *** [Makefile:127: cmTC_947ac/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindBLAS.cmake:475 (find_package)"
+      - "CMakeLists.txt:86 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-R9p1N0"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-R9p1N0"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-R9p1N0'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4619c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_4619c.dir/build.make CMakeFiles/cmTC_4619c.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-R9p1N0'
+        Building C object CMakeFiles/cmTC_4619c.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -Wall  -o CMakeFiles/cmTC_4619c.dir/src.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-R9p1N0/src.c
+        Linking C executable cmTC_4619c
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4619c.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_4619c.dir/src.c.o -o cmTC_4619c
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-R9p1N0'
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:19 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:79 (check_extern_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_EXTERN_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_806ac/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_806ac.dir/build.make CMakeFiles/cmTC_806ac.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_806ac.dir/test_extern_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_806ac.dir/test_extern_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:3:13: error: redefinition of ‘foo’
+            3 |         int foo (int x) { return x+1;}
+              |             ^~~
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:2:27: note: previous definition of ‘foo’ with type ‘int(int)’
+            2 |         extern inline int foo (int x) { return x+1;}
+              |                           ^~~
+        gmake[1]: *** [CMakeFiles/cmTC_806ac.dir/build.make:78: CMakeFiles/cmTC_806ac.dir/test_extern_inline.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:127: cmTC_806ac/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:51 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:81 (check_c99_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_C99_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_bb7e2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_bb7e2.dir/build.make CMakeFiles/cmTC_bb7e2.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_bb7e2.dir/test_c99_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_bb7e2.dir/test_c99_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_c99_inline.c
+        Linking C executable cmTC_bb7e2
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bb7e2.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_bb7e2.dir/test_c99_inline.c.o -o cmTC_bb7e2
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindBLAS.cmake:377 (check_function_exists)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindBLAS.cmake:1327 (check_blas_libraries)"
+      - "CMakeLists.txt:86 (find_package)"
+    checks:
+      - "Looking for sgemm_"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-lctijQ"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-lctijQ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "BLAS_blas_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-lctijQ'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_71286/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_71286.dir/build.make CMakeFiles/cmTC_71286.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-lctijQ'
+        Building C object CMakeFiles/cmTC_71286.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -Wall -DCHECK_FUNCTION_EXISTS=sgemm_ -o CMakeFiles/cmTC_71286.dir/CheckFunctionExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-lctijQ/CheckFunctionExists.c
+        Linking C executable cmTC_71286
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_71286.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall -DCHECK_FUNCTION_EXISTS=sgemm_ CMakeFiles/cmTC_71286.dir/CheckFunctionExists.c.o -o cmTC_71286  /usr/lib/x86_64-linux-gnu/libblas.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-lctijQ'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindLAPACK.cmake:220 (check_function_exists)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindLAPACK.cmake:397 (check_lapack_libraries)"
+      - "CMakeLists.txt:87 (find_package)"
+    checks:
+      - "Looking for cheev_"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-wdbtwQ"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-wdbtwQ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "LAPACK_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-wdbtwQ'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ad160/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ad160.dir/build.make CMakeFiles/cmTC_ad160.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-wdbtwQ'
+        Building C object CMakeFiles/cmTC_ad160.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -Wall -DCHECK_FUNCTION_EXISTS=cheev_ -o CMakeFiles/cmTC_ad160.dir/CheckFunctionExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-wdbtwQ/CheckFunctionExists.c
+        Linking C executable cmTC_ad160
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ad160.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall -DCHECK_FUNCTION_EXISTS=cheev_ CMakeFiles/cmTC_ad160.dir/CheckFunctionExists.c.o -o cmTC_ad160  /usr/lib/x86_64-linux-gnu/libblas.so -lm -ldl
+        /usr/bin/ld: CMakeFiles/cmTC_ad160.dir/CheckFunctionExists.c.o: in function `main':
+        CheckFunctionExists.c:(.text+0x14): undefined reference to `cheev_'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_ad160.dir/build.make:100: cmTC_ad160] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-wdbtwQ'
+        gmake: *** [Makefile:127: cmTC_ad160/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindLAPACK.cmake:220 (check_function_exists)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindLAPACK.cmake:710 (check_lapack_libraries)"
+      - "CMakeLists.txt:87 (find_package)"
+    checks:
+      - "Looking for cheev_"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KGjDkU"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KGjDkU"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "LAPACK_lapack_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KGjDkU'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_7ad13/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_7ad13.dir/build.make CMakeFiles/cmTC_7ad13.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KGjDkU'
+        Building C object CMakeFiles/cmTC_7ad13.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -Wall -DCHECK_FUNCTION_EXISTS=cheev_ -o CMakeFiles/cmTC_7ad13.dir/CheckFunctionExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KGjDkU/CheckFunctionExists.c
+        Linking C executable cmTC_7ad13
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ad13.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall -DCHECK_FUNCTION_EXISTS=cheev_ CMakeFiles/cmTC_7ad13.dir/CheckFunctionExists.c.o -o cmTC_7ad13  /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/x86_64-linux-gnu/libblas.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KGjDkU'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "CMakeLists.txt:108 (CHECK_FUNCTION_EXISTS)"
+    checks:
+      - "Looking for dpstrf"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-QAiGfR"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-QAiGfR"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "PNL_HAVE_DPSTRF"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-QAiGfR'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d3850/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d3850.dir/build.make CMakeFiles/cmTC_d3850.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-QAiGfR'
+        Building C object CMakeFiles/cmTC_d3850.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -Wall -DCHECK_FUNCTION_EXISTS=dpstrf -o CMakeFiles/cmTC_d3850.dir/CheckFunctionExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-QAiGfR/CheckFunctionExists.c
+        Linking C executable cmTC_d3850
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d3850.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall -DCHECK_FUNCTION_EXISTS=dpstrf CMakeFiles/cmTC_d3850.dir/CheckFunctionExists.c.o -o cmTC_d3850
+        /usr/bin/ld: CMakeFiles/cmTC_d3850.dir/CheckFunctionExists.c.o: in function `main':
+        CheckFunctionExists.c:(.text+0x14): undefined reference to `dpstrf'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_d3850.dir/build.make:99: cmTC_d3850] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-QAiGfR'
+        gmake: *** [Makefile:127: cmTC_d3850/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3cbJrS"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3cbJrS"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3cbJrS'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e2c48/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e2c48.dir/build.make CMakeFiles/cmTC_e2c48.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3cbJrS'
+        Building C object CMakeFiles/cmTC_e2c48.dir/test_mpi.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_e2c48.dir/test_mpi.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3cbJrS/test_mpi.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3cbJrS/test_mpi.c:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_e2c48.dir/build.make:78: CMakeFiles/cmTC_e2c48.dir/test_mpi.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3cbJrS'
+        gmake: *** [Makefile:127: cmTC_e2c48/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-VfPBfS"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-VfPBfS"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-VfPBfS'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0df68/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0df68.dir/build.make CMakeFiles/cmTC_0df68.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-VfPBfS'
+        Building CXX object CMakeFiles/cmTC_0df68.dir/test_mpi.cpp.o
+        /usr/bin/c++   -Wall  -o CMakeFiles/cmTC_0df68.dir/test_mpi.cpp.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-VfPBfS/test_mpi.cpp
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-VfPBfS/test_mpi.cpp:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_0df68.dir/build.make:78: CMakeFiles/cmTC_0df68.dir/test_mpi.cpp.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-VfPBfS'
+        gmake: *** [Makefile:127: cmTC_0df68/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:137 (check_symbol_exists)"
+    checks:
+      - "Looking for tgamma"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3ne7iQ"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3ne7iQ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "PNL_HAVE_TGAMMA"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3ne7iQ'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_676a1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_676a1.dir/build.make CMakeFiles/cmTC_676a1.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3ne7iQ'
+        Building C object CMakeFiles/cmTC_676a1.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_676a1.dir/CheckSymbolExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3ne7iQ/CheckSymbolExists.c
+        Linking C executable cmTC_676a1
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_676a1.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_676a1.dir/CheckSymbolExists.c.o -o cmTC_676a1  /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/x86_64-linux-gnu/libblas.so -lm -ldl /usr/lib/x86_64-linux-gnu/liblapack.so -lm -ldl
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-3ne7iQ'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:138 (check_symbol_exists)"
+    checks:
+      - "Looking for lgamma"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-j8YFhU"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-j8YFhU"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "PNL_HAVE_LGAMMA"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-j8YFhU'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3cbde/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_3cbde.dir/build.make CMakeFiles/cmTC_3cbde.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-j8YFhU'
+        Building C object CMakeFiles/cmTC_3cbde.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_3cbde.dir/CheckSymbolExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-j8YFhU/CheckSymbolExists.c
+        Linking C executable cmTC_3cbde
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3cbde.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_3cbde.dir/CheckSymbolExists.c.o -o cmTC_3cbde  /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/x86_64-linux-gnu/libblas.so -lm -ldl /usr/lib/x86_64-linux-gnu/liblapack.so -lm -ldl
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-j8YFhU'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:139 (check_symbol_exists)"
+    checks:
+      - "Looking for exp10"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-zPqewR"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-zPqewR"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "PNL_HAVE_EXP10"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-zPqewR'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_38806/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_38806.dir/build.make CMakeFiles/cmTC_38806.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-zPqewR'
+        Building C object CMakeFiles/cmTC_38806.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_38806.dir/CheckSymbolExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-zPqewR/CheckSymbolExists.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-zPqewR/CheckSymbolExists.c: In function ‘main’:
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-zPqewR/CheckSymbolExists.c:8:19: error: ‘exp10’ undeclared (first use in this function)
+            8 |   return ((int*)(&exp10))[argc];
+              |                   ^~~~~
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-zPqewR/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+        gmake[1]: *** [CMakeFiles/cmTC_38806.dir/build.make:78: CMakeFiles/cmTC_38806.dir/CheckSymbolExists.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-zPqewR'
+        gmake: *** [Makefile:127: cmTC_38806/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:140 (check_symbol_exists)"
+    checks:
+      - "Looking for trunc"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Blg6IS"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Blg6IS"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "PNL_HAVE_TRUNC"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Blg6IS'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_eb273/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_eb273.dir/build.make CMakeFiles/cmTC_eb273.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Blg6IS'
+        Building C object CMakeFiles/cmTC_eb273.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_eb273.dir/CheckSymbolExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Blg6IS/CheckSymbolExists.c
+        Linking C executable cmTC_eb273
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eb273.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_eb273.dir/CheckSymbolExists.c.o -o cmTC_eb273  /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/x86_64-linux-gnu/libblas.so -lm -ldl /usr/lib/x86_64-linux-gnu/liblapack.so -lm -ldl
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Blg6IS'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:141 (check_symbol_exists)"
+    checks:
+      - "Looking for round"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Zr2j2R"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Zr2j2R"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "PNL_HAVE_ROUND"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Zr2j2R'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8adcb/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_8adcb.dir/build.make CMakeFiles/cmTC_8adcb.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Zr2j2R'
+        Building C object CMakeFiles/cmTC_8adcb.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_8adcb.dir/CheckSymbolExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Zr2j2R/CheckSymbolExists.c
+        Linking C executable cmTC_8adcb
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8adcb.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_8adcb.dir/CheckSymbolExists.c.o -o cmTC_8adcb  /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/x86_64-linux-gnu/libblas.so -lm -ldl /usr/lib/x86_64-linux-gnu/liblapack.so -lm -ldl
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Zr2j2R'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:142 (check_symbol_exists)"
+    checks:
+      - "Looking for isfinite"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-iGtP4R"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-iGtP4R"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "PNL_HAVE_ISFINITE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-iGtP4R'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c6b1a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_c6b1a.dir/build.make CMakeFiles/cmTC_c6b1a.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-iGtP4R'
+        Building C object CMakeFiles/cmTC_c6b1a.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_c6b1a.dir/CheckSymbolExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-iGtP4R/CheckSymbolExists.c
+        Linking C executable cmTC_c6b1a
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c6b1a.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_c6b1a.dir/CheckSymbolExists.c.o -o cmTC_c6b1a  /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/x86_64-linux-gnu/libblas.so -lm -ldl /usr/lib/x86_64-linux-gnu/liblapack.so -lm -ldl
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-iGtP4R'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:143 (check_symbol_exists)"
+    checks:
+      - "Looking for finite"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-XOOGuQ"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-XOOGuQ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "PNL_HAVE_FINITE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-XOOGuQ'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_526b8/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_526b8.dir/build.make CMakeFiles/cmTC_526b8.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-XOOGuQ'
+        Building C object CMakeFiles/cmTC_526b8.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_526b8.dir/CheckSymbolExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-XOOGuQ/CheckSymbolExists.c
+        Linking C executable cmTC_526b8
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_526b8.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_526b8.dir/CheckSymbolExists.c.o -o cmTC_526b8  /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/x86_64-linux-gnu/libblas.so -lm -ldl /usr/lib/x86_64-linux-gnu/liblapack.so -lm -ldl
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-XOOGuQ'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:144 (check_symbol_exists)"
+    checks:
+      - "Looking for isnan"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-OynljR"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-OynljR"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "PNL_HAVE_ISNAN"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-OynljR'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b862c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b862c.dir/build.make CMakeFiles/cmTC_b862c.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-OynljR'
+        Building C object CMakeFiles/cmTC_b862c.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_b862c.dir/CheckSymbolExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-OynljR/CheckSymbolExists.c
+        Linking C executable cmTC_b862c
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b862c.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_b862c.dir/CheckSymbolExists.c.o -o cmTC_b862c  /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/x86_64-linux-gnu/libblas.so -lm -ldl /usr/lib/x86_64-linux-gnu/liblapack.so -lm -ldl
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-OynljR'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:145 (check_symbol_exists)"
+    checks:
+      - "Looking for isinf"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CeuToS"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CeuToS"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "PNL_HAVE_ISINF"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CeuToS'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_eea61/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_eea61.dir/build.make CMakeFiles/cmTC_eea61.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CeuToS'
+        Building C object CMakeFiles/cmTC_eea61.dir/CheckSymbolExists.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_eea61.dir/CheckSymbolExists.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CeuToS/CheckSymbolExists.c
+        Linking C executable cmTC_eea61
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eea61.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_eea61.dir/CheckSymbolExists.c.o -o cmTC_eea61  /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/x86_64-linux-gnu/libblas.so -lm -ldl /usr/lib/x86_64-linux-gnu/liblapack.so -lm -ldl
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CeuToS'
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:19 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:79 (check_extern_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_EXTERN_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_de234/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_de234.dir/build.make CMakeFiles/cmTC_de234.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_de234.dir/test_extern_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_de234.dir/test_extern_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:3:13: error: redefinition of ‘foo’
+            3 |         int foo (int x) { return x+1;}
+              |             ^~~
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:2:27: note: previous definition of ‘foo’ with type ‘int(int)’
+            2 |         extern inline int foo (int x) { return x+1;}
+              |                           ^~~
+        gmake[1]: *** [CMakeFiles/cmTC_de234.dir/build.make:78: CMakeFiles/cmTC_de234.dir/test_extern_inline.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:127: cmTC_de234/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:51 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:81 (check_c99_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_C99_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5b478/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5b478.dir/build.make CMakeFiles/cmTC_5b478.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_5b478.dir/test_c99_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_5b478.dir/test_c99_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_c99_inline.c
+        Linking C executable cmTC_5b478
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b478.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_5b478.dir/test_c99_inline.c.o -o cmTC_5b478
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Uqs1Qp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Uqs1Qp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Uqs1Qp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_81efa/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_81efa.dir/build.make CMakeFiles/cmTC_81efa.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Uqs1Qp'
+        Building C object CMakeFiles/cmTC_81efa.dir/test_mpi.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_81efa.dir/test_mpi.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Uqs1Qp/test_mpi.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Uqs1Qp/test_mpi.c:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_81efa.dir/build.make:78: CMakeFiles/cmTC_81efa.dir/test_mpi.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-Uqs1Qp'
+        gmake: *** [Makefile:127: cmTC_81efa/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-2oxhPp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-2oxhPp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-2oxhPp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a5d7c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a5d7c.dir/build.make CMakeFiles/cmTC_a5d7c.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-2oxhPp'
+        Building CXX object CMakeFiles/cmTC_a5d7c.dir/test_mpi.cpp.o
+        /usr/bin/c++   -Wall  -o CMakeFiles/cmTC_a5d7c.dir/test_mpi.cpp.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-2oxhPp/test_mpi.cpp
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-2oxhPp/test_mpi.cpp:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_a5d7c.dir/build.make:78: CMakeFiles/cmTC_a5d7c.dir/test_mpi.cpp.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-2oxhPp'
+        gmake: *** [Makefile:127: cmTC_a5d7c/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:19 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:79 (check_extern_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_EXTERN_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_16e85/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_16e85.dir/build.make CMakeFiles/cmTC_16e85.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_16e85.dir/test_extern_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_16e85.dir/test_extern_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:3:13: error: redefinition of ‘foo’
+            3 |         int foo (int x) { return x+1;}
+              |             ^~~
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:2:27: note: previous definition of ‘foo’ with type ‘int(int)’
+            2 |         extern inline int foo (int x) { return x+1;}
+              |                           ^~~
+        gmake[1]: *** [CMakeFiles/cmTC_16e85.dir/build.make:78: CMakeFiles/cmTC_16e85.dir/test_extern_inline.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:127: cmTC_16e85/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:51 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:81 (check_c99_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_C99_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b2e42/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b2e42.dir/build.make CMakeFiles/cmTC_b2e42.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_b2e42.dir/test_c99_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_b2e42.dir/test_c99_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_c99_inline.c
+        Linking C executable cmTC_b2e42
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b2e42.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_b2e42.dir/test_c99_inline.c.o -o cmTC_b2e42
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KMEy6D"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KMEy6D"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KMEy6D'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_7c2a6/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_7c2a6.dir/build.make CMakeFiles/cmTC_7c2a6.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KMEy6D'
+        Building C object CMakeFiles/cmTC_7c2a6.dir/test_mpi.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_7c2a6.dir/test_mpi.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KMEy6D/test_mpi.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KMEy6D/test_mpi.c:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_7c2a6.dir/build.make:78: CMakeFiles/cmTC_7c2a6.dir/test_mpi.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-KMEy6D'
+        gmake: *** [Makefile:127: cmTC_7c2a6/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-FTPPDG"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-FTPPDG"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-FTPPDG'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_57c78/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_57c78.dir/build.make CMakeFiles/cmTC_57c78.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-FTPPDG'
+        Building CXX object CMakeFiles/cmTC_57c78.dir/test_mpi.cpp.o
+        /usr/bin/c++   -Wall  -o CMakeFiles/cmTC_57c78.dir/test_mpi.cpp.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-FTPPDG/test_mpi.cpp
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-FTPPDG/test_mpi.cpp:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_57c78.dir/build.make:78: CMakeFiles/cmTC_57c78.dir/test_mpi.cpp.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-FTPPDG'
+        gmake: *** [Makefile:127: cmTC_57c78/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:19 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:79 (check_extern_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_EXTERN_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ca1d3/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ca1d3.dir/build.make CMakeFiles/cmTC_ca1d3.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_ca1d3.dir/test_extern_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_ca1d3.dir/test_extern_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:3:13: error: redefinition of ‘foo’
+            3 |         int foo (int x) { return x+1;}
+              |             ^~~
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:2:27: note: previous definition of ‘foo’ with type ‘int(int)’
+            2 |         extern inline int foo (int x) { return x+1;}
+              |                           ^~~
+        gmake[1]: *** [CMakeFiles/cmTC_ca1d3.dir/build.make:78: CMakeFiles/cmTC_ca1d3.dir/test_extern_inline.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:127: cmTC_ca1d3/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:51 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:81 (check_c99_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_C99_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5c694/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5c694.dir/build.make CMakeFiles/cmTC_5c694.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_5c694.dir/test_c99_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_5c694.dir/test_c99_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_c99_inline.c
+        Linking C executable cmTC_5c694
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5c694.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_5c694.dir/test_c99_inline.c.o -o cmTC_5c694
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-1vBRnR"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-1vBRnR"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-1vBRnR'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_264b6/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_264b6.dir/build.make CMakeFiles/cmTC_264b6.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-1vBRnR'
+        Building C object CMakeFiles/cmTC_264b6.dir/test_mpi.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_264b6.dir/test_mpi.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-1vBRnR/test_mpi.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-1vBRnR/test_mpi.c:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_264b6.dir/build.make:78: CMakeFiles/cmTC_264b6.dir/test_mpi.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-1vBRnR'
+        gmake: *** [Makefile:127: cmTC_264b6/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-vNhSeU"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-vNhSeU"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-vNhSeU'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d1312/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d1312.dir/build.make CMakeFiles/cmTC_d1312.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-vNhSeU'
+        Building CXX object CMakeFiles/cmTC_d1312.dir/test_mpi.cpp.o
+        /usr/bin/c++   -Wall  -o CMakeFiles/cmTC_d1312.dir/test_mpi.cpp.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-vNhSeU/test_mpi.cpp
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-vNhSeU/test_mpi.cpp:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_d1312.dir/build.make:78: CMakeFiles/cmTC_d1312.dir/test_mpi.cpp.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-vNhSeU'
+        gmake: *** [Makefile:127: cmTC_d1312/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:19 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:79 (check_extern_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_EXTERN_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b7c98/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b7c98.dir/build.make CMakeFiles/cmTC_b7c98.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_b7c98.dir/test_extern_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_b7c98.dir/test_extern_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:3:13: error: redefinition of ‘foo’
+            3 |         int foo (int x) { return x+1;}
+              |             ^~~
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:2:27: note: previous definition of ‘foo’ with type ‘int(int)’
+            2 |         extern inline int foo (int x) { return x+1;}
+              |                           ^~~
+        gmake[1]: *** [CMakeFiles/cmTC_b7c98.dir/build.make:78: CMakeFiles/cmTC_b7c98.dir/test_extern_inline.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:127: cmTC_b7c98/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:51 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:81 (check_c99_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_C99_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_35bf1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_35bf1.dir/build.make CMakeFiles/cmTC_35bf1.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_35bf1.dir/test_c99_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_35bf1.dir/test_c99_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_c99_inline.c
+        Linking C executable cmTC_35bf1
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_35bf1.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_35bf1.dir/test_c99_inline.c.o -o cmTC_35bf1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-hbIY2c"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-hbIY2c"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-hbIY2c'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_102f9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_102f9.dir/build.make CMakeFiles/cmTC_102f9.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-hbIY2c'
+        Building C object CMakeFiles/cmTC_102f9.dir/test_mpi.c.o
+        /usr/bin/cc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -Wall  -o CMakeFiles/cmTC_102f9.dir/test_mpi.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-hbIY2c/test_mpi.c
+        Linking C executable cmTC_102f9
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_102f9.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_102f9.dir/test_mpi.c.o -o cmTC_102f9  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-hbIY2c'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CCpcw9"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CCpcw9"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CCpcw9'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_bcfe4/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_bcfe4.dir/build.make CMakeFiles/cmTC_bcfe4.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CCpcw9'
+        Building CXX object CMakeFiles/cmTC_bcfe4.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -Wall  -o CMakeFiles/cmTC_bcfe4.dir/test_mpi.cpp.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CCpcw9/test_mpi.cpp
+        Linking CXX executable cmTC_bcfe4
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bcfe4.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall  CMakeFiles/cmTC_bcfe4.dir/test_mpi.cpp.o -o cmTC_bcfe4  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-CCpcw9'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1676 (_MPI_try_staged_settings)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode MPICXX"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-nZOxm9"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-nZOxm9"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_MPICXX"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-nZOxm9'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_52b01/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_52b01.dir/build.make CMakeFiles/cmTC_52b01.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-nZOxm9'
+        Building CXX object CMakeFiles/cmTC_52b01.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -Wall  -o CMakeFiles/cmTC_52b01.dir/test_mpi.cpp.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-nZOxm9/test_mpi.cpp
+        Linking CXX executable cmTC_52b01
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_52b01.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall  CMakeFiles/cmTC_52b01.dir/test_mpi.cpp.o -o cmTC_52b01  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-nZOxm9'
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:19 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:79 (check_extern_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_EXTERN_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a0316/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a0316.dir/build.make CMakeFiles/cmTC_a0316.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_a0316.dir/test_extern_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_a0316.dir/test_extern_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:3:13: error: redefinition of ‘foo’
+            3 |         int foo (int x) { return x+1;}
+              |             ^~~
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:2:27: note: previous definition of ‘foo’ with type ‘int(int)’
+            2 |         extern inline int foo (int x) { return x+1;}
+              |                           ^~~
+        gmake[1]: *** [CMakeFiles/cmTC_a0316.dir/build.make:78: CMakeFiles/cmTC_a0316.dir/test_extern_inline.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:127: cmTC_a0316/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:51 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:81 (check_c99_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_C99_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9308e/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_9308e.dir/build.make CMakeFiles/cmTC_9308e.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_9308e.dir/test_c99_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_9308e.dir/test_c99_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_c99_inline.c
+        Linking C executable cmTC_9308e
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9308e.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_9308e.dir/test_c99_inline.c.o -o cmTC_9308e
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-krdzgX"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-krdzgX"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-krdzgX'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0baee/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0baee.dir/build.make CMakeFiles/cmTC_0baee.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-krdzgX'
+        Building C object CMakeFiles/cmTC_0baee.dir/test_mpi.c.o
+        /usr/bin/cc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -Wall  -o CMakeFiles/cmTC_0baee.dir/test_mpi.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-krdzgX/test_mpi.c
+        Linking C executable cmTC_0baee
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0baee.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_0baee.dir/test_mpi.c.o -o cmTC_0baee  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-krdzgX'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-bk8d0X"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-bk8d0X"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-bk8d0X'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e4be9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e4be9.dir/build.make CMakeFiles/cmTC_e4be9.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-bk8d0X'
+        Building CXX object CMakeFiles/cmTC_e4be9.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -Wall  -o CMakeFiles/cmTC_e4be9.dir/test_mpi.cpp.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-bk8d0X/test_mpi.cpp
+        Linking CXX executable cmTC_e4be9
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e4be9.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall  CMakeFiles/cmTC_e4be9.dir/test_mpi.cpp.o -o cmTC_e4be9  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-bk8d0X'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1676 (_MPI_try_staged_settings)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode MPICXX"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-q3OBVZ"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-q3OBVZ"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_MPICXX"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-q3OBVZ'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_92889/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_92889.dir/build.make CMakeFiles/cmTC_92889.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-q3OBVZ'
+        Building CXX object CMakeFiles/cmTC_92889.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -Wall  -o CMakeFiles/cmTC_92889.dir/test_mpi.cpp.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-q3OBVZ/test_mpi.cpp
+        Linking CXX executable cmTC_92889
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_92889.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall  CMakeFiles/cmTC_92889.dir/test_mpi.cpp.o -o cmTC_92889  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-q3OBVZ'
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:19 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:79 (check_extern_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_EXTERN_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_25c7b/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_25c7b.dir/build.make CMakeFiles/cmTC_25c7b.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_25c7b.dir/test_extern_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_25c7b.dir/test_extern_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:3:13: error: redefinition of ‘foo’
+            3 |         int foo (int x) { return x+1;}
+              |             ^~~
+        /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_extern_inline.c:2:27: note: previous definition of ‘foo’ with type ‘int(int)’
+            2 |         extern inline int foo (int x) { return x+1;}
+              |                           ^~~
+        gmake[1]: *** [CMakeFiles/cmTC_25c7b.dir/build.make:78: CMakeFiles/cmTC_25c7b.dir/test_extern_inline.c.o] Error 1
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        gmake: *** [Makefile:127: cmTC_25c7b/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeModules/CMakeMacroExternInline.cmake:51 (try_compile)"
+      - "CMakeModules/CMakeMacroExternInline.cmake:81 (check_c99_inline)"
+      - "CMakeLists.txt:62 (include)"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "HAS_C99_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp//CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9d2a5/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_9d2a5.dir/build.make CMakeFiles/cmTC_9d2a5.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_9d2a5.dir/test_c99_inline.c.o
+        /usr/bin/cc   -Wall  -o CMakeFiles/cmTC_9d2a5.dir/test_c99_inline.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/test_c99_inline.c
+        Linking C executable cmTC_9d2a5
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9d2a5.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_9d2a5.dir/test_c99_inline.c.o -o cmTC_9d2a5
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeTmp/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-c4VBtn"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-c4VBtn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -Wall"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-c4VBtn'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e2ee7/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e2ee7.dir/build.make CMakeFiles/cmTC_e2ee7.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-c4VBtn'
+        Building C object CMakeFiles/cmTC_e2ee7.dir/test_mpi.c.o
+        /usr/bin/cc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -Wall  -o CMakeFiles/cmTC_e2ee7.dir/test_mpi.c.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-c4VBtn/test_mpi.c
+        Linking C executable cmTC_e2ee7
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e2ee7.dir/link.txt --verbose=1
+        /usr/bin/cc  -Wall  CMakeFiles/cmTC_e2ee7.dir/test_mpi.c.o -o cmTC_e2ee7  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-c4VBtn'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-G8VTtl"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-G8VTtl"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-G8VTtl'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_26837/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_26837.dir/build.make CMakeFiles/cmTC_26837.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-G8VTtl'
+        Building CXX object CMakeFiles/cmTC_26837.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -Wall  -o CMakeFiles/cmTC_26837.dir/test_mpi.cpp.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-G8VTtl/test_mpi.cpp
+        Linking CXX executable cmTC_26837
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_26837.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall  CMakeFiles/cmTC_26837.dir/test_mpi.cpp.o -o cmTC_26837  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-G8VTtl'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/cmake/1413/share/cmake-3.30/Modules/FindMPI.cmake:1676 (_MPI_try_staged_settings)"
+      - "CMakeLists.txt:116 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode MPICXX"
+    directories:
+      source: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-D6IDym"
+      binary: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-D6IDym"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/CMakeModules;"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_MPICXX"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-D6IDym'
+        
+        Run Build Command(s): /snap/cmake/1413/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ba36e/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ba36e.dir/build.make CMakeFiles/cmTC_ba36e.dir/build
+        gmake[1]: Entering directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-D6IDym'
+        Building CXX object CMakeFiles/cmTC_ba36e.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -Wall  -o CMakeFiles/cmTC_ba36e.dir/test_mpi.cpp.o -c /mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-D6IDym/test_mpi.cpp
+        Linking CXX executable cmTC_ba36e
+        /snap/cmake/1413/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ba36e.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall  CMakeFiles/cmTC_ba36e.dir/test_mpi.cpp.o -o cmTC_ba36e  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
+        gmake[1]: Leaving directory '/mnt/c/Users/user/Desktop/3eme_Annee/Projet_de_couverture_de_produits_derives/code/pnl/build/CMakeFiles/CMakeScratch/TryCompile-D6IDym'
+        
+      exitCode: 0
+...
