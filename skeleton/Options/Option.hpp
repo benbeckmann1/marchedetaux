@@ -7,26 +7,32 @@
 #include "../ITimeGrid.hpp"
 
 class Option {
-public:
+protected:
     std::vector<int> assetCurrencyMapping_;   
     std::vector<InterestRateModel> foreignInterestRates_;
     InterestRateModel domesticInterestRate_;
-    ITimeGrid monitoringTimeGrid_;
+    ITimeGrid* monitoringTimeGrid_;
+    double maturity_;
 
 public:
-
     Option(const std::vector<int>& assetCurrencyMapping,
            const std::vector<InterestRateModel>& foreignInterestRates,
            const InterestRateModel& domesticInterestRate,
-           const ITimeGrid& monitoringTimeGrid)
-        : assetCurrencyMapping_(assetCurrencyMapping), foreignInterestRates_(foreignInterestRates)
-        , domesticInterestRate_(domesticInterestRate), monitoringTimeGrid_(monitoringTimeGrid) {}
+           ITimeGrid* monitoringTimeGrid,
+           double maturity)
+        : assetCurrencyMapping_(assetCurrencyMapping), 
+          foreignInterestRates_(foreignInterestRates),
+          domesticInterestRate_(domesticInterestRate), 
+          monitoringTimeGrid_(monitoringTimeGrid),
+          maturity_(maturity) {}  // Ajout de maturity_
 
-    // Constructeur supprimé, les classes filles doivent gérer leurs propres attributs
     virtual ~Option() {}  // Destructeur virtuel
 
     // Méthode virtuelle pure pour le calcul du payoff
-    virtual double payoff(const PnlVect* assetPrices) const = 0;
+    virtual double payoff(const PnlMat* simulation) const = 0;
+
+    // Getter pour obtenir la maturité
+    double getMaturity() const { return maturity_; }
 };
 
 #endif

@@ -7,6 +7,7 @@ class OptionBasket : public Option {
 private:
     std::vector<double> weights_;
     double strike_;
+    double maturity_;
 
 public:
     OptionBasket(const std::vector<int>& assetCurrencyMapping,
@@ -14,9 +15,9 @@ public:
                  const InterestRateModel& domesticInterestRate,
                  const ITimeGrid& monitoringTimeGrid,
                  const std::vector<double>& weights,
-                 double strike);
+                 double strike, double maturity);
 
-    double payoff(const PnlVect* assetPrices) const override;
+    double payoff(const PnlMat* simulation) const override;
 };
 
 #endif

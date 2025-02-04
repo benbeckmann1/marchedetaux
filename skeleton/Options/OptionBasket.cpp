@@ -6,11 +6,11 @@ OptionBasket::OptionBasket(const std::vector<int>& assetCurrencyMapping,
                            const InterestRateModel& domesticInterestRate,
                            const ITimeGrid& monitoringTimeGrid,
                            const std::vector<double>& weights,
-                           double strike)
-    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, monitoringTimeGrid),
-      weights_(weights), strike_(strike) {}
+                           double strike, double maturity)
+    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity),
+      weights_(weights), strike_(strike), maturity_(maturity) {}
 
-double OptionBasket::payoff(const PnlVect* assetPrices) const {
+double OptionBasket::payoff(const PnlMat* simulation) const {
     // double weightedSum = 0.0;
     // for (size_t i = 0; i < weights_.size(); ++i) {
     //     weightedSum += weights_[i] * GET(assetPrices, i);

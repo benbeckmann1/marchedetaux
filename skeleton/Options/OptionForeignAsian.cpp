@@ -4,10 +4,10 @@
 OptionForeignAsian::OptionForeignAsian(const std::vector<int>& assetCurrencyMapping,
                                        const std::vector<InterestRateModel>& foreignInterestRates,
                                        const InterestRateModel& domesticInterestRate,
-                                       const ITimeGrid& monitoringTimeGrid)
-    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, monitoringTimeGrid) {}
+                                       const ITimeGrid& monitoringTimeGrid, double maturity)
+    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity) {}
 
-double OptionForeignAsian::payoff(const PnlVect* assetPrices) const {
+double OptionForeignAsian::payoff(const PnlMat* simulation) const {
     // int N = assetPrices->size;
     // double sum = 0.0;
 

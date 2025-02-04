@@ -5,11 +5,11 @@ OptionQuantoExchange::OptionQuantoExchange(const std::vector<int>& assetCurrency
                                            const std::vector<InterestRateModel>& foreignInterestRates,
                                            const InterestRateModel& domesticInterestRate,
                                            const ITimeGrid& monitoringTimeGrid,
-                                           double strike)
-    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, monitoringTimeGrid),
-      strike(strike) {}
+                                           double strike, double maturity)
+    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity),
+      strike_(strike), maturity_(maturity) {}
 
-double OptionQuantoExchange::payoff(const PnlVect* assetPrices) const {
+double OptionQuantoExchange::payoff(const PnlMat* simulation) const {
     // double S_domestic = GET(assetPrices, 0);
     // double S_foreign = GET(assetPrices, 1);
     // double X_foreign = GET(assetPrices, 2);

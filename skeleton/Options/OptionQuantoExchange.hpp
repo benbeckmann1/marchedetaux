@@ -4,17 +4,18 @@
 #include "Option.hpp"
 
 class OptionQuantoExchange : public Option {
-private:
-    double strike;
+public:
+    double strike_;
+    double maturity_;
 
 public:
     OptionQuantoExchange(const std::vector<int>& assetCurrencyMapping,
                          const std::vector<InterestRateModel>& foreignInterestRates,
                          const InterestRateModel& domesticInterestRate,
                          const ITimeGrid& monitoringTimeGrid,
-                         double strike);
+                         double strike, double maturity);
 
-    double payoff(const PnlVect* assetPrices) const override;
+    double payoff(const PnlMat* simulation) const override;
 };
 
 #endif

@@ -5,12 +5,13 @@
 
 class OptionForeignAsian : public Option {
 public:
+    double maturity_;
     OptionForeignAsian(const std::vector<int>& assetCurrencyMapping,
                        const std::vector<InterestRateModel>& foreignInterestRates,
                        const InterestRateModel& domesticInterestRate,
-                       const ITimeGrid& monitoringTimeGrid);
+                       const ITimeGrid& monitoringTimeGrid, double maturity);
 
-    double payoff(const PnlVect* assetPrices) const override;
+    double payoff(const PnlMat* simulation) const override;
 };
 
 #endif

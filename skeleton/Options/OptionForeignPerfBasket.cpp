@@ -5,11 +5,11 @@ OptionForeignPerfBasket::OptionForeignPerfBasket(const std::vector<int>& assetCu
                                                  const std::vector<InterestRateModel>& foreignInterestRates,
                                                  const InterestRateModel& domesticInterestRate,
                                                  const ITimeGrid& monitoringTimeGrid,
-                                                 double strike)
-    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, monitoringTimeGrid),
-      strike_(strike) {}
+                                                 double strike, double maturity)
+    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity),
+      strike_(strike), maturity_(maturity) {}
 
-double OptionForeignPerfBasket::payoff(const PnlVect* assetPrices) const {
+double OptionForeignPerfBasket::payoff(const PnlMat* simulation) const {
     // double maxPerf = -1.0;
     // int N = assetPrices->size;
 
