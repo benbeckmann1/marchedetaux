@@ -1,63 +1,62 @@
 #ifndef PARSER_HPP
 #define PARSER_HPP
 
-#include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
+#include <map>
 #include <fstream>
+#include <iostream>
 #include <nlohmann/json.hpp>
 #include <pnl/pnl_matrix.h>
-
-
-struct Currency {
-    std::string id;
-    double interestRate;
-    double volatility;
-    double spot;
-    double drift;
-};
-
-struct Asset {
-    std::string currencyId;
-    double volatility;
-    double spot;
-    double drift;
-};
-
-struct FixingDates {
-    std::string type;
-    std::vector<int> dates;
-};
-
-struct Option {
-    std::string type;
-    FixingDates fixingDates;
-    double strike;
-    std::vector<double> weights;
-    int maturityDays;
-};
-
-struct Rebalancing {
-    std::string type;
-    int period;
-};
+#include <pnl/pnl_vector.h>
+#include "Currency.hpp"
+#include "RiskyAsset.hpp"
+#include "InterestRateModel.hpp"
+#include <unordered_map>
 
 class Parser {
-public:
+private:
+    nlohmann::json dataJson;
+    
+    PnlMat* correlationMatrix;
+    int SampleNb;
+    double RelativeFiniteDifferenceStep;
     std::string domesticCurrencyId;
-    std::vector<Currency> currencies;
-    std::vector<Asset> assets;
-    Option option;
-    Rebalancing rebalancing;
-    PnlMat* correlations;
-    int numberOfDaysInYear;
-    int sampleNb;
-    double relativeFiniteDifferenceStep;
+    double NumberOfDaysInOneYear;
+
+    //Option
+    std::string optionType;
+    // double strike;
+    int maturity;
+    // PnlVect* weights;
+    std::string fixingdatesType;
+    PnlVect* DatesInDays;
+
+    //Oracle
+    std::string rebalanceType;
+    int rebalanceperiod;
+
+    // Asset & Currencies
+    double domesticInterest;
+    std::vector<double> ForeignInterestRates;
+    std::vector<double> ForeignCurrencyVols;
+    std::vector<double> assetsRealVols;
+    std::vector<int> assetCurrencyMapping;
+    std::vector<std::pair<std::string, std::vector<int>>> currencyAssetGroups;
+
     
-    Parser(const std::string& filename);
+
+public:
+    explicit Parser(const std::string& filename);
     ~Parser();
-    void printData() const;
-    
+
+    // std::vector<Currency*> createCurrencyList();
+    // std::vector<RiskyAsset*> createRiskyAssetList();
+    void displayData() const;
+    void displayCurrencyAssetGroups() const;
+    void displayAssetMapping() const; 
+    std::vector<Currency*> generateCurrency() const;
+
 };
 
 #endif

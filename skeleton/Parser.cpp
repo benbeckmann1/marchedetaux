@@ -1,116 +1,167 @@
 #include "Parser.hpp"
-
+#include <iostream>
+#include <iostream>
+#include <map>
+#include <string>
 Parser::Parser(const std::string& filename) {
     std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "Erreur : Impossible d'ouvrir le fichier JSON." << std::endl;
+    if (!file) {
+        std::cerr << "❌ Erreur : Impossible d'ouvrir le fichier " << filename << std::endl;
         exit(1);
     }
 
-    nlohmann::json jsonData;
-    file >> jsonData;
+    file >> dataJson;
     file.close();
 
-    // Extraction de la devise domestique
-    domesticCurrencyId = jsonData.at("DomesticCurrencyId").get<std::string>();
+    
 
-    // Extraction des devises
-    for (const auto& currencyJson : jsonData.at("Currencies")) {
-        Currency currency;
-        currency.id = currencyJson.at("id").get<std::string>();
-        currency.interestRate = currencyJson.at("InterestRate").get<double>();
-        currency.volatility = currencyJson.value("Volatility", 0.0);
-        currency.spot = currencyJson.value("Spot", 0.0);
-        currency.drift = currencyJson.value("Drift", 0.0);
-        currencies.push_back(currency);
-    }
+    // Extraction des paramètres généraux
+    NumberOfDaysInOneYear = dataJson["NumberOfDaysInOneYear"].get<double>();
+    SampleNb = dataJson["SampleNb"].get<int>();
+    RelativeFiniteDifferenceStep = dataJson["RelativeFiniteDifferenceStep"].get<double>();
+    domesticCurrencyId = dataJson["DomesticCurrencyId"].get<std::string>();
 
-    // Extraction des actifs
-    for (const auto& assetJson : jsonData.at("Assets")) {
-        Asset asset;
-        asset.currencyId = assetJson.at("CurrencyId").get<std::string>();
-        asset.volatility = assetJson.at("Volatility").get<double>();
-        asset.spot = assetJson.value("Spot", 0.0);
-        asset.drift = assetJson.value("Drift", 0.0);
-        assets.push_back(asset);
-    }
+    
 
-    // Extraction de l'option
-    option.type = jsonData.at("Option").at("Type").get<std::string>();
-    option.fixingDates.type = jsonData.at("Option").at("FixingDatesInDays").at("Type").get<std::string>();
-    option.fixingDates.dates = jsonData.at("Option").at("FixingDatesInDays").value("DatesInDays", std::vector<int>());
-    option.strike = jsonData.at("Option").value("Strike", 0.0);
-    option.maturityDays = jsonData.at("Option").at("MaturityInDays").get<int>();
-    option.weights = jsonData.at("Option").value("Weights", std::vector<double>());
+    // Extraction des informations sur l'option
+    auto jsonOption = dataJson["Option"];
+    optionType = jsonOption["Type"].get<std::string>();
+    maturity = jsonOption["MaturityInDays"].get<double>();
 
-    // Extraction du rebalancement
-    rebalancing.type = jsonData.at("PortfolioRebalancingOracleDescription").at("Type").get<std::string>();
-    rebalancing.period = jsonData.at("PortfolioRebalancingOracleDescription").at("Period").get<int>();
+    // Extraction des dates de fixing
+    auto jsonFixing = jsonOption["FixingDatesInDays"];
+    fixingdatesType = jsonFixing["Type"].get<std::string>();
 
-    // Extraction de la matrice de corrélation sous format PnlMat
-    std::vector<std::vector<double>> correlationData = jsonData.at("Correlations").get<std::vector<std::vector<double>>>();
-    int size = correlationData.size();
-    correlations = pnl_mat_create(size, size);
-
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            MLET(correlations, i, j) = correlationData[i][j];
+    
+    if ( optionType != "foreign_asian") {
+        auto dateData = jsonFixing["DatesInDays"].get<std::vector<double>>();
+        DatesInDays = pnl_vect_create(dateData.size());
+        for (size_t i = 0; i < dateData.size(); i++) {
+            LET(DatesInDays, i) = dateData[i];
         }
     }
 
-    // Extraction des paramètres de simulation
-    numberOfDaysInYear = jsonData.at("NumberOfDaysInOneYear").get<int>();  // Ajouté
-    sampleNb = jsonData.at("SampleNb").get<int>();
-    relativeFiniteDifferenceStep = jsonData.at("RelativeFiniteDifferenceStep").get<double>();
+    // Extraction des paramètres de l'oracle de rebalancement
+    auto jsonOracle = dataJson["PortfolioRebalancingOracleDescription"];
+    rebalanceType = jsonOracle["Type"].get<std::string>();
+    rebalanceperiod = jsonOracle["Period"].get<double>();
 
+    // Extraction de la matrice de corrélation
+    auto correlations = dataJson["Correlations"].get<std::vector<std::vector<double>>>();
+    int size = correlations.size();
+    correlationMatrix = pnl_mat_create(size, size);
+
+    for (int i = 0; i < size; ++i)
+        for (int j = 0; j < size; ++j)
+            MLET(correlationMatrix, i, j) = correlations[i][j];
+
+    pnl_mat_chol(this->correlationMatrix);
+     // **Mapping des devises et des actifs**
+    std::map<std::string, int> currenciesOrder;
+    int order = 0;
+    int nAsset = dataJson["Assets"].size();
+
+    // Extraction des devises
+    auto jsonCurrencies = dataJson["Currencies"];
+    for (const auto& jsonCurrency : jsonCurrencies) {
+        std::string currencyId = jsonCurrency["id"].get<std::string>();
+
+        if (currencyId == domesticCurrencyId) {
+            domesticInterest = jsonCurrency["InterestRate"].get<double>();
+            currenciesOrder[currencyId] = order;
+        } else {
+            ForeignInterestRates.push_back(jsonCurrency["InterestRate"].get<double>());
+            ForeignCurrencyVols.push_back(jsonCurrency["Volatility"].get<double>());
+            currenciesOrder[currencyId] = order;
+        }
+
+        // Ajout dans le `std::vector` pour conserver l'ordre d'apparition
+        currencyAssetGroups.emplace_back(currencyId, std::vector<int>{});
+
+        order++;
+    }
+
+    // **Associer les actifs aux devises**
+    auto jsonAssets = dataJson["Assets"];
+    int assetIndex = 0;
+    for (const auto& jsonAsset : jsonAssets) {
+        std::string currencyId = jsonAsset["CurrencyId"].get<std::string>();
+        assetsRealVols.push_back(jsonAsset["Volatility"].get<double>());
+        assetCurrencyMapping.push_back(currenciesOrder[currencyId]);
+
+        // Recherche de la devise dans le `vector` pour ajouter les actifs au bon endroit
+        for (auto& pair : currencyAssetGroups) {
+            if (pair.first == currencyId) {
+                pair.second.push_back(assetIndex);
+                break;
+            }
+        }
+        assetIndex++;
+    }
 }
 
-// Destructeur pour libérer la mémoire de PnlMat
+// std::vector<Currency*> Parser::generateCurrency() const {
+//     std::vector<Currency*> currencyList;
+    
+//     for (size_t i = 0; i < ForeignInterestRates.size(); i++) {
+//         PnlVect* corrRow = pnl_vect_create(correlationMatrix->m);
+//         pnl_mat_get_row(corrRow, correlationMatrix, assetMapping.size() + i);
+
+//         currencyList.push_back(new Currency(
+//             ForeignInterestRates[i],  // Taux d'intérêt étranger
+//             corrRow,                  // Volatilité et corrélation
+//             ForeignInterestRates[i],  // Utilisation du même taux pour la devise étrangère
+//             domesticInterest          // Taux d'intérêt domestique
+//         ));
+//     }
+
+//     return currencyList;
+// }
+
+// **Affichage du mapping devise -> actifs**
+void Parser::displayCurrencyAssetGroups() const {
+    std::cout << "\n📌 Mapping des devises et actifs :\n";
+    for (const auto& pair : currencyAssetGroups) {
+        std::cout << "Devise : " << pair.first << " -> Actifs : ";
+        for (int assetIndex : pair.second) {
+            std::cout << assetIndex << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+void Parser::displayAssetMapping() const {
+    std::cout << "\n📌 Asset Mapping :\n";
+    for (size_t i = 0; i < assetCurrencyMapping.size(); i++) {
+        std::cout << "Actif " << i << " -> Devise Index : " << assetCurrencyMapping[i] << std::endl;
+    }
+}
+
+
 Parser::~Parser() {
-    pnl_mat_free(&correlations);
+    pnl_mat_free(&correlationMatrix);
+    if( optionType != "foreign_asian"){
+        pnl_vect_free(&DatesInDays);
+    }
 }
 
-// Fonction pour afficher les données
-void Parser::printData() const {
+void Parser::displayData() const {
+    std::cout << "📌 Nombre de jours dans une année : " << NumberOfDaysInOneYear << "\n";
+    std::cout << "📌 Nombre d'échantillons : " << SampleNb << "\n";
+    std::cout << "📌 Pas de différence finie : " << RelativeFiniteDifferenceStep << "\n";
     std::cout << "📌 Devise domestique : " << domesticCurrencyId << "\n\n";
 
-    std::cout << "📌 Devises :\n";
-    for (const auto& c : currencies) {
-        std::cout << "- " << c.id << " | r = " << c.interestRate 
-                  << " | Vol = " << c.volatility << " | Spot = " << c.spot 
-                  << " | Drift = " << c.drift << "\n";
-    }
+    std::cout << "🎯 **Option** :\n";
+    std::cout << "   - Type : " << optionType << "\n";
+    std::cout << "   - Maturité (jours) : " << maturity << "\n";
+    std::cout << "   - Type de Fixing Dates : " << fixingdatesType << "\n";
+    std::cout << "   - Dates de Fixing : ";
+    pnl_vect_print(DatesInDays);
 
-    std::cout << "\n📌 Actifs Risqués :\n";
-    for (const auto& a : assets) {
-        std::cout << "- Devise : " << a.currencyId << " | Vol = " << a.volatility 
-                  << " | Spot = " << a.spot << " | Drift = " << a.drift << "\n";
-    }
+    std::cout << "\n🔄 **Oracle de Rebalancement** :\n";
+    std::cout << "   - Type : " << rebalanceType << "\n";
+    std::cout << "   - Période : " << rebalanceperiod << " jours\n";
 
-    std::cout << "\n📌 Option :\n";
-    std::cout << "- Type : " << option.type << "\n";
-    std::cout << "- Fixing Dates Type : " << option.fixingDates.type << "\n";
-    std::cout << "- Fixing Dates : ";
-    for (int date : option.fixingDates.dates) std::cout << date << " ";
-    std::cout << "\n- Strike : " << option.strike << "\n";
-    std::cout << "- Maturité : " << option.maturityDays << " jours\n";
-    std::cout << "- Weights : ";
-    for (double w : option.weights) std::cout << w << " ";
-    std::cout << "\n";
-
-    std::cout << "\n📌 Rebalancing :\n";
-    std::cout << "- Type : " << rebalancing.type << "\n";
-    std::cout << "- Période : " << rebalancing.period << " jours\n";
-
-    std::cout << "\n📌 Corrélations :\n";
-    pnl_mat_print(correlations);
-
-    std::cout << "\n📌 Simulation :\n";
-    std::cout << "- Nombre de jours dans une année : " << numberOfDaysInYear << "\n";
-    std::cout << "- Échantillons Monte Carlo : " << sampleNb << "\n";
-    std::cout << "- Pas de différences finies : " << relativeFiniteDifferenceStep << "\n";
-
-
+    std::cout << "\n🔗 Matrice de Corrélation :\n";
+    pnl_mat_print(correlationMatrix);
 }
-
-
