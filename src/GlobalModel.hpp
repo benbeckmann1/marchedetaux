@@ -11,23 +11,23 @@
 
 class GlobalModel {
 private:
-    std::vector<RiskyAsset> assets;         // Liste des actifs risqués
-    std::vector<Currency> currencies;       // Liste des devises
+    std::vector<RiskyAsset*> assets;         // Liste des actifs risqués
+    std::vector<Currency*> currencies;       // Liste des devises
     ITimeGrid* monitoringTimeGrid;          // Grille de temps pour le suivi
     InterestRateModel domesticInterestRate; // Modèle de taux domestique
     double fdStep;                          // Pas de différence finie
 
 public:
     // Constructeur
-    GlobalModel(std::vector<RiskyAsset> assets, std::vector<Currency> currencies, 
+    GlobalModel(std::vector<RiskyAsset*> assets, std::vector<Currency*> currencies, 
                 ITimeGrid* timeGrid, InterestRateModel domesticRate);
 
     // Destructeur
     ~GlobalModel();
 
     // Accesseurs
-    const std::vector<RiskyAsset>& getAssets() const;
-    const std::vector<Currency>& getCurrencies() const;
+    const std::vector<RiskyAsset*>& getAssets() const;
+    const std::vector<Currency*>& getCurrencies() const;
     const ITimeGrid* getTimeGrid() const;
     const InterestRateModel& getDomesticInterestRate() const;
     const double getFdStep() const;

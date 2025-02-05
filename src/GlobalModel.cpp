@@ -1,7 +1,7 @@
 #include "GlobalModel.hpp"
 
 // Constructeur
-GlobalModel::GlobalModel(std::vector<RiskyAsset> assets, std::vector<Currency> currencies, 
+GlobalModel::GlobalModel(std::vector<RiskyAsset*> assets, std::vector<Currency*> currencies, 
                          ITimeGrid* timeGrid, InterestRateModel domesticRate)
     : assets(std::move(assets)), currencies(std::move(currencies)), 
       monitoringTimeGrid(timeGrid), domesticInterestRate(domesticRate) {}
@@ -12,11 +12,11 @@ GlobalModel::~GlobalModel() {
 }
 
 // Accesseurs
-const std::vector<RiskyAsset>& GlobalModel::getAssets() const {
+const std::vector<RiskyAsset*>& GlobalModel::getAssets() const {
     return assets;
 }
 
-const std::vector<Currency>& GlobalModel::getCurrencies() const {
+const std::vector<Currency*>& GlobalModel::getCurrencies() const {
     return currencies;
 }
 
@@ -62,24 +62,24 @@ void GlobalModel::asset(PnlMat* simulations, PnlVect* G, int date, int idx_lastD
 
 void GlobalModel::updateSim(PnlMat* simulations, PnlVect* G, int date, int t, int nb_assets, int nb_currencies) const {
     for (int j = 0; j < nb_assets; j++) {   // Boucle sur les actifs
-        RiskyAsset asset = assets[j];
+        RiskyAsset* asset = assets[j];
         double step = (monitoringTimeGrid->at(t) - date) / domesticInterestRate.getNumberOfDaysInOneYear();
-        double newValue = asset.sampleNextDate(G, step, MGET(simulations, t, j));
+        double newValue = asset->sampleNextDate(G, step, MGET(simulations, t, j));
         MLET(simulations, t, j) = newValue;
     }
     for (int j = 0; j < nb_currencies; j++) {   // Boucle sur les devises
-        Currency currency = currencies[j];
+        Currency* currency = currencies[j];
         double step = (monitoringTimeGrid->at(t) - date) / domesticInterestRate.getNumberOfDaysInOneYear();
-        double newValue = currency.sampleNextDate(G, step, MGET(simulations, t, nb_assets+j));
+        double newValue = currency->sampleNextDate(G, step, MGET(simulations, t, nb_assets+j));
         MLET(simulations, t, nb_assets+j) = newValue;
     }
 }
 
 
 void GlobalModel::shift_asset(PnlMat* shift_mat, int d, double fdStep, int idx_lastDate) const {
-    for (int i = time_index; i < simulation->m; i++) {
-        double original_value = pnl_mat_get(simulation, i, d);
-        double bumped_value = original_value * (1 + bump);
-        pnl_mat_set(simulation, i, d, bumped_value);
+    for (int i = idx_lastDate; i < shift_mat->m; i++) {
+        double original_value = pnl_mat_get(shift_mat, i, d);
+        double bumped_value = original_value * (1 + fdStep);
+        pnl_mat_set(shift_mat, i, d, bumped_value);
     }
 }

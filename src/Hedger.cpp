@@ -2,65 +2,11 @@
 #include <iostream>
 #include <vector>
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        std::cerr << "Usage : " << argv[0] << " <fichier_json>" << std::endl;
-        return 1;
-    }
-
-    // Création du parser et extraction des données
-    Parser parser(argv[1]);
-
-    
-    // Affichage des données pour vérifier que tout fonctionne
-    //parser.displayData();
-    // parser.displayCurrencyAssetGroups();
-    // parser.displayAssetMapping();
 
 
-   // Génération des RiskyAssets
-    // std::vector<RiskyAsset*> riskyAssets = parser.generateRiskyAssets();
-
-    // // Affichage des RiskyAssets
-    // std::cout << "\n📌 Liste des RiskyAssets générés :\n";
-    // for (size_t i = 0; i < riskyAssets.size(); i++) {
-    //     std::cout << "RiskyAsset " << i << " : " << std::endl;
-    //     std::cout << "   - Drift : " << riskyAssets[i]->drift << std::endl;
-    //     std::cout << "   - Domestic Interest Rate : " << riskyAssets[i]->domesticInterestRate.getRate() << std::endl;
-
-    //     std::cout << "   - Volatility Vector : \n";
-    //     pnl_vect_print(riskyAssets[i]->volatilityVector);
-    // }
-
-    // // Nettoyage mémoire
-    // for (auto asset : riskyAssets) {
-    //     delete asset;
-    // }
 
 
-    // std::cout << " ##############################################################" << std::endl;
-    // std::cout << " ##############################################################" << std::endl;
-    // // Génération du vecteur de Currency
-    // std::vector<Currency*> currencies = parser.generateCurrency();
 
-    // // Affichage du vecteur de Currency
-    // std::cout << "\n📌 Liste des devises générées :\n";
-    // for (size_t i = 0; i < currencies.size(); i++) {
-    //     std::cout << "Devise " << i << " : " << std::endl;
-    //     std::cout << "   - Foreign Interest Rate : " << currencies[i]->foreignInterestRate.getRate() << std::endl;
-    //     std::cout << "   - Domestic Interest Rate : " << currencies[i]->domesticInterestRate.getRate() << std::endl;
-        
-    //     std::cout << "   - Volatility Vector : ";
-    //     pnl_vect_print(currencies[i]->volatilityVector);
-    // }
-
-    // Nettoyage mémoire
-    // for (auto currency : currencies) {
-    //     delete currency;
-    // }
-
-    return 0;
-}
 
 
 void MarketDomestic(PnlMat* market, std::vector<int> nbAssetsPerCurrency, std::vector<InterestRateModel> foreignInterestRates) {
@@ -69,6 +15,7 @@ void MarketDomestic(PnlMat* market, std::vector<int> nbAssetsPerCurrency, std::v
 
     PnlVect* colAsset = pnl_vect_create_from_zero(market->m);
     PnlVect* colCurrency = pnl_vect_create_from_zero(market->m);
+
     for (int idx_currency = 0; idx_currency<foreignInterestRates.size(); idx_currency++) {
         int n_i = nbAssetsPerCurrency[idx_currency + 1];
         for (int idx_asset = 0; idx_asset<n_i; idx_asset++) {
@@ -87,3 +34,36 @@ void MarketDomestic(PnlMat* market, std::vector<int> nbAssetsPerCurrency, std::v
         pnl_mat_set_col(market, colCurrency, nbRiskyAssets + idx_currency);
     }
 }
+
+
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        std::cerr << "Usage : " << argv[0] << " <fichier_json>   <fichier_csv" << std::endl;
+        return 1;
+    }
+
+    // Création du parser et extraction des données
+    Parser parser(argv[1]);
+    PnlMat *market = pnl_mat_create_from_file(argv[2]);
+
+    double price;
+    double priceStdDev;
+    PnlVect* delta = pnl_vect_create(market->n);
+    PnlVect* deltasStdDev = pnl_vect_create(market->n);
+
+
+    Option* opt = parser.CreateOption();
+    GlobalModel model = parser.CreateGlobalModel();
+    MonteCarlo montecarlo = MonteCarlo(opt, model, parser.getSampleNb());
+
+    MarketDomestic(market, parser.computeNbAssetsPerCurrency(), opt->getForeignInterestRates());
+    montecarlo.priceAndDelta(price, priceStdDev, delta, deltasStdDev, market, 0);
+
+    std::cout << "Price : " << price << std::endl;
+    std::cout << "Price Std Dev : " << priceStdDev << std::endl;
+    std::cout << "Delta : ";
+    pnl_vect_print_asrow(delta);
+    return 0;
+}
+

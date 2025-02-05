@@ -36,6 +36,9 @@ public:
 
     // Getter pour obtenir le InterestRateModel domestique
     InterestRateModel getDomesticInterestRate() const { return domesticInterestRate_; }
+
+    // Getter pour obtenir le InterestRateModel étranger
+    std::vector<InterestRateModel> getForeignInterestRates() const { return foreignInterestRates_; }
 };
 
 #endif

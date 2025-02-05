@@ -36,7 +36,7 @@ void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delt
     // Boucle sur le nombre de tirages Monte Carlo
     for (int i = 0; i < sampleNb; i++) {
         computeSumPrice(simulations, G, date, idx_lastDate, price, priceStdDev); 
-        computeSumDeltas(simulations, shift_plus, shift_moins, spots, date, idx_lastDate, delta, deltasStdDev); // implem,eter le bon spot frr
+        computeSumDeltas(simulations, shift_plus, shift_moins, spots, date, idx_lastDate, delta, deltasStdDev); 
     }
 
     finalPrice(price, priceStdDev, date);
