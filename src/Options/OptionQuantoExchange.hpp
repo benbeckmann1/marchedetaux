@@ -9,7 +9,7 @@ public:
     double maturity_;
 
 public:
-    OptionQuantoExchange(const std::vector<int>& assetCurrencyMapping,
+    OptionQuantoExchange(const std::vector<int>& nbAssetsPerCurrency,
                          const std::vector<InterestRateModel>& foreignInterestRates,
                          const InterestRateModel& domesticInterestRate,
                          const ITimeGrid& monitoringTimeGrid,

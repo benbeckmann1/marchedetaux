@@ -12,6 +12,15 @@
 #include "Risky/Currency.hpp"
 #include "Risky/RiskyAsset.hpp"
 #include "InterestRateModel.hpp"
+#include "Options/Option.hpp"
+#include "Options/OptionBasket.hpp"
+#include "Options/OptionCallCurrency.hpp"
+#include "Options/OptionCallQuanto.hpp"
+#include "Options/OptionForeignAsian.hpp"
+#include "Options/OptionForeignPerfBasket.hpp"
+#include "Options/OptionQuantoExchange.hpp"
+#include "Grid/FixedTimeGrid.hpp"
+#include "Grid/ListTimeGrid.hpp"
 #include <unordered_map>
 
 class Parser {
@@ -22,7 +31,7 @@ private:
     int SampleNb;
     double RelativeFiniteDifferenceStep;
     std::string domesticCurrencyId;
-    double NumberOfDaysInOneYear;
+    int NumberOfDaysInOneYear;
 
     //Option
     std::string optionType;
@@ -37,12 +46,16 @@ private:
     int rebalanceperiod;
 
     // Asset & Currencies
-    double domesticInterest;
-    std::vector<double> ForeignInterestRates;
+    InterestRateModel domesticInterest;
+    std::vector<InterestRateModel> ForeignInterestRates;
+
     std::vector<double> ForeignCurrencyVols;
     std::vector<double> assetsRealVols;
+    std::vector<double> assetDrift;
     std::vector<int> assetCurrencyMapping;
     std::vector<std::pair<std::string, std::vector<int>>> currencyAssetGroups;
+
+    ITimeGrid* monitoringTimeGrid;
 
     
 
@@ -50,12 +63,16 @@ public:
     explicit Parser(const std::string& filename);
     ~Parser();
 
-    // std::vector<Currency*> createCurrencyList();
-    // std::vector<RiskyAsset*> createRiskyAssetList();
     void displayData() const;
     void displayCurrencyAssetGroups() const;
     void displayAssetMapping() const; 
     std::vector<Currency*> generateCurrency() const;
+    std::vector<RiskyAsset*> generateRiskyAssets() const;
+    Option* CreateOption();
+    std::vector<int> computeNbAssetsPerCurrency() const;
+    void displayNbAssetsPerCurrency() const;
+
+
 
 };
 

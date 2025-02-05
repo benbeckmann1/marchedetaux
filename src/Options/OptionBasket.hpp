@@ -12,7 +12,7 @@ private:
     double maturity_;
 
 public:
-    OptionBasket(const std::vector<int>& assetCurrencyMapping,
+    OptionBasket(const std::vector<int>& nbAssetsPerCurrency,
                  const std::vector<InterestRateModel>& foreignInterestRates,
                  const InterestRateModel& domesticInterestRate,
                  const ITimeGrid& monitoringTimeGrid,

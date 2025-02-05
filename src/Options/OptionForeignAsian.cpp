@@ -2,11 +2,11 @@
 #include <cmath>
 #include "pnl/pnl_matrix.h"
 
-OptionForeignAsian::OptionForeignAsian(const std::vector<int>& assetCurrencyMapping,
+OptionForeignAsian::OptionForeignAsian(const std::vector<int>& nbAssetsPerCurrency,
                                        const std::vector<InterestRateModel>& foreignInterestRates,
                                        const InterestRateModel& domesticInterestRate,
                                        const ITimeGrid& monitoringTimeGrid, double maturity)
-    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity) {}
+    : Option(nbAssetsPerCurrency, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity) {}
 
 
 

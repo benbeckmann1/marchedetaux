@@ -3,20 +3,19 @@
 #include <iostream>
 #include <map>
 #include <string>
-Parser::Parser(const std::string& filename) {
+Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monitoringTimeGrid(nullptr) 
+ {
     std::ifstream file(filename);
     if (!file) {
-        std::cerr << "❌ Erreur : Impossible d'ouvrir le fichier " << filename << std::endl;
+        std::cerr << " Erreur : Impossible d'ouvrir le fichier " << filename << std::endl;
         exit(1);
     }
 
     file >> dataJson;
     file.close();
 
-    
-
     // Extraction des paramètres généraux
-    NumberOfDaysInOneYear = dataJson["NumberOfDaysInOneYear"].get<double>();
+    NumberOfDaysInOneYear = dataJson["NumberOfDaysInOneYear"].get<int>();
     SampleNb = dataJson["SampleNb"].get<int>();
     RelativeFiniteDifferenceStep = dataJson["RelativeFiniteDifferenceStep"].get<double>();
     domesticCurrencyId = dataJson["DomesticCurrencyId"].get<std::string>();
@@ -55,7 +54,10 @@ Parser::Parser(const std::string& filename) {
         for (int j = 0; j < size; ++j)
             MLET(correlationMatrix, i, j) = correlations[i][j];
 
-    pnl_mat_chol(this->correlationMatrix);
+    pnl_mat_chol(correlationMatrix);
+    
+
+
      // **Mapping des devises et des actifs**
     std::map<std::string, int> currenciesOrder;
     int order = 0;
@@ -67,10 +69,11 @@ Parser::Parser(const std::string& filename) {
         std::string currencyId = jsonCurrency["id"].get<std::string>();
 
         if (currencyId == domesticCurrencyId) {
-            domesticInterest = jsonCurrency["InterestRate"].get<double>();
+            double rate = jsonCurrency["InterestRate"].get<double>();
+            domesticInterest = InterestRateModel(jsonCurrency["InterestRate"].get<double>(), NumberOfDaysInOneYear);
             currenciesOrder[currencyId] = order;
         } else {
-            ForeignInterestRates.push_back(jsonCurrency["InterestRate"].get<double>());
+            ForeignInterestRates.emplace_back(jsonCurrency["InterestRate"].get<double>(), NumberOfDaysInOneYear);
             ForeignCurrencyVols.push_back(jsonCurrency["Volatility"].get<double>());
             currenciesOrder[currencyId] = order;
         }
@@ -87,6 +90,7 @@ Parser::Parser(const std::string& filename) {
     for (const auto& jsonAsset : jsonAssets) {
         std::string currencyId = jsonAsset["CurrencyId"].get<std::string>();
         assetsRealVols.push_back(jsonAsset["Volatility"].get<double>());
+        assetDrift.push_back(jsonAsset["Drift"].get<double>());
         assetCurrencyMapping.push_back(currenciesOrder[currencyId]);
 
         // Recherche de la devise dans le `vector` pour ajouter les actifs au bon endroit
@@ -98,25 +102,132 @@ Parser::Parser(const std::string& filename) {
         }
         assetIndex++;
     }
+    
 }
 
-// std::vector<Currency*> Parser::generateCurrency() const {
-//     std::vector<Currency*> currencyList;
+std::vector<Currency*> Parser::generateCurrency() const {
+    std::vector<Currency*> currencyList;
     
-//     for (size_t i = 0; i < ForeignInterestRates.size(); i++) {
-//         PnlVect* corrRow = pnl_vect_create(correlationMatrix->m);
-//         pnl_mat_get_row(corrRow, correlationMatrix, assetMapping.size() + i);
+    PnlVect* corrRow = pnl_vect_create(correlationMatrix->m);
+    for (size_t i = 0; i < ForeignInterestRates.size(); i++) {
+        pnl_mat_get_row(corrRow, correlationMatrix, assetCurrencyMapping.size() +i);
+        pnl_vect_mult_scalar(corrRow,ForeignCurrencyVols[i]);
 
-//         currencyList.push_back(new Currency(
-//             ForeignInterestRates[i],  // Taux d'intérêt étranger
-//             corrRow,                  // Volatilité et corrélation
-//             ForeignInterestRates[i],  // Utilisation du même taux pour la devise étrangère
-//             domesticInterest          // Taux d'intérêt domestique
-//         ));
-//     }
+        currencyList.push_back(new Currency(
+            domesticInterest.getRate(),  // Taux d'intérêt étranger
+            corrRow,                  // Volatilité et corrélation
+            ForeignInterestRates[i],  // Utilisation du même taux pour la devise étrangère
+            domesticInterest          // Taux d'intérêt domestique
+        ));
+    }
+    pnl_vect_free(&corrRow);
+    return currencyList;
+}
 
-//     return currencyList;
-// }
+std::vector<RiskyAsset*> Parser::generateRiskyAssets() const {
+    std::vector<RiskyAsset*> riskyAssets;
+    std::vector<Currency*> currencies = generateCurrency();
+
+    PnlVect* corrRow = pnl_vect_create(correlationMatrix->m);
+    for (size_t i = 0; i < assetsRealVols.size(); i++) {
+        
+        pnl_mat_get_row(corrRow, correlationMatrix, i);
+        pnl_vect_mult_scalar(corrRow,assetsRealVols[i]);
+        if (assetCurrencyMapping[i] != 0){
+            pnl_vect_plus_vect(corrRow, currencies[assetCurrencyMapping[i]-1]->getVolatilityVector()); // vérifier l'addition des vects
+        }
+
+
+        // Création de l'actif risqué
+        riskyAssets.push_back(new RiskyAsset(
+            assetDrift[i],   // drift de l'actif
+            corrRow,             // sigma*L
+            domesticInterest    // Taux domestique
+        ));
+    }
+    pnl_vect_free(&corrRow);
+    return riskyAssets;
+}
+
+#include "Parser.hpp"
+
+Option* Parser::CreateOption() {
+    if (optionType.empty()) {
+        std::cerr << "❌ Erreur : Type d'option non défini !" << std::endl;
+        exit(1);
+    }
+
+    double strike = 0.0;
+    if (dataJson["Option"].contains("Strike")) {
+        strike = dataJson["Option"]["Strike"].get<double>();
+    }
+
+    if (fixingdatesType == "Fixed") {
+        int period = dataJson["Option"]["FixingPeriodInDays"].get<int>();
+        monitoringTimeGrid = new FixedTimeGrid(period, maturity);
+    } else {
+        monitoringTimeGrid = new ListTimeGrid(DatesInDays);
+    }
+
+    std::vector<int> nbAssetsPerCurrency = computeNbAssetsPerCurrency();
+
+    if (optionType == "basket") {
+        std::vector<double> weights = dataJson["Option"]["Weights"].get<std::vector<double>>();
+
+        return new OptionBasket(nbAssetsPerCurrency, ForeignInterestRates, domesticInterest, *monitoringTimeGrid, weights, strike, maturity);
+    } 
+    else if (optionType == "call_currency") {
+        return new OptionCallCurrency(nbAssetsPerCurrency, ForeignInterestRates, domesticInterest, *monitoringTimeGrid, strike, maturity);
+    } 
+    else if (optionType == "call_quanto") {
+        return new OptionCallQuanto(nbAssetsPerCurrency, ForeignInterestRates, domesticInterest, *monitoringTimeGrid, strike, maturity);
+    } 
+    else if (optionType == "foreign_asian") {
+        return new OptionForeignAsian(nbAssetsPerCurrency, ForeignInterestRates, domesticInterest, *monitoringTimeGrid, maturity);
+    } 
+    else if (optionType == "foreign_perf_basket") {
+        return new OptionForeignPerfBasket(nbAssetsPerCurrency, ForeignInterestRates, domesticInterest, *monitoringTimeGrid, strike, maturity);
+    } 
+    else if (optionType == "quanto_exchange") {
+        return new OptionQuantoExchange(nbAssetsPerCurrency, ForeignInterestRates, domesticInterest, *monitoringTimeGrid, strike, maturity);
+    } 
+    else {
+        std::cerr << " Erreur : Type d'option inconnu (" << optionType << ") !" << std::endl;
+        exit(1);
+    }
+}
+
+void Parser::displayNbAssetsPerCurrency() const {
+    std::vector<int> nbAssetsPerCurrency = computeNbAssetsPerCurrency();
+
+    std::cout << "\n📌 Nombre d'actifs par devise : ";
+    for (int count : nbAssetsPerCurrency) {
+        std::cout << count << " ";
+    }
+    std::cout << std::endl;
+}
+
+
+std::vector<int> Parser::computeNbAssetsPerCurrency() const {
+    if (assetCurrencyMapping.empty()) {
+        std::cerr << " Erreur : assetCurrencyMapping est vide !" << std::endl;
+        exit(1);
+    }
+
+    // Trouver le nombre de devises distinctes (max index + 1)
+    int maxCurrencyIndex = *std::max_element(assetCurrencyMapping.begin(), assetCurrencyMapping.end()) + 1;
+    std::vector<int> nbAssetsPerCurrency(maxCurrencyIndex, 0);
+
+    // Compter le nombre d'actifs par devise
+    for (int currencyIndex : assetCurrencyMapping) {
+        nbAssetsPerCurrency[currencyIndex]++;
+    }
+
+    return nbAssetsPerCurrency;
+}
+
+
+
 
 // **Affichage du mapping devise -> actifs**
 void Parser::displayCurrencyAssetGroups() const {

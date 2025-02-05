@@ -2,12 +2,12 @@
 #include <cmath>
 #include "pnl/pnl_matrix.h"
 
-OptionCallQuanto::OptionCallQuanto(const std::vector<int>& assetCurrencyMapping,
+OptionCallQuanto::OptionCallQuanto(const std::vector<int>& nbAssetsPerCurrency,
                                    const std::vector<InterestRateModel>& foreignInterestRates,
                                    const InterestRateModel& domesticInterestRate,
                                    const ITimeGrid& monitoringTimeGrid,
                                    double strike, double maturity)
-    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity),
+    : Option(nbAssetsPerCurrency, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity),
       strike_(strike), maturity_(maturity) {}
 
 

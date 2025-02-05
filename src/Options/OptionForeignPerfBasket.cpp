@@ -1,15 +1,15 @@
 #include "OptionForeignPerfBasket.hpp"
 #include <cmath>
 #include "pnl/pnl_matrix.h"
+#include "numeric"
 
-OptionForeignPerfBasket::OptionForeignPerfBasket(const std::vector<int>& assetCurrencyMapping,
+OptionForeignPerfBasket::OptionForeignPerfBasket(const std::vector<int>& nbAssetsPerCurrency,
                                                  const std::vector<InterestRateModel>& foreignInterestRates,
                                                  const InterestRateModel& domesticInterestRate,
                                                  const ITimeGrid& monitoringTimeGrid,
-                                                 double strike, double maturity, 
-                                                 PnlVect* nb_assets)
-    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity),
-      strike_(strike), maturity_(maturity) { nb_assets_ = pnl_vect_copy(nb_assets);}
+                                                 double strike, double maturity)
+    : Option(nbAssetsPerCurrency, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity),
+      strike_(strike), maturity_(maturity) {}
 
 
 
@@ -19,17 +19,17 @@ double OptionForeignPerfBasket::payoff(const PnlMat* simulations) const {
     int idx_max = 0;
     double maxPerf = -1.0;
 
-    double n0 = GET(nb_assets_, 0);
-    double nb_actifs_tot = pnl_vect_sum(nb_assets_); // pour avoir l'indice de la première monnaie étrangère
+    double n0 = nbAssetsPerCurrency_[0]; // nombre d'actifs domestiques
+    double nb_actifs_tot = std::accumulate(nbAssetsPerCurrency_.begin(), nbAssetsPerCurrency_.end(), 0); // pour avoir l'indice de la première monnaie étrangère
     double sum_nb_actifs = n0;
     double idx_nb_actifs_max = 0; // pour avoir l'indice du premier actif étranger ayant la meilleure performance dans le calcul du payoff
 
     // boucle sur tous les actifs étrangers
-    for (int i = 0; i < nb_assets_->size - 1; i++) {
+    for (int i = 0; i < nbAssetsPerCurrency_.size() - 1; i++) {
         double sum_t1 = 0.0;  
         double sum_t2 = 0.0;
 
-        double n_i = GET(nb_assets_, i);
+        double n_i = nbAssetsPerCurrency_[i+1];
 
         // boucle sur les actifs d'une monnaie étrangère
         for (int j = 0; j < n_i; j++) {
@@ -43,8 +43,8 @@ double OptionForeignPerfBasket::payoff(const PnlMat* simulations) const {
             sum_t2 += SX_t2 / BX_t2;
         }
 
-        // actualisation de la performance par : exp(-r_f * (t2 - t1))
-        double perf = (sum_t2 / sum_t1) * foreignInterestRates_[i].discountFactor(monitoringTimeGrid_->at(0), monitoringTimeGrid_->at(1)); // si problème vérifier l'exp
+        // actualisation de la performance par : exp(r_f * (t2 - t1))
+        double perf = (sum_t2 / sum_t1) * foreignInterestRates_[i].accumulationFactor(monitoringTimeGrid_->at(0), monitoringTimeGrid_->at(1)); // si problème vérifier l'exp
 
         // recherche de la meilleure performance parmi les actifs étrangers
         if (perf > maxPerf) {
@@ -58,7 +58,7 @@ double OptionForeignPerfBasket::payoff(const PnlMat* simulations) const {
 
 
 
-    double n_imax = GET(nb_assets_, idx_max);
+    double n_imax = nbAssetsPerCurrency_[idx_max]; // nombre d'actifs de la monnaie de l'actif étranger ayant la meilleure performance
     double sum_foreign_T = 0.0;
     double sum_domestic_T = 0.0;
 
