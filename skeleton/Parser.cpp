@@ -55,7 +55,10 @@ Parser::Parser(const std::string& filename) {
         for (int j = 0; j < size; ++j)
             MLET(correlationMatrix, i, j) = correlations[i][j];
 
-    pnl_mat_chol(this->correlationMatrix);
+    pnl_mat_chol(correlationMatrix);
+    
+
+
      // **Mapping des devises et des actifs**
     std::map<std::string, int> currenciesOrder;
     int order = 0;
@@ -87,6 +90,7 @@ Parser::Parser(const std::string& filename) {
     for (const auto& jsonAsset : jsonAssets) {
         std::string currencyId = jsonAsset["CurrencyId"].get<std::string>();
         assetsRealVols.push_back(jsonAsset["Volatility"].get<double>());
+        assetDrift.push_back(jsonAsset["Drift"].get<double>());
         assetCurrencyMapping.push_back(currenciesOrder[currencyId]);
 
         // Recherche de la devise dans le `vector` pour ajouter les actifs au bon endroit
@@ -98,25 +102,91 @@ Parser::Parser(const std::string& filename) {
         }
         assetIndex++;
     }
+    
 }
 
-// std::vector<Currency*> Parser::generateCurrency() const {
-//     std::vector<Currency*> currencyList;
+std::vector<Currency*> Parser::generateCurrency() const {
+    std::vector<Currency*> currencyList;
     
-//     for (size_t i = 0; i < ForeignInterestRates.size(); i++) {
-//         PnlVect* corrRow = pnl_vect_create(correlationMatrix->m);
-//         pnl_mat_get_row(corrRow, correlationMatrix, assetMapping.size() + i);
+    PnlVect* corrRow = pnl_vect_create(correlationMatrix->m);
+    for (size_t i = 0; i < ForeignInterestRates.size(); i++) {
+        pnl_mat_get_row(corrRow, correlationMatrix, assetCurrencyMapping.size() +i);
+        pnl_vect_mult_scalar(corrRow,ForeignCurrencyVols[i]);
 
-//         currencyList.push_back(new Currency(
-//             ForeignInterestRates[i],  // Taux d'intérêt étranger
-//             corrRow,                  // Volatilité et corrélation
-//             ForeignInterestRates[i],  // Utilisation du même taux pour la devise étrangère
-//             domesticInterest          // Taux d'intérêt domestique
-//         ));
+        currencyList.push_back(new Currency(
+            domesticInterest,  // Taux d'intérêt étranger
+            corrRow,                  // Volatilité et corrélation
+            ForeignInterestRates[i],  // Utilisation du même taux pour la devise étrangère
+            domesticInterest          // Taux d'intérêt domestique
+        ));
+    }
+    pnl_vect_free(&corrRow);
+    return currencyList;
+}
+
+std::vector<RiskyAsset*> Parser::generateRiskyAssets() const {
+    std::vector<RiskyAsset*> riskyAssets;
+    std::vector<Currency*> currencies = generateCurrency();
+
+    PnlVect* corrRow = pnl_vect_create(correlationMatrix->m);
+    for (size_t i = 0; i < assetsRealVols.size(); i++) {
+        
+        pnl_mat_get_row(corrRow, correlationMatrix, i);
+        pnl_vect_mult_scalar(corrRow,assetsRealVols[i]);
+        if (assetCurrencyMapping[i] != 0){
+            pnl_vect_plus_vect(corrRow, currencies[assetCurrencyMapping[i]-1]->volatilityVector); // vérifier l'addition des vects
+        }
+
+
+        // Création de l'actif risqué
+        riskyAssets.push_back(new RiskyAsset(
+            domesticInterest,   // drift de l'actif
+            corrRow,             // sigma*L
+            domesticInterest    // Taux domestique
+        ));
+    }
+    std::cout << " vuvuvuvuvuvu" << std::endl;
+    pnl_vect_free(&corrRow);
+    return riskyAssets;
+}
+
+// Option* Parser::CreateOption() {
+//     if (optionType.empty()) {
+//         std::cerr << " Erreur : Type d'option non défini !" << std::endl;
+//         exit(1);
 //     }
 
-//     return currencyList;
+//     // Création de l'option en fonction du type
+//     if (optionType == "basket") {
+//         double strike = dataJson["Option"]["Strike"].get<double>();
+//         std::vector<double> weights = dataJson["Option"]["Weights"].get<std::vector<double>>();
+//         return new OptionBasket(assetCurrencyMapping, foreignInterestRates, domesticInterest, *monitoringTimeGrid, weights, strike, maturity);
+//     }
+//     else if (optionType == "call_currency") {
+//         double strike = dataJson["Option"]["Strike"].get<double>();
+//         return new OptionCallCurrency(assetCurrencyMapping, foreignInterestRates, domesticInterest, *monitoringTimeGrid, strike, maturity);
+//     }
+//     else if (optionType == "call_quanto") {
+//         double strike = dataJson["Option"]["Strike"].get<double>();
+//         return new OptionCallQuanto(assetCurrencyMapping, foreignInterestRates, domesticInterest, *monitoringTimeGrid, strike, maturity);
+//     }
+//     else if (optionType == "foreign_asian") {
+//         return new OptionForeignAsian(assetCurrencyMapping, foreignInterestRates, domesticInterest, *monitoringTimeGrid, maturity);
+//     }
+//     else if (optionType == "foreign_perf_basket") {
+//         double strike = dataJson["Option"]["Strike"].get<double>();
+//         return new OptionForeignPerfBasket(assetCurrencyMapping, foreignInterestRates, domesticInterest, *monitoringTimeGrid, strike, maturity);
+//     }
+//     else if (optionType == "quanto_exchange") {
+//         double strike = dataJson["Option"]["Strike"].get<double>();
+//         return new OptionQuantoExchange(assetCurrencyMapping, foreignInterestRates, domesticInterest, *monitoringTimeGrid, strike, maturity);
+//     }
+//     else {
+//         std::cerr << " Erreur : Type d'option inconnu !" << std::endl;
+//         exit(1);
+//     }
 // }
+
 
 // **Affichage du mapping devise -> actifs**
 void Parser::displayCurrencyAssetGroups() const {

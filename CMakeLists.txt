@@ -20,16 +20,16 @@ endif()
 # Add nlohmann_json::nlohmann_json to target_link_libraries
 find_package(nlohmann_json REQUIRED)
 
-set(fxhedging_hdrs  json_reader.hpp)
-add_library(fx_hedging json_reader.cpp ${fxhedging_hdrs})
+set(fxhedging_hdrs  src/json_reader.hpp)
+add_library(fx_hedging src/json_reader.cpp ${fxhedging_hdrs})
 target_link_libraries(fx_hedging ${PNL_LIBRARIES} nlohmann_json::nlohmann_json)
 
 # add_executable(test_fx_hedging test_fx_hedging.cpp)
 # target_link_libraries(test_fx_hedging fx_hedging)
 # pnl_add_postbuild(test_fx_hedging)
 
-add_executable(Hedger Hedger.cpp json_reader.cpp Parser.cpp)
-target_link_libraries(Hedger ${PNL_LIBRARIES} nlohmann_json::nlohmann_json)
-pnl_add_postbuild(Hedger)
+add_executable(hedger src/Hedger.cpp src/json_reader.cpp src/Parser.cpp src/Grid/FixedTimeGrid.cpp src/Grid/ListTimeGrid.cpp src/Risky/RiskyDynamics.cpp src/Risky/RiskyAsset.cpp src/Risky/Currency.cpp src/InterestRateModel.cpp src/Portfolio.cpp src/Options/OptionBasket.cpp src/Options/OptionCallCurrency.cpp src/Options/OptionCallQuanto.cpp src/Options/OptionForeignAsian.cpp src/Options/OptionForeignPerfBasket.cpp src/Options/OptionQuantoExchange.cpp)
+target_link_libraries(hedger ${PNL_LIBRARIES} nlohmann_json::nlohmann_json)
+pnl_add_postbuild(hedger)
 
 
