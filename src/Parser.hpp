@@ -9,10 +9,9 @@
 #include <nlohmann/json.hpp>
 #include <pnl/pnl_matrix.h>
 #include <pnl/pnl_vector.h>
-#include "Currency.hpp"
-#include "RiskyAsset.hpp"
+#include "Risky/Currency.hpp"
+#include "Risky/RiskyAsset.hpp"
 #include "InterestRateModel.hpp"
-#include "Options/Option.hpp"
 #include <unordered_map>
 
 class Parser {
@@ -42,7 +41,6 @@ private:
     std::vector<double> ForeignInterestRates;
     std::vector<double> ForeignCurrencyVols;
     std::vector<double> assetsRealVols;
-    std::vector<int> assetDrift;
     std::vector<int> assetCurrencyMapping;
     std::vector<std::pair<std::string, std::vector<int>>> currencyAssetGroups;
 
@@ -52,13 +50,12 @@ public:
     explicit Parser(const std::string& filename);
     ~Parser();
 
+    // std::vector<Currency*> createCurrencyList();
+    // std::vector<RiskyAsset*> createRiskyAssetList();
     void displayData() const;
     void displayCurrencyAssetGroups() const;
     void displayAssetMapping() const; 
     std::vector<Currency*> generateCurrency() const;
-    std::vector<RiskyAsset*> generateRiskyAssets() const;
-    //Option* CreateOption();
-
 
 };
 
