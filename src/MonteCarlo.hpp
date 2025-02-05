@@ -34,8 +34,11 @@ public:
     // Génère un vecteur gaussien
     PnlVect* vectGaussian(int sizeRisky) const;
 
-    // Calcule les deltas
-    void computeDeltas(PnlMat* simulations, PnlVect* delta, PnlVect* deltasStdDev) const;
+    void computeSumPrice(PnlMat* simulations, PnlVect* G, int date, int idx_lastDate, double& price, double& priceStdDev) const;
+    void computeSumDeltas(PnlMat* simulations, PnlMat* shift_plus, PnlMat* shift_moins, PnlVect* spots, int date, int idx_lastDate, PnlVect* delta, PnlVect* deltasStdDev) const;
+
+    void finalPrice(double& price, double& priceStdDev, int date) const;
+    void finalDelta(PnlVect* delta, PnlVect* deltasStdDev, int date) const;
 
 
 };

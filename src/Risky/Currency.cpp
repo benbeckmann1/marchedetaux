@@ -9,3 +9,11 @@ Currency::Currency(double drift, PnlVect *volatility, InterestRateModel foreignR
 // Destructeur
 Currency::~Currency() {}
 
+// Getters
+InterestRateModel Currency::getForeignInterestRate() const {
+    return foreignInterestRate;
+}
+
+InterestRateModel Currency::getDomesticInterestRate() const {
+    return domesticInterestRate;
+}

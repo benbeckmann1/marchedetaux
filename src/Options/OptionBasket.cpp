@@ -1,13 +1,13 @@
 #include "OptionBasket.hpp"
 
 
-OptionBasket::OptionBasket(const std::vector<int>& assetCurrencyMapping,
+OptionBasket::OptionBasket(const std::vector<int>& nbAssetsPerCurrency,
                            const std::vector<InterestRateModel>& foreignInterestRates,
                            const InterestRateModel& domesticInterestRate,
                            const ITimeGrid& monitoringTimeGrid,
                            const std::vector<double>& weights,
                            double strike, double maturity)
-    : Option(assetCurrencyMapping, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity),
+    : Option(nbAssetsPerCurrency, foreignInterestRates, domesticInterestRate, const_cast<ITimeGrid*>(&monitoringTimeGrid), maturity),
       weights_(weights), strike_(strike), maturity_(maturity) {}
 
 

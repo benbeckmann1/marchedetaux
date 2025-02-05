@@ -10,3 +10,8 @@ RiskyAsset::RiskyAsset(double drift, PnlVect *volatility, InterestRateModel dome
 // Destructeur
 RiskyAsset::~RiskyAsset() {}
 
+// Getter pour le taux d'intérêt domestique
+InterestRateModel RiskyAsset::getDomesticInterestRate() const {
+    return domesticInterestRate;
+}
+

@@ -28,6 +28,10 @@ const InterestRateModel& GlobalModel::getDomesticInterestRate() const {
     return domesticInterestRate;
 }
 
+const double GlobalModel::getFdStep() const {
+    return fdStep;
+}
+
 
 
 // Méthodes
@@ -72,24 +76,10 @@ void GlobalModel::updateSim(PnlMat* simulations, PnlVect* G, int date, int t, in
 }
 
 
-
-
-
-    // // Boucle sur les dates restantes
-    // for (int t = idx_lastDate; t < N - 1; t++) {
-    //     // Boucle sur les actifs
-    //     for (int j = 0; j < nb_assets+nb_currencies; j++) {
-
-    //         RiskyAsset asset = assets[j];
-
-
-    //         // if (monitoringTimeGrid->has(date)) {            // si on est à une date de la grille de temps, on remplit la ligne d'après
-    //         //     double step = (monitoringTimeGrid->at(t+1) - date) / domesticInterestRate.getNumberOfDaysInOneYear();
-    //         //     double newValue = asset.sampleNextDate(G, step, MGET(simulations, t, j));
-    //         //     MLET(simulations, t+1, j) = newValue;
-    //         // } else {                                        // sinon on remplit la ligne courante par dessus, on écrase la valeur d'aujourd'hui par la nouvelle valeur
-    //         //     double step = (monitoringTimeGrid->at(t) - date) / domesticInterestRate.getNumberOfDaysInOneYear();
-    //         //     double newValue = asset.sampleNextDate(G, step, MGET(simulations, t, j));           
-    //         //     MLET(simulations, t, j) = newValue;
-    //         // }
-    //     }
+void GlobalModel::shift_asset(PnlMat* shift_mat, int d, double fdStep, int idx_lastDate) const {
+    for (int i = time_index; i < simulation->m; i++) {
+        double original_value = pnl_mat_get(simulation, i, d);
+        double bumped_value = original_value * (1 + bump);
+        pnl_mat_set(simulation, i, d, bumped_value);
+    }
+}

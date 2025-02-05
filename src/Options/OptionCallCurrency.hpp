@@ -9,7 +9,7 @@ private:
     double maturity_;
 
 public:
-    OptionCallCurrency(const std::vector<int>& assetCurrencyMapping,
+    OptionCallCurrency(const std::vector<int>& nbAssetsPerCurrency,
                        const std::vector<InterestRateModel>& foreignInterestRates,
                        const InterestRateModel& domesticInterestRate,
                        const ITimeGrid& monitoringTimeGrid,

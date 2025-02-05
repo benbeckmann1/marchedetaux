@@ -8,19 +8,19 @@
 
 class Option {
 protected:
-    std::vector<int> assetCurrencyMapping_;   
+    std::vector<int> nbAssetsPerCurrency_;   
     std::vector<InterestRateModel> foreignInterestRates_;
     InterestRateModel domesticInterestRate_;
     ITimeGrid* monitoringTimeGrid_;
     double maturity_;
 
 public:
-    Option(const std::vector<int>& assetCurrencyMapping,
+    Option(const std::vector<int>& nbAssetsPerCurrency,
            const std::vector<InterestRateModel>& foreignInterestRates,
            const InterestRateModel& domesticInterestRate,
            ITimeGrid* monitoringTimeGrid,
            double maturity)
-        : assetCurrencyMapping_(assetCurrencyMapping), 
+        : nbAssetsPerCurrency_(nbAssetsPerCurrency), 
           foreignInterestRates_(foreignInterestRates),
           domesticInterestRate_(domesticInterestRate), 
           monitoringTimeGrid_(monitoringTimeGrid),
@@ -33,6 +33,9 @@ public:
 
     // Getter pour obtenir la maturité
     double getMaturity() const { return maturity_; }
+
+    // Getter pour obtenir le InterestRateModel domestique
+    InterestRateModel getDomesticInterestRate() const { return domesticInterestRate_; }
 };
 
 #endif

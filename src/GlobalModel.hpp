@@ -15,6 +15,7 @@ private:
     std::vector<Currency> currencies;       // Liste des devises
     ITimeGrid* monitoringTimeGrid;          // Grille de temps pour le suivi
     InterestRateModel domesticInterestRate; // Modèle de taux domestique
+    double fdStep;                          // Pas de différence finie
 
 public:
     // Constructeur
@@ -29,10 +30,12 @@ public:
     const std::vector<Currency>& getCurrencies() const;
     const ITimeGrid* getTimeGrid() const;
     const InterestRateModel& getDomesticInterestRate() const;
+    const double getFdStep() const;
 
     // Méthodes
     void asset(PnlMat* simulations, PnlVect* G, int date, int idx_lastDate) const;
     void updateSim(PnlMat* simulations, PnlVect* G, int date, int t, int nb_assets, int nb_currencies) const;
+    void shift_asset(PnlMat* shift_mat, int d, double fdStep, int idx_lastDate) const;
 
 };
 

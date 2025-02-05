@@ -20,40 +20,33 @@ void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delt
     pnl_vect_set_all(delta, 0.0); 
     pnl_vect_set_all(deltasStdDev, 0.0);
 
-    // Initialise les sommes pour le calcul de la moyenne et de la variance
-    double sum_payoff = 0.0;
-    double sum_payoff_squared = 0.0;
-
     // Initialise la matrice de simulation
     int idx_lastDate = 0;
     PnlMat* simulations = initPath(market, date, idx_lastDate);
+
+    // Crée des matrices pour stocker les simulations shiftées
+    PnlMat *shift_moins = pnl_mat_create_from_zero(simulations->m, simulations->n);
+    PnlMat *shift_plus = pnl_mat_create_from_zero(simulations->m, simulations->n);
+    PnlVect* spots = pnl_vect_create(simulations->n);
+    pnl_mat_get_row(spots, market, date);
 
     // Crée un vecteur gaussien
     PnlVect* G = vectGaussian(simulations->n);  // pas sur de ce que je fais !!
    
     // Boucle sur le nombre de tirages Monte Carlo
     for (int i = 0; i < sampleNb; i++) {
-        
-        model.asset(simulations, G, date, idx_lastDate);    // Simulation d'une trajectoire
-        double payoff = option->payoff(simulations);        // Calcul du payoff de l'option
-        sum_payoff += payoff;                     
-        sum_payoff_squared += payoff * payoff;
-        computeDeltas(simulations, delta, deltasStdDev);
-
-
-        
-        // Calcule le delta de l'option
-        //option->delta(path, delta);
+        computeSumPrice(simulations, G, date, idx_lastDate, price, priceStdDev); 
+        computeSumDeltas(simulations, shift_plus, shift_moins, spots, date, idx_lastDate, delta, deltasStdDev); // implem,eter le bon spot frr
     }
 
-    double mean_payoff = sum_payoff / sampleNb;
-    double var_payoff = (sum_payoff_squared / sampleNb) - (mean_payoff * mean_payoff);
+    finalPrice(price, priceStdDev, date);
+    finalDelta(delta, deltasStdDev, date);
 
-    price = model.getDomesticInterestRate().discountFactor(date, option->getMaturity()) * mean_payoff;
-    priceStdDev = model.getDomesticInterestRate().discountFactor(date, option->getMaturity()) * sqrt(var_payoff) / sqrt(sampleNb);
-
-
-    pnl_mat_free(&simulations);;
+    pnl_mat_free(&simulations);
+    pnl_mat_free(&shift_plus);
+    pnl_mat_free(&shift_moins);
+    pnl_vect_free(&spots);
+    pnl_vect_free(&G);
     std::cout << "Simulation terminée." << std::endl;
 }
 
@@ -114,43 +107,41 @@ PnlVect* MonteCarlo::vectGaussian(int sizeRisky) const {
 
 
 
-void MonteCarlo::computeDeltas(PnlMat* simulations, PnlVect* delta, PnlVect* deltasStdDev) const {
+void MonteCarlo::computeSumPrice(PnlMat* simulations, PnlVect* G, int date, int idx_lastDate, double& price, double& priceStdDev) const {
+
+        model.asset(simulations, G, date, idx_lastDate);    // Simulation d'une trajectoire
+        double payoff = option->payoff(simulations);        // Calcul du payoff de l'option
+        price += payoff;                     
+        priceStdDev += payoff * payoff;
 
 }
 
 
 
+void MonteCarlo::computeSumDeltas(PnlMat* simulations, PnlMat* shift_plus, PnlMat* shift_moins, PnlVect* spots, int date, int idx_lastDate, PnlVect* delta, PnlVect* deltasStdDev) const {
 
-// PnlMat* MonteCarlo::initPath(PnlMat* market, int date) const {
-//     // Crée une matrice pour stocker les tirages Monte Carlo
-//     int nb_assets = model.getAssets().size();
-//     int nb_currencies = model.getCurrencies().size();
+    for (int d = 0; d < simulations->n; d++) {
+        pnl_mat_clone(shift_moins, simulations);
+        pnl_mat_clone(shift_plus, simulations);
+        model.shift_asset(shift_plus, d, model.getFdStep(), idx_lastDate);
+        model.shift_asset(shift_moins, d, -model.getFdStep(), idx_lastDate);
+        double payoff_plus = option->payoff(shift_plus);
+        double payoff_minus = option->payoff(shift_moins);
 
-//     int m = nb_assets + nb_currencies;
-//     int n = model.getTimeGrid()->len() + 1;
+        LET(delta, d) += (payoff_plus - payoff_minus) / GET(spots, d);
+        // LET(deltasStdDev, d) += pow((payoff_plus - payoff_minus), 2) / (2*model.getFdStep()) - pow((payoff_plus - payoff_minus)/(2*model.getFdStep()), 2);
+    }
+}
 
-//     PnlMat* simulation = pnl_mat_create(m, n);
+void MonteCarlo::finalPrice(double& price, double& priceStdDev, int date) const {
+    price /= sampleNb;
+    double var_payoff = (priceStdDev / sampleNb) - (price * price);
 
-//     // Remplir les lignes pour les dates passées souhaitées avec les valeurs du marché
-//     int pastDate = model.getTimeGrid()->at(0);
-//     int idx_pastDate = 0;
-//     while (pastDate <= date) {                                       // si pastDate = date on ecrira deux fois la même ligne
-//         for (int i = 0; i < nb_assets; i++) {
-//             pnl_mat_set(simulation, idx_pastDate, i, pnl_mat_get(market, pastDate, i));
-//         }
-//         for (int i = 0; i < nb_currencies; i++) {
-//             pnl_mat_set(simulation, idx_pastDate, nb_assets + i, pnl_mat_get(market, pastDate, nb_assets + i));
-//         }
-//         pastDate = model.getTimeGrid()->at(++idx_pastDate);
-//     }
+    price *= model.getDomesticInterestRate().discountFactor(date, option->getMaturity());
+    priceStdDev = model.getDomesticInterestRate().discountFactor(date, option->getMaturity()) * sqrt(var_payoff) / sqrt(sampleNb);
+}
 
-//     // Remplir la ligne de la matrice avec les valeurs initiales
-//     for (int i = 0; i < nb_assets; i++) {
-//         pnl_mat_set(simulation, idx_pastDate, i, pnl_mat_get(market, date, i));
-//     }
-//     for (int i = 0; i < nb_currencies; i++) {
-//         pnl_mat_set(simulation, idx_pastDate, nb_assets + i, pnl_mat_get(market, date, nb_assets + i));
-//     }
-
-//     return simulation;
-// }
+void MonteCarlo::finalDelta(PnlVect* delta, PnlVect* deltasStdDev, int date) const {
+    pnl_vect_mult_scalar(delta, option->getDomesticInterestRate().discountFactor(date, option->getMaturity()) / (2 * model.getFdStep() * sampleNb));
+    // pnl_vect_mult_scalar(deltasStdDev, option->getDomesticInterestRate().discountFactor(date, option->getMaturity()) / (2 * model.getFdStep() * sampleNb));
+}

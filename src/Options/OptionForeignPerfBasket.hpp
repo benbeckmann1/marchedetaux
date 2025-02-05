@@ -7,15 +7,13 @@ class OptionForeignPerfBasket : public Option {
 private:
     double strike_;
     double maturity_;
-    PnlVect* nb_assets_;  // vecteur contenant le nombre d'actifs de chaque monnaie étrangère
 
 public:
-    OptionForeignPerfBasket(const std::vector<int>& assetCurrencyMapping,
+    OptionForeignPerfBasket(const std::vector<int>& nbAssetsPerCurrency,
                             const std::vector<InterestRateModel>& foreignInterestRates,
                             const InterestRateModel& domesticInterestRate,
                             const ITimeGrid& monitoringTimeGrid,
-                            double strike, double maturity, 
-                            PnlVect* nb_assets);
+                            double strike, double maturity);
 
     double payoff(const PnlMat* simulations) const override;
 };
