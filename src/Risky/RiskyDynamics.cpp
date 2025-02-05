@@ -22,7 +22,7 @@ double RiskyDynamics::sampleNextDate(PnlVect *G, double step, double currentValu
     // Application du modèle Black-Scholes sous probabilité risque-neutre
     double norm = pnl_vect_scalar_prod(volatilityVector, volatilityVector);
 
-    double nextValue = currentValue * exp((drift-0.5*norm)*step + volatilityEffect);
+    double nextValue = currentValue * exp((drift-0.5*norm)*step + volatilityEffect);  // vérifier que le drift envoyé en bien r0
 
     return nextValue;
 }

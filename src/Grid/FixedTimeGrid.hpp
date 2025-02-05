@@ -6,13 +6,11 @@
 
 class FixedTimeGrid : public ITimeGrid {
 private:
-    int start;                 // Premier jour de la grille
-    int end;                   // Dernier jour de la grille
-    int step;                  // Pas entre les points de la grille
-    std::vector<int> timePoints; // Liste générée des dates
+    int period_; 
+    int maturity_;
 
 public:
-    FixedTimeGrid(int start, int end, int step);
+    FixedTimeGrid(int period, int maturity);
     
     int at(int index) const override;
     int len() const override;

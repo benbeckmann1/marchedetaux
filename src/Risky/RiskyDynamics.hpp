@@ -8,7 +8,6 @@ protected:
     double drift;              // Dérive du processus
     PnlVect* volatilityVector; // Vecteur des volatilités
 
-
 public:
     // Constructeur et destructeur
     RiskyDynamics(double drift, PnlVect *volatility);

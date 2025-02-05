@@ -1,25 +1,24 @@
 #include "FixedTimeGrid.hpp"
-#include <algorithm>  // Pour std::find
+#include <iostream>
 
 // Constructeur : génère automatiquement les dates
-FixedTimeGrid::FixedTimeGrid(int start, int end, int step) 
-    : start(start), end(end), step(step) {
-    for (int t = start; t <= end; t += step) {
-        timePoints.push_back(t);
-    }
+FixedTimeGrid::FixedTimeGrid(int period, int maturity) : period_(period), maturity_(maturity) {
 }
 
 // Renvoie la valeur du temps à l'index donné
 int FixedTimeGrid::at(int index) const {
-    return timePoints[index];
+    if (index < 0 || index >= len()) {
+        throw std::out_of_range("Index " + std::to_string(index) + " hors limites dans FixedTimeGrid::at (max : " + std::to_string(len() - 1) + ")");
+    }
+    return (index+1)*period_;
 }
 
 // Renvoie le nombre total de points de la grille
 int FixedTimeGrid::len() const {
-    return timePoints.size();
+    return int(maturity_ / period_);
 }
 
 // Vérifie si une date spécifique existe dans la grille
 bool FixedTimeGrid::has(int nDays) const {
-    return std::find(timePoints.begin(), timePoints.end(), nDays) != timePoints.end();
+    return nDays % period_ == 0 && nDays <= maturity_;
 }
