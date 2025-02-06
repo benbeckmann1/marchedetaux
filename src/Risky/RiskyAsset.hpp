@@ -11,7 +11,7 @@ private:
 public:
     // Constructeur et destructeur
     RiskyAsset(double drift, PnlVect *volatility, InterestRateModel domesticRate);
-    ~RiskyAsset();
+    ~RiskyAsset() override = default;
 
     // Getter pour le taux d'intérêt domestique
     InterestRateModel getDomesticInterestRate() const;

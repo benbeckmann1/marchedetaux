@@ -12,9 +12,8 @@ MonteCarlo::~MonteCarlo() {
 
 
 
-void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delta, PnlVect* deltasStdDev, PnlMat* market, int date) { // prednre une position directement en argument ?
-    std::cout << "Calcul du prix et des deltas de l'option..." << std::endl;
-    
+void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delta, PnlVect* deltasStdDev, PnlMat* market, int date) { // prednre une position directement en argument ?    
+    // Initialisation
     price = 0.0;
     priceStdDev = 0.0;
     pnl_vect_set_all(delta, 0.0); 
@@ -43,12 +42,13 @@ void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delt
     PnlRng* rng = pnl_rng_create(PNL_RNG_MERSENNE);
     pnl_rng_sseed(rng, time(NULL));
     PnlVect* G = pnl_vect_create(simulations->n);
+
+    // Crée un vecteur pour stocker des valeurs de prix
+    PnlVect* row = pnl_vect_create(nb_tot_assets);
    
     // Boucle sur le nombre de tirages Monte Carlo
     for (int i = 0; i < sampleNb; i++) {
-        model.simulatePaths(simulations, past, G, rng, date); 
-        // std::cout << "Simulation " << i+1 << "/" << sampleNb << std::endl;
-        // pnl_mat_print(simulations);
+        model.simulatePaths(simulations, past, row, G, rng, date); 
         computeSumPrice(simulations, price, priceStdDev); 
         computeSumDeltas(simulations, shift_plus, shift_moins, spots, date, past->m-1, delta, deltasStdDev); 
     }
@@ -61,7 +61,9 @@ void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delt
     pnl_mat_free(&shift_moins);
     pnl_vect_free(&spots);
     pnl_vect_free(&G);
-    std::cout << "Simulation terminée." << std::endl;
+    pnl_mat_free(&past);
+    pnl_rng_free(&rng);
+    pnl_vect_free(&row);
 }
 
 
@@ -85,7 +87,6 @@ void MonteCarlo::createPast(PnlMat* past, int nb_tot_assets, PnlMat* market, int
 
 
 void MonteCarlo::computeSumPrice(PnlMat* simulations, double& price, double& priceStdDev) const {
-
         double payoff = option->payoff(simulations);        // Calcul du payoff de l'option
         price += payoff;                     
         priceStdDev += payoff * payoff;
@@ -94,7 +95,6 @@ void MonteCarlo::computeSumPrice(PnlMat* simulations, double& price, double& pri
 
 
 void MonteCarlo::computeSumDeltas(PnlMat* simulations, PnlMat* shift_plus, PnlMat* shift_moins, PnlVect* spots, int date, int idx_lastDate, PnlVect* delta, PnlVect* deltasStdDev) const {
-
     for (int d = 0; d < simulations->n; d++) {
         pnl_mat_clone(shift_moins, simulations);
         pnl_mat_clone(shift_plus, simulations);
@@ -104,19 +104,26 @@ void MonteCarlo::computeSumDeltas(PnlMat* simulations, PnlMat* shift_plus, PnlMa
         double payoff_minus = option->payoff(shift_moins);
 
         LET(delta, d) += (payoff_plus - payoff_minus) / GET(spots, d);
-        // LET(deltasStdDev, d) += pow((payoff_plus - payoff_minus), 2) / (2*model.getFdStep()) - pow((payoff_plus - payoff_minus)/(2*model.getFdStep()), 2);
+        LET(deltasStdDev, d) += pow((payoff_plus - payoff_minus) / GET(spots, d), 2);
     }
 }
 
+
 void MonteCarlo::finalPrice(double& price, double& priceStdDev, int date) const {
     price /= sampleNb;
-    double var_payoff = (priceStdDev / sampleNb) - (price * price);
+    double var_payoff = std::max(0.0, (priceStdDev / sampleNb) - (price * price));
 
     price *= model.getDomesticInterestRate().discountFactor(date, option->getMaturity());
     priceStdDev = model.getDomesticInterestRate().discountFactor(date, option->getMaturity()) * sqrt(var_payoff) / sqrt(sampleNb);
 }
 
 void MonteCarlo::finalDelta(PnlVect* delta, PnlVect* deltasStdDev, int date) const {
+    PnlVect* meanSquaredSum = pnl_vect_copy(delta);
+    pnl_vect_mult_vect_term(meanSquaredSum, meanSquaredSum);
+    pnl_vect_div_scalar(meanSquaredSum, sampleNb);
+    pnl_vect_minus_vect(deltasStdDev, meanSquaredSum);
+    pnl_vect_map_inplace(deltasStdDev, [](double x) { return (x >= 0) ? sqrt(x) : 0.0; });
+    pnl_vect_mult_scalar(deltasStdDev, option->getDomesticInterestRate().discountFactor(date, option->getMaturity()) / (2 * model.getFdStep() * sampleNb));
     pnl_vect_mult_scalar(delta, option->getDomesticInterestRate().discountFactor(date, option->getMaturity()) / (2 * model.getFdStep() * sampleNb));
-    // pnl_vect_mult_scalar(deltasStdDev, option->getDomesticInterestRate().discountFactor(date, option->getMaturity()) / (2 * model.getFdStep() * sampleNb));
+    pnl_vect_free(&meanSquaredSum);
 }

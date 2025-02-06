@@ -9,9 +9,7 @@ RiskyDynamics::RiskyDynamics(double drift, PnlVect *volatility) : drift(drift) {
 
 // Destructeur : libère la mémoire allouée pour le vecteur de volatilité
 RiskyDynamics::~RiskyDynamics() {
-    if (volatilityVector) {
-        pnl_vect_free(&volatilityVector);
-    }
+    pnl_vect_free(&volatilityVector);
 }
 
 

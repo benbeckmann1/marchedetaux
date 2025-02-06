@@ -55,25 +55,20 @@ private:
     std::vector<double> assetsRealVols;
     std::vector<double> assetDrift;
     std::vector<int> assetCurrencyMapping;
-    std::vector<std::pair<std::string, std::vector<int>>> currencyAssetGroups;
+    // std::vector<std::pair<std::string, std::vector<int>>> currencyAssetGroups;
 
     ITimeGrid* monitoringTimeGrid;
-
     
 
 public:
     explicit Parser(const std::string& filename);
     ~Parser();
 
-    void displayData() const;
-    void displayCurrencyAssetGroups() const;
-    void displayAssetMapping() const; 
     std::vector<Currency*> generateCurrency() const;
     std::vector<RiskyAsset*> generateRiskyAssets() const;
     Option* CreateOption();
     GlobalModel CreateGlobalModel();
     std::vector<int> computeNbAssetsPerCurrency() const;
-    void displayNbAssetsPerCurrency() const;
 
     // Getter pour sampleNb
     int getSampleNb() const;

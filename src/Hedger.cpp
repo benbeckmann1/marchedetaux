@@ -22,12 +22,14 @@ void MarketDomestic(PnlMat* market, std::vector<int> nbAssetsPerCurrency, std::v
             idx_sumAsset += n_i;
         }
         // Pour chaque date (t) de la colonne currency on multiplie par exp(r_f * t) terme à terme
+        pnl_mat_get_col(colCurrency, market, nbRiskyAssets + idx_currency);
         for (int t = 0; t<market->m; t++) {
-            pnl_mat_get_col(colCurrency, market, nbRiskyAssets + idx_currency);
             LET(colCurrency, t) = GET(colCurrency, t) * foreignInterestRates[idx_currency].accumulationFactor(0, t);
         }
         pnl_mat_set_col(market, colCurrency, nbRiskyAssets + idx_currency);
     }
+    pnl_vect_free(&colAsset);
+    pnl_vect_free(&colCurrency);
 }
 
 
@@ -50,14 +52,14 @@ int main(int argc, char *argv[]) {
     GlobalModel model = parser.CreateGlobalModel();
     MonteCarlo montecarlo = MonteCarlo(opt, model, parser.getSampleNb());
     MarketDomestic(market, parser.computeNbAssetsPerCurrency(), opt->getForeignInterestRates());
-    montecarlo.priceAndDelta(price, priceStdDev, delta, deltasStdDev, market, 0);
+    montecarlo.priceAndDelta(price, priceStdDev, delta, deltasStdDev, market, 52);
 
-    std::cout << "Price : " << price << std::endl;
-    std::cout << "Price Std Dev : " << priceStdDev << std::endl;
-    std::cout << "Delta : " << std::endl;
+    std::cout << "\nPrice : " << price << std::endl;
+    std::cout << "\nPrice Std Dev : " << priceStdDev << std::endl;
+    std::cout << "\nDelta : ";
     pnl_vect_print_asrow(delta);
-    // std::cout << "Delta Std Dev : " << std::endl;
-    // pnl_vect_print_asrow(deltasStdDev);
+    std::cout << "\nDelta Std Dev : ";
+    pnl_vect_print_asrow(deltasStdDev);
 
     pnl_mat_free(&market);
     pnl_vect_free(&delta);

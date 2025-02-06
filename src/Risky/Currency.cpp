@@ -6,8 +6,6 @@
 Currency::Currency(double drift, PnlVect *volatility, InterestRateModel foreignRate, InterestRateModel domesticRate)
     : RiskyDynamics(drift, volatility), foreignInterestRate(foreignRate), domesticInterestRate(domesticRate) {}
 
-// Destructeur
-Currency::~Currency() {}
 
 // Getters
 InterestRateModel Currency::getForeignInterestRate() const {
