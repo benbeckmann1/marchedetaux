@@ -2,13 +2,6 @@
 #include <iostream>
 #include <vector>
 
-
-
-
-
-
-
-
 void MarketDomestic(PnlMat* market, std::vector<int> nbAssetsPerCurrency, std::vector<InterestRateModel> foreignInterestRates) {
     int idx_sumAsset = nbAssetsPerCurrency[0];
     int nbRiskyAssets = std::accumulate(nbAssetsPerCurrency.begin(), nbAssetsPerCurrency.end(), 0); // pour avoir l'indice de la première monnaie étrangère
@@ -28,7 +21,6 @@ void MarketDomestic(PnlMat* market, std::vector<int> nbAssetsPerCurrency, std::v
             }
             idx_sumAsset += n_i;
         }
-
         // Pour chaque date (t) de la colonne currency on multiplie par exp(r_f * t) terme à terme
         for (int t = 0; t<market->m; t++) {
             pnl_mat_get_col(colCurrency, market, nbRiskyAssets + idx_currency);
@@ -40,13 +32,12 @@ void MarketDomestic(PnlMat* market, std::vector<int> nbAssetsPerCurrency, std::v
 
 
 
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         std::cerr << "Usage : " << argv[0] << " <fichier_json>   <fichier_csv" << std::endl;
         return 1;
     }
-
-    // Création du parser et extraction des données
     Parser parser(argv[1]);
     PnlMat *market = pnl_mat_create_from_file(argv[2]);
 
@@ -55,46 +46,22 @@ int main(int argc, char *argv[]) {
     PnlVect* delta = pnl_vect_create(market->n);
     PnlVect* deltasStdDev = pnl_vect_create(market->n);
 
-    // printf("je crée option\n");
-
     Option* opt = parser.CreateOption();
-    // printf("option créée \n");
-    // printf("je crée model\n");
     GlobalModel model = parser.CreateGlobalModel();
-    // printf("model créé\n");
-    // printf("je crée montecarlo\n");
     MonteCarlo montecarlo = MonteCarlo(opt, model, parser.getSampleNb());
-    // printf("montecarlo créé\n");
-    // printf("je change market\n");
     MarketDomestic(market, parser.computeNbAssetsPerCurrency(), opt->getForeignInterestRates());
-
-    // std::cout << "Market après transformation : " << std::endl;
-    // pnl_mat_print(market);
-
-    // printf("market changé\n");
-    // printf("je price\n");
     montecarlo.priceAndDelta(price, priceStdDev, delta, deltasStdDev, market, 0);
-    // printf("priced\n");
 
     std::cout << "Price : " << price << std::endl;
     std::cout << "Price Std Dev : " << priceStdDev << std::endl;
     std::cout << "Delta : " << std::endl;
     pnl_vect_print_asrow(delta);
+    // std::cout << "Delta Std Dev : " << std::endl;
+    // pnl_vect_print_asrow(deltasStdDev);
 
-    // printf("je libère\n");
-
-    // Libération de la mémoire
-    if (market) {
-        pnl_mat_free(&market);
-    }
-    if (delta) {
-        pnl_vect_free(&delta);
-    }
-    if (deltasStdDev) {
-        pnl_vect_free(&deltasStdDev);
-    }
-    // printf("libéré\n");
-
+    pnl_mat_free(&market);
+    pnl_vect_free(&delta);
+    pnl_vect_free(&deltasStdDev);
     return 0;
 }
 

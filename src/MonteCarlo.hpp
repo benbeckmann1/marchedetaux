@@ -25,9 +25,6 @@ public:
     // Calcule le prix de l'option et les deltas
     void priceAndDelta(double& price, double& priceStdDev, PnlVect* delta, PnlVect* deltasStdDev, PnlMat* market, int date);
 
-    // Initialise la matrice de simulation
-    void initPath(PnlMat* simulations, PnlMat* market, int date, int& idx_lastDate) const;
-
     // Crée la matrice past
     void createPast(PnlMat* past, int nb_tot_assets, PnlMat* market, int date) const;
 

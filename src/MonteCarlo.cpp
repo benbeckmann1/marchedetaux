@@ -33,7 +33,7 @@ void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delt
     pnl_mat_get_row(spots, market, date);
 
     // Initialise la matrice de simulation
-    PnlMat* simulations = pnl_mat_create(nb_dates, nb_tot_assets);
+    PnlMat* simulations = pnl_mat_create_from_zero(nb_dates, nb_tot_assets);
 
     // Crée des matrices pour stocker les simulations shiftées
     PnlMat *shift_moins = pnl_mat_create_from_zero(simulations->m, simulations->n);
@@ -47,7 +47,8 @@ void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delt
     // Boucle sur le nombre de tirages Monte Carlo
     for (int i = 0; i < sampleNb; i++) {
         model.simulatePaths(simulations, past, G, rng, date); 
-
+        // std::cout << "Simulation " << i+1 << "/" << sampleNb << std::endl;
+        // pnl_mat_print(simulations);
         computeSumPrice(simulations, price, priceStdDev); 
         computeSumDeltas(simulations, shift_plus, shift_moins, spots, date, past->m-1, delta, deltasStdDev); 
     }
@@ -81,23 +82,6 @@ void MonteCarlo::createPast(PnlMat* past, int nb_tot_assets, PnlMat* market, int
     }
     pnl_vect_free(&row);
 }
-
-
-// void MonteCarlo::initPath(PnlMat* simulations, PnlMat* market, int date, int& idx_lastDate) const {
-//     // Crée une matrice pour stocker les tirages Monte Carlo
-//     int nb_assets = model.getAssets().size();
-//     int nb_currencies = model.getCurrencies().size();
-
-//     createPast(simulations, idx_lastDate, nb_assets, nb_currencies, market, date);
-
-//     // Remplir la ligne de la matrice avec les valeurs initiales
-//     for (int i = 0; i < nb_assets; i++) {
-//         pnl_mat_set(simulations, idx_lastDate, i, pnl_mat_get(market, date, i));
-//     }
-//     for (int i = 0; i < nb_currencies; i++) {
-//         pnl_mat_set(simulations, idx_lastDate, nb_assets + i, pnl_mat_get(market, date, nb_assets + i));
-//     }
-// }
 
 
 void MonteCarlo::computeSumPrice(PnlMat* simulations, double& price, double& priceStdDev) const {

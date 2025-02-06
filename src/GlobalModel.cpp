@@ -2,9 +2,9 @@
 
 // Constructeur
 GlobalModel::GlobalModel(std::vector<RiskyAsset*> assets, std::vector<Currency*> currencies, 
-                         ITimeGrid* timeGrid, InterestRateModel domesticRate)
+                         ITimeGrid* timeGrid, InterestRateModel domesticRate, double fdStep)
     : assets(std::move(assets)), currencies(std::move(currencies)), 
-      monitoringTimeGrid(timeGrid), domesticInterestRate(domesticRate) {}
+      monitoringTimeGrid(timeGrid), domesticInterestRate(domesticRate), fdStep(fdStep) {}
 
 // Destructeur
 GlobalModel::~GlobalModel() {
@@ -69,12 +69,15 @@ void GlobalModel::simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* G, P
 
     // Pour la première date si ce n'est pas une date de la grille de temps
     if (!monitoringTimeGrid->has(date)) {
-        updateSim(simulations, G, rng, date, t, nb_assets, nb_currencies);     // on écrase la valeur d'aujourd'hui par la nouvelle valeur
+        updateSim(simulations, G, rng, currentDate, t, nb_assets, nb_currencies, true);     // on écrase la valeur d'aujourd'hui par la nouvelle valeur
+        currentDate = monitoringTimeGrid->at(t); // on met à jour la date courante
     }
+    
 
     // Boucle sur les dates restantes
     while (t < N-1) {
-        updateSim(simulations, G, rng, date, t+1, nb_assets, nb_currencies);   // on remplit la ligne d'après
+        updateSim(simulations, G, rng, currentDate, t, nb_assets, nb_currencies, false);   // on remplit la ligne d'après
+        currentDate = monitoringTimeGrid->at(t+1);
         t++;
     }
 }
@@ -91,19 +94,19 @@ void GlobalModel::copyPast(PnlMat* simulations, PnlMat* past) const { // mieux d
 }
 
 
-void GlobalModel::updateSim(PnlMat* simulations, PnlVect* G, PnlRng* rng, int date, int t, int nb_assets, int nb_currencies) const {
-    double step = static_cast<double>((monitoringTimeGrid->at(t) - date)) / static_cast<double>(domesticInterestRate.getNumberOfDaysInOneYear());
+void GlobalModel::updateSim(PnlMat* simulations, PnlVect* G, PnlRng* rng, int date, int t, int nb_assets, int nb_currencies, bool isFirstDate) const {
+    int idx_nextDate = t + (isFirstDate ? 0 : 1);
+    double step = static_cast<double>((monitoringTimeGrid->at(idx_nextDate) - date)) / static_cast<double>(domesticInterestRate.getNumberOfDaysInOneYear());
     pnl_vect_rng_normal(G, G->size, rng);
-
     for (int j = 0; j < nb_assets; j++) {   // Boucle sur les actifs
         RiskyAsset* asset = assets[j];
         double newValue = asset->sampleNextDate(G, step, MGET(simulations, t, j));
-        MLET(simulations, t, j) = newValue;
+        MLET(simulations, idx_nextDate, j) = newValue;
     }
     for (int j = 0; j < nb_currencies; j++) {   // Boucle sur les devises
         Currency* currency = currencies[j];
         double newValue = currency->sampleNextDate(G, step, MGET(simulations, t, nb_assets+j));
-        MLET(simulations, t, nb_assets+j) = newValue;
+        MLET(simulations, idx_nextDate, nb_assets + j) = newValue;
     }
 }
 
@@ -112,6 +115,6 @@ void GlobalModel::shift_asset(PnlMat* shift_mat, int d, double fdStep, int idx_l
     for (int i = idx_lastDate; i < shift_mat->m; i++) {
         double original_value = pnl_mat_get(shift_mat, i, d);
         double bumped_value = original_value * (1 + fdStep);
-        pnl_mat_set(shift_mat, i, d, bumped_value);
+        MLET(shift_mat, i, d) = bumped_value;
     }
 }

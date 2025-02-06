@@ -57,7 +57,6 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
             MLET(correlationMatrix, i, j) = correlations[i][j];
 
     pnl_mat_chol(correlationMatrix);
-    
 
 
      // **Mapping des devises et des actifs**
@@ -117,11 +116,11 @@ Parser::~Parser() {
         correlationMatrix = nullptr;
     }
 
-    // Libération du vecteur de dates si alloué
-    if (DatesInDays) {
-        pnl_vect_free(&DatesInDays);
-        DatesInDays = nullptr;
-    }
+    // // Libération du vecteur de dates si alloué
+    // if (DatesInDays) {
+    //     pnl_vect_free(&DatesInDays);
+    //     DatesInDays = nullptr;
+    // }
 
     // Libération de la grille de temps si allouée
     if (monitoringTimeGrid) {
@@ -161,6 +160,7 @@ std::vector<RiskyAsset*> Parser::generateRiskyAssets() const {
         
         pnl_mat_get_row(corrRow, correlationMatrix, i);
         pnl_vect_mult_scalar(corrRow,assetsRealVols[i]);
+
         if (assetCurrencyMapping[i] != 0){
             pnl_vect_plus_vect(corrRow, currencies[assetCurrencyMapping[i]-1]->getVolatilityVector()); // vérifier l'addition des vects
         }
@@ -168,7 +168,7 @@ std::vector<RiskyAsset*> Parser::generateRiskyAssets() const {
 
         // Création de l'actif risqué
         riskyAssets.push_back(new RiskyAsset(
-            assetDrift[i],   // drift de l'actif
+            domesticInterest.getRate(),   // drift de l'actif
             corrRow,             // sigma*L
             domesticInterest    // Taux domestique
         ));
@@ -227,7 +227,7 @@ Option* Parser::CreateOption() {
 GlobalModel Parser::CreateGlobalModel() {
     std::vector<RiskyAsset*> assets = generateRiskyAssets();
     std::vector<Currency*> currencies = generateCurrency();
-    return GlobalModel(assets, currencies, monitoringTimeGrid, domesticInterest);
+    return GlobalModel(assets, currencies, monitoringTimeGrid, domesticInterest, RelativeFiniteDifferenceStep);
 }
 
 void Parser::displayNbAssetsPerCurrency() const {

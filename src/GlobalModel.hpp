@@ -22,7 +22,7 @@ private:
 public:
     // Constructeur
     GlobalModel(std::vector<RiskyAsset*> assets, std::vector<Currency*> currencies, 
-                ITimeGrid* timeGrid, InterestRateModel domesticRate);
+                ITimeGrid* timeGrid, InterestRateModel domesticRate, double fdStep);
 
     // Destructeur
     ~GlobalModel();
@@ -37,7 +37,7 @@ public:
     // Méthodes
     void copyPast(PnlMat* simulations, PnlMat* past) const;
     void simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* G, PnlRng* rng, int date) const;
-    void updateSim(PnlMat* simulations, PnlVect* G, PnlRng* rng, int date, int t, int nb_assets, int nb_currencies) const;
+    void updateSim(PnlMat* simulations, PnlVect* G, PnlRng* rng, int date, int t, int nb_assets, int nb_currencies, bool isFirstDate) const;
     void shift_asset(PnlMat* shift_mat, int d, double fdStep, int idx_lastDate) const;
 
 };
