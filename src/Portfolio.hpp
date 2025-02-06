@@ -2,7 +2,8 @@
 
 #include <list>
 #include "MonteCarlo.hpp"
-#include "Grid/ITimeGrid.hpp"
+#include "Grid/FixedTimeGrid.hpp"
+#include "Grid/ListTimeGrid.hpp"
 #include <nlohmann/json.hpp>
 
 class Position {
@@ -21,9 +22,25 @@ public:
 
 class Portfolio {
 public:
-    MonteCarlo &monteCarlo;
     std::list<Position> positions;
 
-    Portfolio(nlohmann::json &jsonParams, MonteCarlo &monteCarlo);
+    int date_;
+    int numberOfDayYear_;
+    PnlMat* market_;
+    PnlVect* delta_;
+    PnlVect* deltaStdev_;
+    double nonRiskyAsset_;
+    double portfolioValue_;
+    double price_;
+    double priceStdev_;
+    double rate_;
+    ITimeGrid* monitoringTimeGrid;
+
+    // Constructor
+    Portfolio(int date, int numberOfDayYear, PnlMat* market, PnlVect* delta, PnlVect* deltaStdev, double price,
+     double priceStdev, double rate, ITimeGrid* monitoringTimeGrid);
+
     ~Portfolio();
+
+    double UpdatePortfolioValue(int CurrentDate, PnlVect* CurrentDelta, PnlMat* marketdata);
 };

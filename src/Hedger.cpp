@@ -36,8 +36,8 @@ void MarketDomestic(PnlMat* market, std::vector<int> nbAssetsPerCurrency, std::v
 
 
 int main(int argc, char *argv[]) {
-    if (argc != 3) {
-        std::cerr << "Usage : " << argv[0] << " <fichier_json>   <fichier_csv" << std::endl;
+    if (argc != 4) {
+        std::cerr << "Usage : " << argv[0] << " <fichier_json>   <fichier_csv>   <fichier_out> "  << std::endl;
         return 1;
     }
     Parser parser(argv[1]);
@@ -52,18 +52,45 @@ int main(int argc, char *argv[]) {
     GlobalModel model = parser.CreateGlobalModel();
     MonteCarlo montecarlo = MonteCarlo(opt, model, parser.getSampleNb());
     MarketDomestic(market, parser.computeNbAssetsPerCurrency(), opt->getForeignInterestRates());
-    montecarlo.priceAndDelta(price, priceStdDev, delta, deltasStdDev, market, 52);
-
-    std::cout << "\nPrice : " << price << std::endl;
-    std::cout << "\nPrice Std Dev : " << priceStdDev << std::endl;
-    std::cout << "\nDelta : ";
-    pnl_vect_print_asrow(delta);
-    std::cout << "\nDelta Std Dev : ";
-    pnl_vect_print_asrow(deltasStdDev);
+    montecarlo.priceAndDelta(price, priceStdDev, delta, deltasStdDev, market, 0);
+    
+    std::cout << "Je suis la 0 " << std::endl;
+    // Constructeur du Portfolio
+    Portfolio* portfolio = new Portfolio(0, parser.getNumberOfDaysInOneYear(), market, delta,
+     deltasStdDev, price, priceStdDev, parser.getInterestRateModel().getRate(), parser.getRebTimeGrid());
+    
+    std::cout << "Je suis la 1 " << std::endl;
+    // calculer le portefeuille de couverture
+    for(int date = 1; date < market->m; date++) {
+            std::cout << "Je suis la 1.01 " << std::endl;
+            if(portfolio->monitoringTimeGrid->has(date)){
+                std::cout << "Je suis la 1.02 " << std::endl;
+                PnlVect* deltaPortfolio = pnl_vect_create(market->n);
+                PnlVect* deltaPortfolioStdDev = pnl_vect_create(market->n);
+                std::cout << "Je suis la 1.1 " << std::endl;
+                
+                montecarlo.priceAndDelta(price, priceStdDev, deltaPortfolio, deltaPortfolioStdDev, market, date);
+                std::cout << "Je suis la 1.2 " << std::endl;
+                portfolio->positions.emplace_back(Position(date, price, priceStdDev,deltaPortfolio, deltaPortfolioStdDev, 
+                portfolio->UpdatePortfolioValue(date, delta, market)));
+                std::cout << "Je suis la 1.3 " << std::endl;
+                pnl_vect_free(&deltaPortfolio);
+                pnl_vect_free(&deltaPortfolioStdDev);
+            }
+    }
+    std::cout << "Je suis la 2 " << std::endl;
+    nlohmann::json jsonPortfolio = portfolio->positions;
+    std::ofstream ifout(argv[3], std::ios_base::out);
+    if (!ifout.is_open()) {
+        std::cout << "Unable to open file " << argv[3] << std::endl;
+        std::exit(1);
+    }
+    ifout << jsonPortfolio.dump(4);
+    ifout.close();
+    std::cout << "Je suis la 3" << std::endl;
 
     pnl_mat_free(&market);
     pnl_vect_free(&delta);
     pnl_vect_free(&deltasStdDev);
     return 0;
 }
-

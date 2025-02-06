@@ -24,6 +24,8 @@
 #include <unordered_map>
 #include "GlobalModel.hpp"
 #include "MonteCarlo.hpp"
+#include "Grid/ITimeGrid.hpp"
+#include "Portfolio.hpp"
 
 class Parser {
 private:
@@ -58,6 +60,7 @@ private:
     // std::vector<std::pair<std::string, std::vector<int>>> currencyAssetGroups;
 
     ITimeGrid* monitoringTimeGrid;
+    ITimeGrid* rebalanceTimeGrid;
     
 
 public:
@@ -72,7 +75,9 @@ public:
 
     // Getter pour sampleNb
     int getSampleNb() const;
-
+    int getNumberOfDaysInOneYear() const;
+    InterestRateModel getInterestRateModel() const;
+    ITimeGrid* getRebTimeGrid() const;
 
 
 };

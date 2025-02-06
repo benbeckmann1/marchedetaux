@@ -22,6 +22,17 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
     RelativeFiniteDifferenceStep = dataJson["RelativeFiniteDifferenceStep"].get<double>();
     domesticCurrencyId = dataJson["DomesticCurrencyId"].get<std::string>();
 
+    // Extraction des paramètres de l'oracle de rebalancement
+    auto jsonOracle = dataJson["PortfolioRebalancingOracleDescription"];
+    rebalanceType = jsonOracle["Type"].get<std::string>();
+
+    if (rebalanceType == "Fixed") {
+        int rebalancePeriod = dataJson["PortfolioRebalancingOracleDescription"].at("Period").get<int>();
+        monitoringTimeGrid = new FixedTimeGrid(rebalancePeriod, maturity);
+    } else {
+        std::cerr << " Erreur : le Type de TimeGrid n'est pas 'Fixed' !" << std::endl;
+        exit(1);
+    }
     
 
     // Extraction des informations sur l'option
@@ -43,11 +54,6 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
     } else {
         DatesInDays = nullptr;
     }
-
-    // Extraction des paramètres de l'oracle de rebalancement
-    auto jsonOracle = dataJson["PortfolioRebalancingOracleDescription"];
-    rebalanceType = jsonOracle["Type"].get<std::string>();
-    rebalanceperiod = jsonOracle["Period"].get<double>();
 
     // Extraction de la matrice de corrélation
     auto correlations = dataJson["Correlations"].get<std::vector<std::vector<double>>>();
@@ -242,4 +248,16 @@ std::vector<int> Parser::computeNbAssetsPerCurrency() const {
 // Getter
 int Parser::getSampleNb() const {
     return SampleNb;
+}
+
+int Parser::getNumberOfDaysInOneYear() const {
+    return NumberOfDaysInOneYear;
+}
+
+InterestRateModel Parser::getInterestRateModel() const{
+    return domesticInterest;
+}
+
+ITimeGrid* Parser::getRebTimeGrid() const {
+    return rebalanceTimeGrid;
 }
