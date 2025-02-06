@@ -7,6 +7,8 @@
 #include "Grid/ITimeGrid.hpp"
 #include "InterestRateModel.hpp"
 #include <pnl/pnl_matrix.h>
+#include <pnl/pnl_random.h>
+#include <iostream>
 
 
 class GlobalModel {
@@ -33,8 +35,9 @@ public:
     const double getFdStep() const;
 
     // Méthodes
-    void asset(PnlMat* simulations, PnlVect* G, int date, int idx_lastDate) const;
-    void updateSim(PnlMat* simulations, PnlVect* G, int date, int t, int nb_assets, int nb_currencies) const;
+    void copyPast(PnlMat* simulations, PnlMat* past) const;
+    void simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* G, PnlRng* rng, int date) const;
+    void updateSim(PnlMat* simulations, PnlVect* G, PnlRng* rng, int date, int t, int nb_assets, int nb_currencies) const;
     void shift_asset(PnlMat* shift_mat, int d, double fdStep, int idx_lastDate) const;
 
 };

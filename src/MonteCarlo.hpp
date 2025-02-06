@@ -26,15 +26,15 @@ public:
     void priceAndDelta(double& price, double& priceStdDev, PnlVect* delta, PnlVect* deltasStdDev, PnlMat* market, int date);
 
     // Initialise la matrice de simulation
-    PnlMat* initPath(PnlMat* market, int date, int& idx_lastDate) const;
+    void initPath(PnlMat* simulations, PnlMat* market, int date, int& idx_lastDate) const;
 
-    // Copie la matrice de marché et la colle à la fin de la matrice de simulation
-    void copyPast(PnlMat* simulations, int& idx_pastDate, int nb_assets, int nb_currencies, PnlMat* market, int date) const;
+    // Crée la matrice past
+    void createPast(PnlMat* past, int nb_tot_assets, PnlMat* market, int date) const;
 
     // Génère un vecteur gaussien
-    PnlVect* vectGaussian(int sizeRisky) const;
+    void vectGaussian(PnlVect* G) const;
 
-    void computeSumPrice(PnlMat* simulations, PnlVect* G, int date, int idx_lastDate, double& price, double& priceStdDev) const;
+    void computeSumPrice(PnlMat* simulations, double& price, double& priceStdDev) const;
     void computeSumDeltas(PnlMat* simulations, PnlMat* shift_plus, PnlMat* shift_moins, PnlVect* spots, int date, int idx_lastDate, PnlVect* delta, PnlVect* deltasStdDev) const;
 
     void finalPrice(double& price, double& priceStdDev, int date) const;

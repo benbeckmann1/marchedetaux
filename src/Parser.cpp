@@ -3,6 +3,8 @@
 #include <iostream>
 #include <map>
 #include <string>
+
+// Constructeur
 Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monitoringTimeGrid(nullptr) 
  {
     std::ifstream file(filename);
@@ -105,6 +107,32 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
     
 }
 
+
+
+// Destructeur 
+Parser::~Parser() {
+    // Libération de la matrice de corrélation si elle a été allouée
+    if (correlationMatrix) {
+        pnl_mat_free(&correlationMatrix);
+        correlationMatrix = nullptr;
+    }
+
+    // Libération du vecteur de dates si alloué
+    if (DatesInDays) {
+        pnl_vect_free(&DatesInDays);
+        DatesInDays = nullptr;
+    }
+
+    // Libération de la grille de temps si allouée
+    if (monitoringTimeGrid) {
+        delete monitoringTimeGrid;
+        monitoringTimeGrid = nullptr;
+    }
+}
+
+
+
+
 std::vector<Currency*> Parser::generateCurrency() const {
     std::vector<Currency*> currencyList;
     
@@ -149,7 +177,6 @@ std::vector<RiskyAsset*> Parser::generateRiskyAssets() const {
     return riskyAssets;
 }
 
-#include "Parser.hpp"
 
 Option* Parser::CreateOption() {
     if (optionType.empty()) {
@@ -163,7 +190,7 @@ Option* Parser::CreateOption() {
     }
 
     if (fixingdatesType == "Fixed") {
-        int period = dataJson["Option"]["FixingPeriodInDays"].get<int>();
+        int period = dataJson["Option"]["FixingDatesInDays"].at("Period").get<int>();
         monitoringTimeGrid = new FixedTimeGrid(period, maturity);
     } else {
         monitoringTimeGrid = new ListTimeGrid(DatesInDays);
@@ -216,8 +243,7 @@ void Parser::displayNbAssetsPerCurrency() const {
 
 std::vector<int> Parser::computeNbAssetsPerCurrency() const {
     if (assetCurrencyMapping.empty()) {
-        std::cerr << " Erreur : assetCurrencyMapping est vide !" << std::endl;
-        exit(1);
+        return {0};
     }
 
     // Trouver le nombre de devises distinctes (max index + 1)
@@ -254,13 +280,6 @@ void Parser::displayAssetMapping() const {
     }
 }
 
-
-Parser::~Parser() {
-    pnl_mat_free(&correlationMatrix);
-    if( optionType != "foreign_asian"){
-        pnl_vect_free(&DatesInDays);
-    }
-}
 
 void Parser::displayData() const {
     std::cout << "📌 Nombre de jours dans une année : " << NumberOfDaysInOneYear << "\n";

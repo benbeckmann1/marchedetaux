@@ -12,12 +12,12 @@ double InterestRateModel::getRate() const {
 
 // Calcule le facteur d'actualisation : exp(-r * (t2 - t1))
 double InterestRateModel::discountFactor(double t1, double t2) const {
-    return std::exp(-rate * (t2 - t1)/numberOfDaysInOneYear);
+    return std::exp(-rate * (t2 - t1) / static_cast<double>(numberOfDaysInOneYear));
 }
 
 // Calcule l'accumulation entre t1 et t2 : exp(r * (t2 - t1))
 double InterestRateModel::accumulationFactor(double t1, double t2) const {
-    return std::exp(rate * (t2 - t1)/numberOfDaysInOneYear);
+    return std::exp(rate * (t2 - t1) / static_cast<double>(numberOfDaysInOneYear));
 }
 
 // Getter pour le nombre de jours ouvrés dans une année

@@ -8,8 +8,27 @@ GlobalModel::GlobalModel(std::vector<RiskyAsset*> assets, std::vector<Currency*>
 
 // Destructeur
 GlobalModel::~GlobalModel() {
-    delete monitoringTimeGrid; // Libère la mémoire de la grille de temps
+    // // Libération des actifs risqués
+    // for (RiskyAsset* asset : assets) {
+    //     if (asset) {
+    //         delete asset;
+    //     }
+    // }
+    // assets.clear(); // Nettoie le vecteur
+
+    // // Libération des devises
+    // for (Currency* currency : currencies) {
+    //     delete currency;
+    // }
+    // currencies.clear(); // Nettoie le vecteur
+
+    // // Libération de la grille de temps si elle a été allouée dynamiquement
+    // if (monitoringTimeGrid) {
+    //     delete monitoringTimeGrid;
+    //     monitoringTimeGrid = nullptr;
+    // }
 }
+
 
 // Accesseurs
 const std::vector<RiskyAsset*>& GlobalModel::getAssets() const {
@@ -35,41 +54,54 @@ const double GlobalModel::getFdStep() const {
 
 
 // Méthodes
-void GlobalModel::asset(PnlMat* simulations, PnlVect* G, int date, int idx_lastDate) const {
+void GlobalModel::simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* G, PnlRng* rng, int date) const {
     int nb_assets = assets.size();
     int nb_currencies = currencies.size();
     int N = monitoringTimeGrid->len();
     int currentDate = date;
 
-    if (monitoringTimeGrid->at(N-1) == date) {            // si on est à la date de maturité, on n'a pas besoin de simuler, la matrice est déjà remplie
-        return;
-    }
+    // Copie les valeurs passées dans simulations
+    copyPast(simulations, past);
 
-    int t = idx_lastDate;
+    if (monitoringTimeGrid->at(N-1) == date) { return;} // Si on est déjà à la dernière date, on ne fait rien
+
+    int t = past->m - 1;    // Dernière date de la matrice past
 
     // Pour la première date si ce n'est pas une date de la grille de temps
     if (!monitoringTimeGrid->has(date)) {
-        updateSim(simulations, G, date, t, nb_assets, nb_currencies);     // on écrase la valeur d'aujourd'hui par la nouvelle valeur
+        updateSim(simulations, G, rng, date, t, nb_assets, nb_currencies);     // on écrase la valeur d'aujourd'hui par la nouvelle valeur
     }
 
     // Boucle sur les dates restantes
     while (t < N-1) {
-        updateSim(simulations, G, date, t+1, nb_assets, nb_currencies);   // on remplit la ligne d'après
+        updateSim(simulations, G, rng, date, t+1, nb_assets, nb_currencies);   // on remplit la ligne d'après
         t++;
     }
 }
 
 
-void GlobalModel::updateSim(PnlMat* simulations, PnlVect* G, int date, int t, int nb_assets, int nb_currencies) const {
+
+void GlobalModel::copyPast(PnlMat* simulations, PnlMat* past) const { // mieux de faire des copies de PnlVect ou copier chaque élément avec des boucles ?
+    PnlVect* row = pnl_vect_create(simulations->n);
+    for (int i = 0; i < past->m; i++) {
+        pnl_mat_get_row(row, past, i);
+        pnl_mat_set_row(simulations, row, i);
+    }
+    pnl_vect_free(&row);
+}
+
+
+void GlobalModel::updateSim(PnlMat* simulations, PnlVect* G, PnlRng* rng, int date, int t, int nb_assets, int nb_currencies) const {
+    double step = static_cast<double>((monitoringTimeGrid->at(t) - date)) / static_cast<double>(domesticInterestRate.getNumberOfDaysInOneYear());
+    pnl_vect_rng_normal(G, G->size, rng);
+
     for (int j = 0; j < nb_assets; j++) {   // Boucle sur les actifs
         RiskyAsset* asset = assets[j];
-        double step = (monitoringTimeGrid->at(t) - date) / domesticInterestRate.getNumberOfDaysInOneYear();
         double newValue = asset->sampleNextDate(G, step, MGET(simulations, t, j));
         MLET(simulations, t, j) = newValue;
     }
     for (int j = 0; j < nb_currencies; j++) {   // Boucle sur les devises
         Currency* currency = currencies[j];
-        double step = (monitoringTimeGrid->at(t) - date) / domesticInterestRate.getNumberOfDaysInOneYear();
         double newValue = currency->sampleNextDate(G, step, MGET(simulations, t, nb_assets+j));
         MLET(simulations, t, nb_assets+j) = newValue;
     }
