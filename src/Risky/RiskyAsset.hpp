@@ -13,6 +13,8 @@ public:
     RiskyAsset(double drift, PnlVect *volatility, InterestRateModel domesticRate);
     ~RiskyAsset();
 
+    // Getter pour le taux d'intérêt domestique
+    InterestRateModel getDomesticInterestRate() const;
 };
 
 #endif // RISKYASSET_HPP

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <map>
 #include <string>
+
+// Constructeur
 Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monitoringTimeGrid(nullptr) 
  {
     std::ifstream file(filename);
@@ -20,7 +22,16 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
     RelativeFiniteDifferenceStep = dataJson["RelativeFiniteDifferenceStep"].get<double>();
     domesticCurrencyId = dataJson["DomesticCurrencyId"].get<std::string>();
 
-    
+    // Rebalancement
+    typeRebalance = dataJson["PortfolioRebalancingOracleDescription"].at("Type").get<std::string>();
+
+    if (typeRebalance == "Fixed") {
+        int rebalancePeriod = dataJson["PortfolioRebalancingOracleDescription"].at("Period").get<int>();
+        monitoringTimeGrid = new FixedTimeGrid(rebalancePeriod, maturity);
+    } else {
+        std::cerr << " Erreur : le Type de TimeGrid n'est pas 'Fixed' !" << std::endl;
+        exit(1);
+    }
 
     // Extraction des informations sur l'option
     auto jsonOption = dataJson["Option"];
@@ -55,7 +66,6 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
             MLET(correlationMatrix, i, j) = correlations[i][j];
 
     pnl_mat_chol(correlationMatrix);
-    
 
 
      // **Mapping des devises et des actifs**
@@ -102,8 +112,35 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
         }
         assetIndex++;
     }
+
     
 }
+
+
+
+// Destructeur 
+Parser::~Parser() {
+    // Libération de la matrice de corrélation si elle a été allouée
+    if (correlationMatrix) {
+        pnl_mat_free(&correlationMatrix);
+        correlationMatrix = nullptr;
+    }
+
+    // // Libération du vecteur de dates si alloué
+    // if (DatesInDays) {
+    //     pnl_vect_free(&DatesInDays);
+    //     DatesInDays = nullptr;
+    // }
+
+    // Libération de la grille de temps si allouée
+    if (monitoringTimeGrid) {
+        delete monitoringTimeGrid;
+        monitoringTimeGrid = nullptr;
+    }
+}
+
+
+
 
 std::vector<Currency*> Parser::generateCurrency() const {
     std::vector<Currency*> currencyList;
@@ -133,6 +170,7 @@ std::vector<RiskyAsset*> Parser::generateRiskyAssets() const {
         
         pnl_mat_get_row(corrRow, correlationMatrix, i);
         pnl_vect_mult_scalar(corrRow,assetsRealVols[i]);
+
         if (assetCurrencyMapping[i] != 0){
             pnl_vect_plus_vect(corrRow, currencies[assetCurrencyMapping[i]-1]->getVolatilityVector()); // vérifier l'addition des vects
         }
@@ -140,7 +178,7 @@ std::vector<RiskyAsset*> Parser::generateRiskyAssets() const {
 
         // Création de l'actif risqué
         riskyAssets.push_back(new RiskyAsset(
-            assetDrift[i],   // drift de l'actif
+            domesticInterest.getRate(),   // drift de l'actif
             corrRow,             // sigma*L
             domesticInterest    // Taux domestique
         ));
@@ -149,11 +187,10 @@ std::vector<RiskyAsset*> Parser::generateRiskyAssets() const {
     return riskyAssets;
 }
 
-#include "Parser.hpp"
 
 Option* Parser::CreateOption() {
     if (optionType.empty()) {
-        std::cerr << "❌ Erreur : Type d'option non défini !" << std::endl;
+        std::cerr << " Erreur : Type d'option non défini !" << std::endl;
         exit(1);
     }
 
@@ -163,7 +200,7 @@ Option* Parser::CreateOption() {
     }
 
     if (fixingdatesType == "Fixed") {
-        int period = dataJson["Option"]["FixingPeriodInDays"].get<int>();
+        int period = dataJson["Option"]["FixingDatesInDays"].at("Period").get<int>();
         monitoringTimeGrid = new FixedTimeGrid(period, maturity);
     } else {
         monitoringTimeGrid = new ListTimeGrid(DatesInDays);
@@ -197,6 +234,12 @@ Option* Parser::CreateOption() {
     }
 }
 
+GlobalModel Parser::CreateGlobalModel() {
+    std::vector<RiskyAsset*> assets = generateRiskyAssets();
+    std::vector<Currency*> currencies = generateCurrency();
+    return GlobalModel(assets, currencies, monitoringTimeGrid, domesticInterest, RelativeFiniteDifferenceStep);
+}
+
 void Parser::displayNbAssetsPerCurrency() const {
     std::vector<int> nbAssetsPerCurrency = computeNbAssetsPerCurrency();
 
@@ -210,8 +253,7 @@ void Parser::displayNbAssetsPerCurrency() const {
 
 std::vector<int> Parser::computeNbAssetsPerCurrency() const {
     if (assetCurrencyMapping.empty()) {
-        std::cerr << " Erreur : assetCurrencyMapping est vide !" << std::endl;
-        exit(1);
+        return {0};
     }
 
     // Trouver le nombre de devises distinctes (max index + 1)
@@ -249,13 +291,6 @@ void Parser::displayAssetMapping() const {
 }
 
 
-Parser::~Parser() {
-    pnl_mat_free(&correlationMatrix);
-    if( optionType != "foreign_asian"){
-        pnl_vect_free(&DatesInDays);
-    }
-}
-
 void Parser::displayData() const {
     std::cout << "📌 Nombre de jours dans une année : " << NumberOfDaysInOneYear << "\n";
     std::cout << "📌 Nombre d'échantillons : " << SampleNb << "\n";
@@ -275,4 +310,21 @@ void Parser::displayData() const {
 
     std::cout << "\n🔗 Matrice de Corrélation :\n";
     pnl_mat_print(correlationMatrix);
+}
+
+// Getter
+int Parser::getSampleNb() const {
+    return SampleNb;
+}
+
+int Parser::getNumberOfDaysInOneYear() const {
+    return NumberOfDaysInOneYear;
+}
+
+InterestRateModel Parser::getInterestRateModel() const{
+    return domesticInterest;
+}
+
+ITimeGrid* Parser::getRebTimeGrid() const {
+    return rebalanceTimeGrid;
 }

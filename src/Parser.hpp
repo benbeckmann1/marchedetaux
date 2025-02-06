@@ -22,11 +22,15 @@
 #include "Grid/FixedTimeGrid.hpp"
 #include "Grid/ListTimeGrid.hpp"
 #include <unordered_map>
+#include "GlobalModel.hpp"
+#include "MonteCarlo.hpp"
 
 class Parser {
 private:
     nlohmann::json dataJson;
     
+    std::string typeRebalance;
+    int rebalancePeriod;
     PnlMat* correlationMatrix;
     int SampleNb;
     double RelativeFiniteDifferenceStep;
@@ -56,7 +60,7 @@ private:
     std::vector<std::pair<std::string, std::vector<int>>> currencyAssetGroups;
 
     ITimeGrid* monitoringTimeGrid;
-
+    ITimeGrid* rebalanceTimeGrid;
     
 
 public:
@@ -69,9 +73,15 @@ public:
     std::vector<Currency*> generateCurrency() const;
     std::vector<RiskyAsset*> generateRiskyAssets() const;
     Option* CreateOption();
+    GlobalModel CreateGlobalModel();
     std::vector<int> computeNbAssetsPerCurrency() const;
     void displayNbAssetsPerCurrency() const;
 
+    // Getter 
+    int getSampleNb() const;
+    int getNumberOfDaysInOneYear() const;
+    InterestRateModel getInterestRateModel() const;
+    ITimeGrid* getRebTimeGrid() const;
 
 
 };

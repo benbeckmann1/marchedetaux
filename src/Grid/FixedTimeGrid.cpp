@@ -20,5 +20,8 @@ int FixedTimeGrid::len() const {
 
 // Vérifie si une date spécifique existe dans la grille
 bool FixedTimeGrid::has(int nDays) const {
+    if (nDays == 0) {
+        return false;
+    }   
     return nDays % period_ == 0 && nDays <= maturity_;
 }

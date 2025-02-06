@@ -14,6 +14,10 @@ public:
     Currency(double drift, PnlVect *volatility, InterestRateModel foreignRate, InterestRateModel domesticRate);
     ~Currency();
 
+    // Getters
+    InterestRateModel getForeignInterestRate() const;
+    InterestRateModel getDomesticInterestRate() const;
+
 };
 
 #endif // CURRENCY_HPP
