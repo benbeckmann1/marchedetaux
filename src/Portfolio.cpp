@@ -22,49 +22,67 @@ void Position::print() const {
     std::cout << j.dump(4);
 }
 
-// Constructor Implementation
-Portfolio::Portfolio(int date, int numberOfDayYear, PnlMat* market, PnlVect* delta, PnlVect* deltaStdev,
- double price, double priceStdev, double rate, ITimeGrid* monitoringTimeGrid) {
+Portfolio::Portfolio(int date, const MonteCarlo& monteCarlo, ITimeGrid* monitoringTimeGrid, PnlMat* marketdata) 
+    : date_(date), monteCarlo(monteCarlo), rebalancingTimeGrid(monitoringTimeGrid),marketdata(marketdata) {
     
-    date_ = 0;
-    market_ = market;
-    delta_ = delta;
-    deltaStdev_ = deltaStdev;
-    portfolioValue_ = price;
-    rate_ = rate;
-    monitoringTimeGrid = monitoringTimeGrid;
-    
-    PnlVect* spot = pnl_vect_create(market->n);
-    pnl_mat_get_row(spot, market, 0);
-    nonRiskyAsset_ = price - pnl_vect_scalar_prod(delta, spot);
-    
-    positions.emplace_back(Position(date, price, priceStdev, delta, deltaStdev, price));
+    double price;
+    double priceStdDev;
+
+    // Création des vecteurs delta et deltaStdev
+    PnlVect* delta = pnl_vect_create(marketdata->n);
+    PnlVect* deltasStdDev = pnl_vect_create(marketdata->n);
+
+    // Calcul du prix et des deltas avec MonteCarlo
+    monteCarlo.priceAndDelta(price, priceStdDev, delta, deltasStdDev, marketdata, 0);
+
+    // Récupérer le spot initial (première ligne du marché)
+    PnlVect* spot = pnl_vect_create(marketdata->n);
+    pnl_mat_get_row(spot, marketdata, 0);
+
+    portfolioValue = price;
+    // Calcul de l'actif sans risque
+    double cash = price - pnl_vect_scalar_prod(delta, spot);
+
+    // Ajouter la première position au portefeuille
+    positions.emplace_back(Position(date, price, priceStdDev, delta, deltasStdDev, price));
+ 
+    std::cout << price << std::endl;
+    std::cout << priceStdDev << std::endl;
+    pnl_vect_print_asrow(delta);
+    pnl_vect_print_asrow(deltasStdDev);
+
+
+    // Nettoyage des objets temporaires
+    pnl_vect_free(&spot);
+    pnl_vect_free(&delta);
+    pnl_vect_free(&deltasStdDev);
 }
 
-double Portfolio::UpdatePortfolioValue(int CurrentDate, PnlVect* CurrentDelta, PnlMat *marketData) {
-    // Calcul de la variation des poids des actifs risqués
-    pnl_vect_minus_vect(delta_, CurrentDelta);
 
-    PnlVect* spot = pnl_vect_create(marketData->n);
-    pnl_mat_get_row(spot, marketData, CurrentDate);
+// double Portfolio::UpdatePortfolioValue(int CurrentDate, PnlVect* CurrentDelta, PnlMat *marketData) {
+//     //Calcul de la variation des poids des actifs risqués
+    
+//     pnl_vect_minus_vect(delta_, CurrentDelta);
 
-    // Mise à jour de la quantité sans risque en tenant compte de l'évolution des actifs risqués et du taux d'intérêt
-    nonRiskyAsset_ += pnl_vect_scalar_prod(delta_, spot);
-    nonRiskyAsset_ *= exp(rate_ * (CurrentDate - date_) / numberOfDayYear_);
+//     PnlVect* spot = pnl_vect_create(marketData->n);
+//     pnl_mat_get_row(spot, marketData, CurrentDate);
 
-    // Mise à jour des poids des actifs risqués
-    pnl_vect_clone(delta_, CurrentDelta);
+//     // Mise à jour de la quantité sans risque en tenant compte de l'évolution des actifs risqués et du taux d'intérêt
+//     cash += pnl_vect_scalar_prod(delta_, spot);
+//     cash *= exp(rate_ * (CurrentDate - date) / numberOfDayYear_);
 
-    // Mise à jour de la date du portefeuille
-    date_ = CurrentDate;
+//     // Mise à jour des poids des actifs risqués
+//     pnl_vect_clone(delta_, CurrentDelta);
 
-    // Calcul de la nouvelle valeur du portefeuille
-    portfolioValue_ = pnl_vect_scalar_prod(delta_, spot) + nonRiskyAsset_;
+//     // Mise à jour de la date du portefeuille
+//     date = CurrentDate;
 
-    return portfolioValue_;
-}
+//     // Calcul de la nouvelle valeur du portefeuille
+//     portfolioValue = pnl_vect_scalar_prod(delta_, spot) + cash;
+
+//     return portfolioValue;
+// }
 
 
 Portfolio::~Portfolio() {
 }
-

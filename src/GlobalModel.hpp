@@ -35,8 +35,8 @@ public:
     const double getFdStep() const;
 
     // Méthodes
-    void copyPast(PnlMat* simulations, PnlMat* past) const;
-    void simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* G, PnlRng* rng, int date) const;
+    void copyPast(PnlMat* simulations, PnlMat* past, PnlVect* row) const;
+    void simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* row, PnlVect* G, PnlRng* rng, int date) const;
     void updateSim(PnlMat* simulations, PnlVect* G, PnlRng* rng, int date, int t, int nb_assets, int nb_currencies, bool isFirstDate) const;
     void shift_asset(PnlMat* shift_mat, int d, double fdStep, int idx_lastDate) const;
 

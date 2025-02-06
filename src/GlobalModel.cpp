@@ -8,26 +8,25 @@ GlobalModel::GlobalModel(std::vector<RiskyAsset*> assets, std::vector<Currency*>
 
 // Destructeur
 GlobalModel::~GlobalModel() {
-    // // Libération des actifs risqués
     // for (RiskyAsset* asset : assets) {
-    //     if (asset) {
-    //         delete asset;
+    //     delete asset;
+    // }
+    // assets.clear();
+
+    // for (Currency*& currency : currencies) {
+    //     if (currency) {
+    //         delete currency;
+    //         currency = nullptr;  
     //     }
     // }
-    // assets.clear(); // Nettoie le vecteur
+    // currencies.clear();
 
-    // // Libération des devises
-    // for (Currency* currency : currencies) {
-    //     delete currency;
-    // }
-    // currencies.clear(); // Nettoie le vecteur
-
-    // // Libération de la grille de temps si elle a été allouée dynamiquement
     // if (monitoringTimeGrid) {
     //     delete monitoringTimeGrid;
     //     monitoringTimeGrid = nullptr;
     // }
 }
+
 
 
 // Accesseurs
@@ -54,14 +53,14 @@ const double GlobalModel::getFdStep() const {
 
 
 // Méthodes
-void GlobalModel::simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* G, PnlRng* rng, int date) const {
+void GlobalModel::simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* row, PnlVect* G, PnlRng* rng, int date) const {
     int nb_assets = assets.size();
     int nb_currencies = currencies.size();
     int N = monitoringTimeGrid->len();
     int currentDate = date;
 
     // Copie les valeurs passées dans simulations
-    copyPast(simulations, past);
+    copyPast(simulations, past, row);
 
     if (monitoringTimeGrid->at(N-1) == date) { return;} // Si on est déjà à la dernière date, on ne fait rien
 
@@ -84,13 +83,11 @@ void GlobalModel::simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* G, P
 
 
 
-void GlobalModel::copyPast(PnlMat* simulations, PnlMat* past) const { // mieux de faire des copies de PnlVect ou copier chaque élément avec des boucles ?
-    PnlVect* row = pnl_vect_create(simulations->n);
+void GlobalModel::copyPast(PnlMat* simulations, PnlMat* past, PnlVect* row) const { 
     for (int i = 0; i < past->m; i++) {
         pnl_mat_get_row(row, past, i);
         pnl_mat_set_row(simulations, row, i);
     }
-    pnl_vect_free(&row);
 }
 
 

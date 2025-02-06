@@ -12,7 +12,7 @@ private:
 public:
     // Constructeur et destructeur
     Currency(double drift, PnlVect *volatility, InterestRateModel foreignRate, InterestRateModel domesticRate);
-    ~Currency();
+    ~Currency() override = default;
 
     // Getters
     InterestRateModel getForeignInterestRate() const;
