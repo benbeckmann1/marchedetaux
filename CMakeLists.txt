@@ -28,6 +28,6 @@ target_link_libraries(fx_hedging ${PNL_LIBRARIES} nlohmann_json::nlohmann_json)
 # target_link_libraries(test_fx_hedging fx_hedging)
 # pnl_add_postbuild(test_fx_hedging)
 
-add_executable(hedger src/Hedger.cpp src/json_reader.cpp src/Parser.cpp src/Grid/FixedTimeGrid.cpp src/Grid/ListTimeGrid.cpp src/Risky/RiskyDynamics.cpp src/Risky/RiskyAsset.cpp src/Risky/Currency.cpp src/InterestRateModel.cpp src/Portfolio.cpp src/Options/OptionBasket.cpp src/Options/OptionCallCurrency.cpp src/Options/OptionCallQuanto.cpp src/Options/OptionForeignAsian.cpp src/Options/OptionForeignPerfBasket.cpp src/Options/OptionQuantoExchange.cpp)
+add_executable(hedger src/Hedger.cpp src/json_reader.cpp src/Parser.cpp src/Grid/FixedTimeGrid.cpp src/Grid/ListTimeGrid.cpp src/Risky/RiskyDynamics.cpp src/Risky/RiskyAsset.cpp src/Risky/Currency.cpp src/InterestRateModel.cpp src/Portfolio.cpp src/Options/OptionBasket.cpp src/Options/OptionCallCurrency.cpp src/Options/OptionCallQuanto.cpp src/Options/OptionForeignAsian.cpp src/Options/OptionForeignPerfBasket.cpp src/Options/OptionQuantoExchange.cpp src/MonteCarlo.cpp src/GlobalModel.cpp)
 target_link_libraries(hedger ${PNL_LIBRARIES} nlohmann_json::nlohmann_json)
 pnl_add_postbuild(hedger)
