@@ -22,10 +22,11 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
     RelativeFiniteDifferenceStep = dataJson["RelativeFiniteDifferenceStep"].get<double>();
     domesticCurrencyId = dataJson["DomesticCurrencyId"].get<std::string>();
 
-    // Rebalancement
-    typeRebalance = dataJson["PortfolioRebalancingOracleDescription"].at("Type").get<std::string>();
+    // Extraction des paramètres de l'oracle de rebalancement
+    auto jsonOracle = dataJson["PortfolioRebalancingOracleDescription"];
+    rebalanceType = jsonOracle["Type"].get<std::string>();
 
-    if (typeRebalance == "Fixed") {
+    if (rebalanceType == "Fixed") {
         int rebalancePeriod = dataJson["PortfolioRebalancingOracleDescription"].at("Period").get<int>();
         monitoringTimeGrid = new FixedTimeGrid(rebalancePeriod, maturity);
     } else {
@@ -50,11 +51,6 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
             LET(DatesInDays, i) = dateData[i];
         }
     }
-
-    // Extraction des paramètres de l'oracle de rebalancement
-    auto jsonOracle = dataJson["PortfolioRebalancingOracleDescription"];
-    rebalanceType = jsonOracle["Type"].get<std::string>();
-    rebalanceperiod = jsonOracle["Period"].get<double>();
 
     // Extraction de la matrice de corrélation
     auto correlations = dataJson["Correlations"].get<std::vector<std::vector<double>>>();

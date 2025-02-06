@@ -29,8 +29,6 @@ class Parser {
 private:
     nlohmann::json dataJson;
     
-    std::string typeRebalance;
-    int rebalancePeriod;
     PnlMat* correlationMatrix;
     int SampleNb;
     double RelativeFiniteDifferenceStep;
