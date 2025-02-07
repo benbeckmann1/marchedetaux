@@ -1,6 +1,5 @@
 #include "Currency.hpp"
-#include <cmath>  // Pour exp()
-#include <iostream>
+
 
 // Constructeur
 Currency::Currency(double drift, PnlVect *volatility, InterestRateModel foreignRate, InterestRateModel domesticRate)

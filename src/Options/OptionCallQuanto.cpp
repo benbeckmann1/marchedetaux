@@ -1,6 +1,5 @@
 #include "OptionCallQuanto.hpp"
-#include <cmath>
-#include "pnl/pnl_matrix.h"
+
 
 OptionCallQuanto::OptionCallQuanto(const std::vector<int>& nbAssetsPerCurrency,
                                    const std::vector<InterestRateModel>& foreignInterestRates,

@@ -1,7 +1,5 @@
-#include <iostream>
 #include "Portfolio.hpp"
-#include "json_reader.hpp"
-#include <nlohmann/json.hpp> 
+
 
 Position::Position(int date, double price, double priceStdDev, PnlVect* deltas, PnlVect* deltasStdDev, double portfolioValue)
     : date(date), price(price), priceStdDev(priceStdDev), portfolioValue(portfolioValue), deltas(deltas), deltasStdDev(deltasStdDev) {
@@ -43,67 +41,35 @@ Portfolio::Portfolio(int date, const MonteCarlo& monteCarlo, ITimeGrid* monitori
     pnl_mat_get_row(spot, marketdata, 0);
 
     pnl_vect_clone(delta_, delta); 
-
     cash_ = price - pnl_vect_scalar_prod(delta, spot);
 
     // Ajouter la première position au portefeuille
     positions_.emplace_back(Position(date, price, priceStdDev, delta, deltasStdDev, price));
- 
-    // std::cout << price << std::endl;
-    // std::cout << priceStdDev << std::endl;
-    // pnl_vect_print_asrow(delta);
-    // pnl_vect_print_asrow(deltasStdDev);
 
-
-    // Nettoyage des objets temporaires
+    // Libérer les vecteurs temporaires
     pnl_vect_free(&spot);
     pnl_vect_free(&delta);
     pnl_vect_free(&deltasStdDev);
 }
 
 
-// Destructeur
 Portfolio::~Portfolio() {
     for (auto position : positions_) {
         pnl_vect_free(&position.deltas);
         pnl_vect_free(&position.deltasStdDev);
     }
+    pnl_vect_free(&delta_);
 }
 
-double Portfolio::GetPortfolioValue(int CurrentDate, PnlVect* spot) {
-    double cash = cash_ * monteCarlo_.getOption()->getDomesticInterestRate().discountFactor(date_, CurrentDate);
-    double portfolioValue = pnl_vect_scalar_prod(delta_, spot) + cash;
 
+double Portfolio::GetPortfolioValue(int CurrentDate, PnlVect* spot) {
+    double portfolioValue = pnl_vect_scalar_prod(delta_, spot) + cash_;
     return portfolioValue;
 }
 
 
 void Portfolio::UpdatePortfolio(int CurrentDate, PnlVect* CurrentDelta, PnlVect* spot) {
-    cash_ = GetPortfolioValue(CurrentDate, spot) - pnl_vect_scalar_prod(CurrentDelta, spot);
+    cash_ = (GetPortfolioValue(CurrentDate, spot) - pnl_vect_scalar_prod(CurrentDelta, spot)) * monteCarlo_.getOption()->getDomesticInterestRate().accumulationFactor(date_, CurrentDate);;
     pnl_vect_clone(delta_, CurrentDelta);
     date_ = CurrentDate;
 }
-
-// double Portfolio::UpdatePortfolioValue(int CurrentDate, PnlVect* CurrentDelta, PnlMat* marketData) {
-//     //Calcul de la variation des poids des actifs risqués
-    
-//     pnl_vect_minus_vect(delta, CurrentDelta);
-
-//     PnlVect* spot = pnl_vect_create(marketData->n);
-//     pnl_mat_get_row(spot, marketData, CurrentDate);
-
-//     // Mise à jour de la quantité sans risque en tenant compte de l'évolution des actifs risqués et du taux d'intérêt
-//     cash += pnl_vect_scalar_prod(delta, spot);
-//     cash *= exp(rate_ * (CurrentDate - date) / numberOfDayYear_);
-
-//     // Mise à jour des poids des actifs risqués
-//     pnl_vect_clone(delta_, CurrentDelta);
-
-//     // Mise à jour de la date du portefeuille
-//     date = CurrentDate;
-
-//     // Calcul de la nouvelle valeur du portefeuille
-//     portfolioValue = pnl_vect_scalar_prod(delta_, spot) + cash;
-
-//     return portfolioValue;
-// }

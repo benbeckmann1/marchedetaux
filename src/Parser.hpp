@@ -27,6 +27,7 @@
 #include "Grid/ITimeGrid.hpp"
 #include "Portfolio.hpp"
 
+
 class Parser {
 private:
     nlohmann::json dataJson;

@@ -36,10 +36,10 @@ void MarketDomestic(PnlMat* market, std::vector<int> nbAssetsPerCurrency, std::v
 
 
 int main(int argc, char *argv[]) {
-    if (argc != 4) {
-        std::cerr << "Usage : " << argv[0] << " <fichier_json>   <fichier_csv>   <fichier_out> "  << std::endl;
-        return 1;
-    }
+    // if (argc != 4) {
+    //     std::cerr << "Usage : " << argv[0] << " <fichier_json>   <fichier_csv>   <fichier_out> "  << std::endl;
+    //     return 1;
+    // }
     Parser parser(argv[1]);
     PnlMat *market = pnl_mat_create_from_file(argv[2]);
 
@@ -64,10 +64,7 @@ int main(int argc, char *argv[]) {
             PnlVect* deltaPortfolio = pnl_vect_create(market->n);
             PnlVect* deltaPortfolioStdDev = pnl_vect_create(market->n);
             
-            montecarlo.priceAndDelta(price, priceStdDev, deltaPortfolio, deltaPortfolioStdDev, market, date);
-
-            // std::cout << "prix de l'option date :" << date << " -> " << price <<std::endl; 
-
+            montecarlo.priceAndDelta(price, priceStdDev, deltaPortfolio, deltaPortfolioStdDev, market, date);  
             pnl_mat_get_row(spot, market, date);
             portfolio->UpdatePortfolio(date, deltaPortfolio, spot);
             double portfolioValue = portfolio->GetPortfolioValue(date, spot);
@@ -80,20 +77,17 @@ int main(int argc, char *argv[]) {
         }
     }
 
-
-    // std::cout << "positions : " << std::endl;   
-    // for (auto position : portfolio->positions_) {
+    // for (Position position : portfolio->positions_) {
     //     position.print();
     // }
- 
-    nlohmann::json jsonPortfolio = portfolio->positions_;
-    std::ofstream ifout(argv[3], std::ios_base::out);
-    if (!ifout.is_open()) {
-        std::cout << "Unable to open file " << argv[3] << std::endl;
-        std::exit(1);
-    }
-    ifout << jsonPortfolio.dump(4);
-    ifout.close();
+    // nlohmann::json jsonPortfolio = portfolio->positions_;
+    // std::ofstream ifout(argv[3], std::ios_base::out);
+    // if (!ifout.is_open()) {
+    //     std::cout << "Unable to open file " << argv[3] << std::endl;
+    //     std::exit(1);
+    // }
+    // ifout << jsonPortfolio.dump(4);
+    // ifout.close();
 
     pnl_mat_free(&market);
     pnl_vect_free(&spot);

@@ -2,18 +2,21 @@
 #define RISKYDYNAMICS_HPP
 
 #include "pnl/pnl_vector.h"
+#include <iostream>
+#include <cmath>
+
 
 class RiskyDynamics {
 protected:
-    double drift;              // Dérive du processus
-    PnlVect* volatilityVector; // Vecteur des volatilités
+    double drift;             
+    PnlVect* volatilityVector; 
 
 public:
     // Constructeur et destructeur
     RiskyDynamics(double drift, PnlVect *volatility);
     virtual ~RiskyDynamics();
 
-    // Méthode virtuelle pour générer la prochaine valeur du processus
+    // Méthode de simulation du prochain prix
     double sampleNextDate(PnlVect *G, double step, double currentValue);
 
     // Getters

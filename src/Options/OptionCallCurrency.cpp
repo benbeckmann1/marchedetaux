@@ -1,6 +1,4 @@
 #include "OptionCallCurrency.hpp"
-#include <cmath>
-#include "pnl/pnl_matrix.h"
 
 
 OptionCallCurrency::OptionCallCurrency(const std::vector<int>& nbAssetsPerCurrency,
@@ -16,7 +14,7 @@ OptionCallCurrency::OptionCallCurrency(const std::vector<int>& nbAssetsPerCurren
 
 
 double OptionCallCurrency::payoff(const PnlMat* simulations) const {
-    double X_foreign = MGET(simulations, simulations->m - 1, 0);  // Prix ZC de l'actif étranger
+    double X_foreign = MGET(simulations, simulations->m - 1, 0); 
 
     return std::max(X_foreign - strike_, 0.0);
 }

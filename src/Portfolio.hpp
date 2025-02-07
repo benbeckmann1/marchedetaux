@@ -5,6 +5,8 @@
 #include "Grid/FixedTimeGrid.hpp"
 #include "Grid/ListTimeGrid.hpp"
 #include <nlohmann/json.hpp>
+#include <iostream>
+#include "json_reader.hpp"
 
 class Position {
 public:
@@ -36,5 +38,4 @@ public:
 
     void UpdatePortfolio(int CurrentDate, PnlVect* CurrentDelta, PnlVect* spot);
     double GetPortfolioValue(int CurrentDate, PnlVect* spot);
-    // double UpdatePortfolioValue(int CurrentDate, PnlVect* CurrentDelta, PnlMat* marketdata);
 };

@@ -4,6 +4,7 @@
 #include "RiskyDynamics.hpp"
 #include "../InterestRateModel.hpp"
 
+
 class RiskyAsset : public RiskyDynamics {
 private:
     InterestRateModel domesticInterestRate; // Modèle de taux domestique

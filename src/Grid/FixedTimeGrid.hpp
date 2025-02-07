@@ -3,6 +3,8 @@
 
 #include "ITimeGrid.hpp"
 #include <vector>
+#include <iostream>
+
 
 class FixedTimeGrid : public ITimeGrid {
 private:

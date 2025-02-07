@@ -28,30 +28,6 @@ GlobalModel::~GlobalModel() {
 }
 
 
-
-// Accesseurs
-const std::vector<RiskyAsset*>& GlobalModel::getAssets() const {
-    return assets;
-}
-
-const std::vector<Currency*>& GlobalModel::getCurrencies() const {
-    return currencies;
-}
-
-const ITimeGrid* GlobalModel::getTimeGrid() const {
-    return monitoringTimeGrid;
-}
-
-const InterestRateModel& GlobalModel::getDomesticInterestRate() const {
-    return domesticInterestRate;
-}
-
-const double GlobalModel::getFdStep() const {
-    return fdStep;
-}
-
-
-
 // Méthodes
 void GlobalModel::simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* row, PnlVect* G, PnlRng* rng, int date) const {
     int nb_assets = assets.size();
@@ -69,7 +45,7 @@ void GlobalModel::simulatePaths(PnlMat* simulations, PnlMat* past, PnlVect* row,
     // Pour la première date si ce n'est pas une date de la grille de temps
     if (!monitoringTimeGrid->has(date)) {
         updateSim(simulations, G, rng, currentDate, t, nb_assets, nb_currencies, true);     // on écrase la valeur d'aujourd'hui par la nouvelle valeur
-        currentDate = monitoringTimeGrid->at(t); // on met à jour la date courante
+        currentDate = monitoringTimeGrid->at(t);                                            // on met à jour la date courante
     }
     
 
@@ -114,4 +90,26 @@ void GlobalModel::shift_asset(PnlMat* shift_mat, int d, double fdStep, int idx_l
         double bumped_value = original_value * (1 + fdStep);
         MLET(shift_mat, i, d) = bumped_value;
     }
+}
+
+
+// Accesseurs
+const std::vector<RiskyAsset*>& GlobalModel::getAssets() const {
+    return assets;
+}
+
+const std::vector<Currency*>& GlobalModel::getCurrencies() const {
+    return currencies;
+}
+
+const ITimeGrid* GlobalModel::getTimeGrid() const {
+    return monitoringTimeGrid;
+}
+
+const InterestRateModel& GlobalModel::getDomesticInterestRate() const {
+    return domesticInterestRate;
+}
+
+const double GlobalModel::getFdStep() const {
+    return fdStep;
 }

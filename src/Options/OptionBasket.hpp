@@ -2,8 +2,7 @@
 #define OPTION_BASKET_HPP
 
 #include "Option.hpp"
-#include <cmath>
-#include "pnl/pnl_matrix.h"
+
 
 class OptionBasket : public Option {
 private:

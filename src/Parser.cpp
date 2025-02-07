@@ -1,8 +1,5 @@
 #include "Parser.hpp"
-#include <iostream>
-#include <iostream>
-#include <map>
-#include <string>
+
 
 // Constructeur
 Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monitoringTimeGrid(nullptr) 
@@ -43,7 +40,7 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
         exit(1);
     }
 
-    
+    // Extraction de la grille de temps
     if ( optionType != "foreign_asian") {
         auto dateData = jsonFixing["DatesInDays"].get<std::vector<double>>();
         DatesInDays = pnl_vect_create(dateData.size());
@@ -88,7 +85,7 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
         order++;
     }
 
-    // **Associer les actifs aux devises**
+    // Associer les actifs aux devises
     auto jsonAssets = dataJson["Assets"];
     int assetIndex = 0;
     for (const auto& jsonAsset : jsonAssets) {
@@ -105,19 +102,14 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
 
 // Destructeur 
 Parser::~Parser() {
-    // Libération de la matrice de corrélation si elle a été allouée
     if (correlationMatrix) {
         pnl_mat_free(&correlationMatrix);
         correlationMatrix = nullptr;
     }
-
-    // Libération du vecteur de dates si alloué
     if (DatesInDays) {
         pnl_vect_free(&DatesInDays);
         DatesInDays = nullptr;
     }
-
-    // Libération de la grille de temps si allouée
     if (monitoringTimeGrid) {
         delete monitoringTimeGrid;
         monitoringTimeGrid = nullptr;
@@ -163,9 +155,9 @@ std::vector<RiskyAsset*> Parser::generateRiskyAssets() const {
 
         // Création de l'actif risqué
         riskyAssets.push_back(new RiskyAsset(
-            domesticInterest.getRate(),   // drift de l'actif
-            corrRow,             // sigma*L
-            domesticInterest    // Taux domestique
+            domesticInterest.getRate(),     // drift de l'actif
+            corrRow,                        // sigma*L
+            domesticInterest                // Taux domestique
         ));
     }
     pnl_vect_free(&corrRow);

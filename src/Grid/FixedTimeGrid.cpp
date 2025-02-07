@@ -1,5 +1,5 @@
 #include "FixedTimeGrid.hpp"
-#include <iostream>
+
 
 // Constructeur : génère automatiquement les dates
 FixedTimeGrid::FixedTimeGrid(int period, int maturity) : period_(period), maturity_(maturity) {
@@ -20,8 +20,5 @@ int FixedTimeGrid::len() const {
 
 // Vérifie si une date spécifique existe dans la grille
 bool FixedTimeGrid::has(int nDays) const {
-    // if (nDays == 0) {
-    //     return false;
-    // }   
     return (nDays % period_ == 0) && (nDays <= maturity_);
 }

@@ -1,7 +1,5 @@
 #include "RiskyAsset.hpp"
-#include <cmath>  // Pour exp()
-#include <iostream>
-#include "pnl/pnl_vector.h"
+
 
 // Constructeur
 RiskyAsset::RiskyAsset(double drift, PnlVect *volatility, InterestRateModel domesticRate)

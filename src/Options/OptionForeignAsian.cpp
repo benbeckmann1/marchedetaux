@@ -1,7 +1,5 @@
 #include "OptionForeignAsian.hpp"
-#include <cmath>
-#include "pnl/pnl_matrix.h"
-#include <iostream>
+
 
 OptionForeignAsian::OptionForeignAsian(const std::vector<int>& nbAssetsPerCurrency,
                                        const std::vector<InterestRateModel>& foreignInterestRates,

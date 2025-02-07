@@ -1,6 +1,4 @@
-// InterestRateModel.cpp
 #include "InterestRateModel.hpp"
-#include <cmath>  // Pour exp()
 
 // Constructeur
 InterestRateModel::InterestRateModel(double rate, int numberOfDaysInOneYear) : rate(rate), numberOfDaysInOneYear(numberOfDaysInOneYear) {}

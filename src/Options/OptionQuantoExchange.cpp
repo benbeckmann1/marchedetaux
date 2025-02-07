@@ -1,6 +1,4 @@
 #include "OptionQuantoExchange.hpp"
-#include <cmath>
-#include "pnl/pnl_matrix.h"
 
 OptionQuantoExchange::OptionQuantoExchange(const std::vector<int>& nbAssetsPerCurrency,
                                            const std::vector<InterestRateModel>& foreignInterestRates,

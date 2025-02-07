@@ -7,7 +7,7 @@ MonteCarlo::MonteCarlo(Option* option, const GlobalModel& model, int sampleNb)
 
 // Destructeur
 MonteCarlo::~MonteCarlo() {
-    delete option;  // Libère la mémoire allouée à l'option
+    delete option; 
 }
 
 
@@ -53,6 +53,7 @@ void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delt
         computeSumDeltas(simulations, shift_plus, shift_moins, spots, date, past->m-1, delta, deltasStdDev); 
     }
 
+    // Calcul du prix et des deltas finaux
     finalPrice(price, priceStdDev, date);
     finalDelta(delta, deltasStdDev, date);
 

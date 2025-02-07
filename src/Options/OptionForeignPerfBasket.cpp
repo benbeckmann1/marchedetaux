@@ -1,7 +1,5 @@
 #include "OptionForeignPerfBasket.hpp"
-#include <cmath>
-#include "pnl/pnl_matrix.h"
-#include "numeric"
+
 
 OptionForeignPerfBasket::OptionForeignPerfBasket(const std::vector<int>& nbAssetsPerCurrency,
                                                  const std::vector<InterestRateModel>& foreignInterestRates,

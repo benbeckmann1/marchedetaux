@@ -1,5 +1,6 @@
 #include "ListTimeGrid.hpp"
 
+
 ListTimeGrid::ListTimeGrid(const PnlVect* datesInDays) {
     datesInDays_ = pnl_vect_copy(datesInDays);
 }

@@ -1,6 +1,7 @@
-// InterestRateModel.hpp
 #ifndef INTEREST_RATE_MODEL_HPP
 #define INTEREST_RATE_MODEL_HPP
+
+#include <cmath>
 
 class InterestRateModel {
 private:

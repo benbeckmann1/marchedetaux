@@ -2,9 +2,13 @@
 #define OPTION_HPP
 
 #include <vector>
+#include <cmath>
 #include <pnl/pnl_vector.h>
+#include <pnl/pnl_matrix.h>
+#include <numeric> 
 #include "../InterestRateModel.hpp"
 #include "../Grid/ITimeGrid.hpp"
+
 
 class Option {
 protected:
@@ -31,13 +35,9 @@ public:
     // Méthode virtuelle pure pour le calcul du payoff
     virtual double payoff(const PnlMat* simulations) const = 0;
 
-    // Getter pour obtenir la maturité
+    // Getters
     double getMaturity() const { return maturity_; }
-
-    // Getter pour obtenir le InterestRateModel domestique
     InterestRateModel getDomesticInterestRate() const { return domesticInterestRate_; }
-
-    // Getter pour obtenir le InterestRateModel étranger
     std::vector<InterestRateModel> getForeignInterestRates() const { return foreignInterestRates_; }
 };
 
