@@ -2,9 +2,7 @@
 
 
 // Constructeur
-RiskyDynamics::RiskyDynamics(double drift, PnlVect *volatility) : drift(drift) {
-    volatilityVector = pnl_vect_copy(volatility);
-}
+RiskyDynamics::RiskyDynamics(double drift, PnlVect *volatility) : drift(drift), volatilityVector(pnl_vect_copy(volatility)) {}
 
 // Destructeur : libère la mémoire allouée pour le vecteur de volatilité
 RiskyDynamics::~RiskyDynamics() {

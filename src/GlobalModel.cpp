@@ -8,6 +8,7 @@ GlobalModel::GlobalModel(std::vector<RiskyAsset*> assets, std::vector<Currency*>
 
 // Destructeur
 GlobalModel::~GlobalModel() {
+    delete monitoringTimeGrid;
     // for (RiskyAsset* asset : assets) {
     //     delete asset;
     // }

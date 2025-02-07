@@ -102,18 +102,26 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
 
 // Destructeur 
 Parser::~Parser() {
-    if (correlationMatrix) {
-        pnl_mat_free(&correlationMatrix);
-        correlationMatrix = nullptr;
-    }
-    if (DatesInDays) {
-        pnl_vect_free(&DatesInDays);
-        DatesInDays = nullptr;
-    }
-    if (monitoringTimeGrid) {
-        delete monitoringTimeGrid;
-        monitoringTimeGrid = nullptr;
-    }
+    pnl_mat_free(&correlationMatrix);
+    pnl_vect_free(&DatesInDays);
+    delete monitoringTimeGrid;
+    delete rebalanceTimeGrid;
+    // if (correlationMatrix) {
+    //     pnl_mat_free(&correlationMatrix);
+    //     correlationMatrix = nullptr;
+    // }
+    // if (DatesInDays) {
+    //     pnl_vect_free(&DatesInDays);
+    //     DatesInDays = nullptr;
+    // }
+    // if (monitoringTimeGrid) {
+    //     delete monitoringTimeGrid;
+    //     monitoringTimeGrid = nullptr;
+    // }
+    // if (rebalanceTimeGrid) {
+    //     delete rebalanceTimeGrid;
+    //     rebalanceTimeGrid = nullptr;
+    // }
 }
 
 

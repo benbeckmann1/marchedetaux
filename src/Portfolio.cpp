@@ -59,6 +59,8 @@ Portfolio::~Portfolio() {
         pnl_vect_free(&position.deltasStdDev);
     }
     pnl_vect_free(&delta_);
+    delete rebalancingTimeGrid_;
+
 }
 
 
