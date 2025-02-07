@@ -1,42 +1,63 @@
 import json
+import numpy as np
 import sys
 
-def load_json(filename):
-    """ Load JSON file """
-    with open(filename, "r") as file:
-        return json.load(file)
+def calculate_percentage_error(actual_value, expected_value):
+    if expected_value == 0:
+        return 0
+    return (abs(actual_value - expected_value) / expected_value) * 100
 
-def is_within_range(value, ref_value, ref_std_dev, threshold=4):
-    """ Check if value is within [ref_value - threshold * ref_std_dev, ref_value + threshold * ref_std_dev] """
-    lower_bound = ref_value - threshold * ref_std_dev
-    upper_bound = ref_value + threshold * ref_std_dev
-    return lower_bound <= value <= upper_bound
+def compare_portfolios(file1, file2):
+    # Charge les fichiers JSON
+    with open(file1, 'r') as f1:
+        portfolio1 = json.load(f1)
 
-def compare_portfolios(prof_json, my_json):
-    """ Compare professor's portfolio and student's portfolio """
-    for prof_entry, my_entry in zip(prof_json, my_json):
-        date = prof_entry["date"]
-        
-        # Check price
-        price_check = is_within_range(my_entry["price"], prof_entry["price"], prof_entry["priceStdDev"])
-        
-        # Check deltas
-        deltas_check = all(
-            is_within_range(my_delta, prof_delta, prof_std_dev)
-            for my_delta, prof_delta, prof_std_dev in zip(my_entry["deltas"], prof_entry["deltas"], prof_entry["deltasStdDev"])
-        )
-        
-        if price_check and deltas_check:
-            print(f"Date {date}: OK")
+    with open(file2, 'r') as f2:
+        portfolio2 = json.load(f2)
+
+    # Parcours les dates et compare les prix et deltas
+    for pos1, pos2 in zip(portfolio1['positions'], portfolio2['positions']):
+        date = pos1['date']
+        price1 = pos1['price']
+        price2 = pos2['price']
+        price_std_dev1 = pos1['priceStdDev']
+        price_std_dev2 = pos2['priceStdDev']
+
+        # Vérification des prix
+        if price2 >= price1 - 4 * price_std_dev1 and price2 <= price1 + 4 * price_std_dev1:
+            print(f"Date {date}: OK (Price within range)")
         else:
-            print(f"Date {date}: Pas Bon")
+            print(f"Date {date}: Pas Bon (Price out of range)")
+
+        # Calcul de l'écart en pourcentage
+        price_percentage_error = calculate_percentage_error(price2, price1)
+        print(f"Date {date}: Price Percentage Error: {price_percentage_error:.2f}%")
+
+        # Vérification des deltas
+        deltas1 = np.array(pos1['deltas'])
+        deltas2 = np.array(pos2['deltas'])
+
+        if np.allclose(deltas1, deltas2, atol=1e-5):
+            print(f"Date {date}: OK (Deltas within range)")
+        else:
+            print(f"Date {date}: Pas Bon (Deltas out of range)")
+
+        # Calcul de l'écart en pourcentage des deltas
+        delta_percentage_error = np.linalg.norm(deltas2 - deltas1) / np.linalg.norm(deltas1) * 100
+        print(f"Date {date}: Delta Percentage Error: {delta_percentage_error:.2f}%")
+
+        # Calcul de l'écart de portefeuille
+        portfolio_value1 = pos1['portfolioValue']
+        portfolio_value2 = pos2['portfolioValue']
+        portfolio_percentage_error = calculate_percentage_error(portfolio_value2, portfolio_value1)
+        print(f"Date {date}: Portfolio Value Percentage Error: {portfolio_percentage_error:.2f}%")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python compare_portfolios.py <professor_json> <my_json>")
+        print("Usage: python compare_portfolios.py <portfolio1.json> <portfolio2.json>")
         sys.exit(1)
 
-    prof_data = load_json(sys.argv[1])
-    my_data = load_json(sys.argv[2])
-    
-    compare_portfolios(prof_data, my_data)
+    file1 = sys.argv[1]
+    file2 = sys.argv[2]
+
+    compare_portfolios(file1, file2)
