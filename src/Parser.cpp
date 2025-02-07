@@ -21,28 +21,27 @@ Parser::Parser(const std::string& filename) : domesticInterest(0.0, 365), monito
     SampleNb = dataJson["SampleNb"].get<int>();
     RelativeFiniteDifferenceStep = dataJson["RelativeFiniteDifferenceStep"].get<double>();
     domesticCurrencyId = dataJson["DomesticCurrencyId"].get<std::string>();
+    
+
+    // Extraction des informations sur l'option
+    auto jsonOption = dataJson["Option"];
+    optionType = jsonOption["Type"].get<std::string>();
+    maturity = jsonOption["MaturityInDays"].get<int>();
+
+    // Extraction des dates de fixing
+    auto jsonFixing = jsonOption["FixingDatesInDays"];
+    fixingdatesType = jsonFixing["Type"].get<std::string>();
 
     // Extraction des paramètres de l'oracle de rebalancement
     auto jsonOracle = dataJson["PortfolioRebalancingOracleDescription"];
     rebalanceType = jsonOracle["Type"].get<std::string>();
 
     if (rebalanceType == "Fixed") {
-        int rebalancePeriod = dataJson["PortfolioRebalancingOracleDescription"].at("Period").get<int>();
-        monitoringTimeGrid = new FixedTimeGrid(rebalancePeriod, maturity);
+        int rebalancePeriod = dataJson["PortfolioRebalancingOracleDescription"]["Period"].get<int>();
+        rebalanceTimeGrid = new FixedTimeGrid(rebalancePeriod, maturity);
     } else {
-        std::cerr << " Erreur : le Type de TimeGrid n'est pas 'Fixed' !" << std::endl;
         exit(1);
     }
-    
-
-    // Extraction des informations sur l'option
-    auto jsonOption = dataJson["Option"];
-    optionType = jsonOption["Type"].get<std::string>();
-    maturity = jsonOption["MaturityInDays"].get<double>();
-
-    // Extraction des dates de fixing
-    auto jsonFixing = jsonOption["FixingDatesInDays"];
-    fixingdatesType = jsonFixing["Type"].get<std::string>();
 
     
     if ( optionType != "foreign_asian") {

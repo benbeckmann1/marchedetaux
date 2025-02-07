@@ -12,7 +12,7 @@ MonteCarlo::~MonteCarlo() {
 
 
 
-void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delta, PnlVect* deltasStdDev, PnlMat* market, int date) { // prednre une position directement en argument ?    
+void MonteCarlo::priceAndDelta(double& price, double& priceStdDev, PnlVect* delta, PnlVect* deltasStdDev, PnlMat* market, int date) const { // prednre une position directement en argument ?    
     // Initialisation
     price = 0.0;
     priceStdDev = 0.0;
@@ -126,4 +126,17 @@ void MonteCarlo::finalDelta(PnlVect* delta, PnlVect* deltasStdDev, int date) con
     pnl_vect_mult_scalar(deltasStdDev, option->getDomesticInterestRate().discountFactor(date, option->getMaturity()) / (2 * model.getFdStep() * sampleNb));
     pnl_vect_mult_scalar(delta, option->getDomesticInterestRate().discountFactor(date, option->getMaturity()) / (2 * model.getFdStep() * sampleNb));
     pnl_vect_free(&meanSquaredSum);
+}
+
+
+Option* MonteCarlo::getOption() const {
+    return option;
+}
+
+GlobalModel MonteCarlo::getModel() const {
+    return model;
+}
+
+int MonteCarlo::getSampleNb() const {
+    return sampleNb;
 }

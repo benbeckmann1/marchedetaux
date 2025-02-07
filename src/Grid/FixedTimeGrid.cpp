@@ -23,5 +23,5 @@ bool FixedTimeGrid::has(int nDays) const {
     // if (nDays == 0) {
     //     return false;
     // }   
-    return nDays % period_ == 0 && nDays <= maturity_;
+    return (nDays % period_ == 0) && (nDays <= maturity_);
 }

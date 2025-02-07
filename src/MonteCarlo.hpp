@@ -23,7 +23,7 @@ public:
     ~MonteCarlo();
 
     // Calcule le prix de l'option et les deltas
-    void priceAndDelta(double& price, double& priceStdDev, PnlVect* delta, PnlVect* deltasStdDev, PnlMat* market, int date);
+    void priceAndDelta(double& price, double& priceStdDev, PnlVect* delta, PnlVect* deltasStdDev, PnlMat* market, int date) const;
 
     // Crée la matrice past
     void createPast(PnlMat* past, int nb_tot_assets, PnlMat* market, int date) const;
@@ -36,6 +36,11 @@ public:
 
     void finalPrice(double& price, double& priceStdDev, int date) const;
     void finalDelta(PnlVect* delta, PnlVect* deltasStdDev, int date) const;
+
+    // Getters
+    Option* getOption() const;
+    GlobalModel getModel() const;
+    int getSampleNb() const;
 
 
 };

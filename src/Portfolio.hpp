@@ -22,25 +22,19 @@ public:
 
 class Portfolio {
 public:
-    std::list<Position> positions;
-
-    int date_;
-    int numberOfDayYear_;
-    PnlMat* market_;
-    PnlVect* delta_;
-    PnlVect* deltaStdev_;
-    double nonRiskyAsset_;
-    double portfolioValue_;
-    double price_;
-    double priceStdev_;
-    double rate_;
-    ITimeGrid* monitoringTimeGrid;
-
+    const MonteCarlo& monteCarlo_;
+    ITimeGrid* rebalancingTimeGrid_;
+    std::list<Position> positions_;
+    PnlVect* delta_;           // Vecteur de deltas
+    double cash_;              // Montant en cash du portefeuille
+    int date_;                 // Date du portefeuille
+    
     // Constructor
-    Portfolio(int date, int numberOfDayYear, PnlMat* market, PnlVect* delta, PnlVect* deltaStdev, double price,
-     double priceStdev, double rate, ITimeGrid* monitoringTimeGrid);
+    Portfolio(int date, const MonteCarlo& monteCarlo, ITimeGrid* monitoringTimeGrid, PnlMat* marketdata);
 
     ~Portfolio();
 
-    double UpdatePortfolioValue(int CurrentDate, PnlVect* CurrentDelta, PnlMat* marketdata);
+    void UpdatePortfolio(int CurrentDate, PnlVect* CurrentDelta, PnlVect* spot);
+    double GetPortfolioValue(int CurrentDate, PnlVect* spot);
+    // double UpdatePortfolioValue(int CurrentDate, PnlVect* CurrentDelta, PnlMat* marketdata);
 };

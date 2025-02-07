@@ -43,43 +43,50 @@ int main(int argc, char *argv[]) {
     Parser parser(argv[1]);
     PnlMat *market = pnl_mat_create_from_file(argv[2]);
 
-    double price;
-    double priceStdDev;
-    PnlVect* delta = pnl_vect_create(market->n);
-    PnlVect* deltasStdDev = pnl_vect_create(market->n);
-
     Option* opt = parser.CreateOption();
     GlobalModel model = parser.CreateGlobalModel();
     MonteCarlo montecarlo = MonteCarlo(opt, model, parser.getSampleNb());
     MarketDomestic(market, parser.computeNbAssetsPerCurrency(), opt->getForeignInterestRates());
-    montecarlo.priceAndDelta(price, priceStdDev, delta, deltasStdDev, market, 0);
-    
-    std::cout << "Je suis la 0 " << std::endl;
-    // Constructeur du Portfolio
-    Portfolio* portfolio = new Portfolio(0, parser.getNumberOfDaysInOneYear(), market, delta,
-     deltasStdDev, price, priceStdDev, parser.getInterestRateModel().getRate(), parser.getRebTimeGrid());
-    
-    std::cout << "Je suis la 1 " << std::endl;
-    // calculer le portefeuille de couverture
+    PnlVect* spot = pnl_vect_create(market->n);
+
+    Portfolio* portfolio = new Portfolio(0, montecarlo, parser.getRebTimeGrid(), market);
+
+    double price;
+    double priceStdDev;
+
+    std::vector<PnlVect*> deltaVector;
+    std::vector<PnlVect*> deltaStdDevVector;
+    //calculer le portefeuille de couverture
     for(int date = 1; date < market->m; date++) {
-            std::cout << "Je suis la 1.01 " << std::endl;
-            if(portfolio->monitoringTimeGrid->has(date)){
-                std::cout << "Je suis la 1.02 " << std::endl;
-                PnlVect* deltaPortfolio = pnl_vect_create(market->n);
-                PnlVect* deltaPortfolioStdDev = pnl_vect_create(market->n);
-                std::cout << "Je suis la 1.1 " << std::endl;
-                
-                montecarlo.priceAndDelta(price, priceStdDev, deltaPortfolio, deltaPortfolioStdDev, market, date);
-                std::cout << "Je suis la 1.2 " << std::endl;
-                portfolio->positions.emplace_back(Position(date, price, priceStdDev,deltaPortfolio, deltaPortfolioStdDev, 
-                portfolio->UpdatePortfolioValue(date, delta, market)));
-                std::cout << "Je suis la 1.3 " << std::endl;
-                pnl_vect_free(&deltaPortfolio);
-                pnl_vect_free(&deltaPortfolioStdDev);
-            }
+
+        if(portfolio->rebalancingTimeGrid_->has(date)){
+            
+            PnlVect* deltaPortfolio = pnl_vect_create(market->n);
+            PnlVect* deltaPortfolioStdDev = pnl_vect_create(market->n);
+            
+            montecarlo.priceAndDelta(price, priceStdDev, deltaPortfolio, deltaPortfolioStdDev, market, date);
+
+            // std::cout << "prix de l'option date :" << date << " -> " << price <<std::endl; 
+
+            pnl_mat_get_row(spot, market, date);
+            portfolio->UpdatePortfolio(date, deltaPortfolio, spot);
+            double portfolioValue = portfolio->GetPortfolioValue(date, spot);
+            portfolio->positions_.emplace_back(Position(date, price, priceStdDev,deltaPortfolio, deltaPortfolioStdDev, portfolioValue));
+
+            // pnl_vect_free(&deltaPortfolio);
+            // pnl_vect_free(&deltaPortfolioStdDev);
+            deltaVector.push_back(deltaPortfolio);
+            deltaStdDevVector.push_back(deltaPortfolioStdDev);
+        }
     }
-    std::cout << "Je suis la 2 " << std::endl;
-    nlohmann::json jsonPortfolio = portfolio->positions;
+
+
+    // std::cout << "positions : " << std::endl;   
+    // for (auto position : portfolio->positions_) {
+    //     position.print();
+    // }
+ 
+    nlohmann::json jsonPortfolio = portfolio->positions_;
     std::ofstream ifout(argv[3], std::ios_base::out);
     if (!ifout.is_open()) {
         std::cout << "Unable to open file " << argv[3] << std::endl;
@@ -87,10 +94,14 @@ int main(int argc, char *argv[]) {
     }
     ifout << jsonPortfolio.dump(4);
     ifout.close();
-    std::cout << "Je suis la 3" << std::endl;
 
     pnl_mat_free(&market);
-    pnl_vect_free(&delta);
-    pnl_vect_free(&deltasStdDev);
+    pnl_vect_free(&spot);
+    for (PnlVect* vect : deltaVector) {
+        pnl_vect_free(&vect);
+    }   
+    for (PnlVect* vect : deltaStdDevVector) {
+        pnl_vect_free(&vect);
+    }
     return 0;
 }
