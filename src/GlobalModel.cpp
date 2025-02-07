@@ -7,24 +7,13 @@ GlobalModel::GlobalModel(std::vector<RiskyAsset*> assets, std::vector<Currency*>
       monitoringTimeGrid(timeGrid), domesticInterestRate(domesticRate), fdStep(fdStep) {}
 
 // Destructeur
-GlobalModel::~GlobalModel() {
-    delete monitoringTimeGrid;
+GlobalModel::~GlobalModel() {               // on n'arrive pas à libérer la mémoire de tous les objets, il faudrait utiliser des std_unique_ptr...
+    // delete monitoringTimeGrid;
     // for (RiskyAsset* asset : assets) {
     //     delete asset;
     // }
-    // assets.clear();
-
-    // for (Currency*& currency : currencies) {
-    //     if (currency) {
-    //         delete currency;
-    //         currency = nullptr;  
-    //     }
-    // }
-    // currencies.clear();
-
-    // if (monitoringTimeGrid) {
-    //     delete monitoringTimeGrid;
-    //     monitoringTimeGrid = nullptr;
+    // for (Currency* currency : currencies) {
+    //     delete currency;
     // }
 }
 

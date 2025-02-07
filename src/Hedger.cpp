@@ -36,10 +36,10 @@ void MarketDomestic(PnlMat* market, std::vector<int> nbAssetsPerCurrency, std::v
 
 
 int main(int argc, char *argv[]) {
-    // if (argc != 4) {
-    //     std::cerr << "Usage : " << argv[0] << " <fichier_json>   <fichier_csv>   <fichier_out> "  << std::endl;
-    //     return 1;
-    // }
+    if (argc != 4) {
+        std::cerr << "Usage : " << argv[0] << " <fichier_json>   <fichier_csv>   <fichier_out> "  << std::endl;
+        return 1;
+    }
     Parser parser(argv[1]);
     PnlMat *market = pnl_mat_create_from_file(argv[2]);
 
@@ -70,24 +70,19 @@ int main(int argc, char *argv[]) {
             double portfolioValue = portfolio->GetPortfolioValue(date, spot);
             portfolio->positions_.emplace_back(Position(date, price, priceStdDev,deltaPortfolio, deltaPortfolioStdDev, portfolioValue));
 
-            // pnl_vect_free(&deltaPortfolio);
-            // pnl_vect_free(&deltaPortfolioStdDev);
             deltaVector.push_back(deltaPortfolio);
             deltaStdDevVector.push_back(deltaPortfolioStdDev);
         }
     }
 
-    // for (Position position : portfolio->positions_) {
-    //     position.print();
-    // }
-    // nlohmann::json jsonPortfolio = portfolio->positions_;
-    // std::ofstream ifout(argv[3], std::ios_base::out);
-    // if (!ifout.is_open()) {
-    //     std::cout << "Unable to open file " << argv[3] << std::endl;
-    //     std::exit(1);
-    // }
-    // ifout << jsonPortfolio.dump(4);
-    // ifout.close();
+    nlohmann::json jsonPortfolio = portfolio->positions_;
+    std::ofstream ifout(argv[3], std::ios_base::out);
+    if (!ifout.is_open()) {
+        std::cout << "Unable to open file " << argv[3] << std::endl;
+        std::exit(1);
+    }
+    ifout << jsonPortfolio.dump(4);
+    ifout.close();
 
     pnl_mat_free(&market);
     pnl_vect_free(&spot);
